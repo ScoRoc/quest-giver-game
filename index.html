@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Top Down RPG Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div id="topspace" class="col-12 topspace">
+          <p class="title">Legend of tiny pixelated 1980s man!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row game-row">
+        <div id="left-side" class="col-2 left-side" height="352">
+          <div class="left-border-box">
+            <p>Game level:</p>
+            <p id="game-num">0</p>
+          </div>
+          <div class="left-border-box">
+            <p>Kill score:</p>
+            <p id="score-num">0</p>
+          </div>
+          <div>
+            <p>High score:</p>
+            <p id="high-score">0</p>
+          </div>
+        </div>
+        <div class="col-8 canvas-div" width="512" height="352">
+          <canvas id="background-map" class="canvas-blur"></canvas>
+          <canvas id="enemy-map" class="canvas-blur"></canvas>
+          <canvas id="death-canvas"></canvas>
+          <canvas id="explosion-canvas"></canvas>
+          <canvas id="sprite-map"></canvas>
+          <canvas id="win-canvas"></canvas>
+        </div>
+        <div class="col-2 hearts-col" height="352">
+          <img class="heart" id="heart-one" src="images/heart.gif"><br>
+          <img class="heart" id="heart-two" src="images/heart.gif"><br>
+          <img class="heart" id="heart-three" src="images/heart.gif"><br>
+          <img class="heart" id="heart-four" src="images/heart.gif"><br>
+          <label>Invincible
+            <input class="checkboxes" type="checkbox" id="invincible"><br>
+          </label>
+          <label>Sound effects
+            <input class="checkboxes" type="checkbox" id="soundFx"><br>
+          </label>
+          <label>Continuous play
+            <input class="checkboxes" type="checkbox" id="continuous-play"><br>
+          </label>
+          <button type="button" class="grow-button" id="start-game">Start game</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-pad mobile">
+      <div class="d-pad-arrow mobile" id="up"></div>
+      <div class="d-pad-arrow mobile" id="left"></div>
+      <div class="d-pad-arrow mobile" id="down"></div>
+      <div class="d-pad-arrow mobile" id="right"></div>
+    </div>
+
+    <div class="mobile" id="attack-box">
+      <div class="mobile" id="attack"></div>
+    </div>
+
+    <div id="audio-box">
+      <audio controls autoplay loop>
+        <source src="background-song.wav" type="audio/wav">
+      </audio>
+    </div>
+
+    <div id="about-box">
+      <div id="made-by-box">
+        <p> game and music by scott rosehart</p>
+      </div>
+      <div id="links-box">
+        <p>
+          <a class="logo-links" href="http://github.com/ScoRoc" target="_blank"><img id="github-logo" src="images/GitHub-Mark-Light-32px.png"></a>
+          <a class="logo-links" href="http://www.linkedin.com/in/scottrosehart" target="_blank"><img id="linkedin-logo" src="images/In-White-28px-R.png"></a>
+          <a class="logo-links" href="http://twitter.com/ScoRoc" target="_blank"><img id="twitter-logo" src="images/Twitter_Social_Icon_Rounded_Square_White.png"></a>
+          <a class="logo-links" target="_blank">
+            <iframe id="soundcloud-logo" allowtransparency="true" scrolling="no" frameborder="no" src="https://w.soundcloud.com/icon/?url=http%3A%2F%2Fsoundcloud.com%2Fanimalwarfare&color=white_transparent&size=24" style="width: 22px; height: 15.5px;"></iframe>
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" src="dist/bundle.js"></script>
+  </body>
+</html>
