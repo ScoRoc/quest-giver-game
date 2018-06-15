@@ -1,5 +1,6 @@
-// import testLog from './modules/testLog.js';
-// console.log(testLog);
+import testLog from './modules/testLog.js';
+import { coinFlip, xStarting, yStarting } from './modules/mathHelpers.js';
+console.log(testLog);
 
 
 
@@ -248,32 +249,32 @@ winCanvas.width = 512;
 winCanvas.height = 352;
 
 
-//Random Number Generators
-var coinFlip = function(num) {
-  switch (Math.floor(Math.random() * num)) {
-    case 0:
-      return 0;
-      break;
-    case 1:
-      return 1;
-      break;
-    case 2:
-      return 2;
-      break;
-    case 3:
-      return 3;
-      break;
-  }
-};
-
-
-//Random starting x and y points
-var xStarting = function(spriteWidth) {
-  return Math.floor(Math.random() * (510 - spriteWidth));
-};
-var yStarting = function(spriteHeight) {
-  return Math.floor(Math.random() * (350 - spriteHeight));
-};
+// //Random Number Generators
+// var coinFlip = function(num) {
+//   switch (Math.floor(Math.random() * num)) {
+//     case 0:
+//       return 0;
+//       break;
+//     case 1:
+//       return 1;
+//       break;
+//     case 2:
+//       return 2;
+//       break;
+//     case 3:
+//       return 3;
+//       break;
+//   }
+// };
+//
+//
+// //Random starting x and y points
+// var xStarting = function(spriteWidth) {
+//   return Math.floor(Math.random() * (510 - spriteWidth));
+// };
+// var yStarting = function(spriteHeight) {
+//   return Math.floor(Math.random() * (350 - spriteHeight));
+// };
 
 
 //Define character images
@@ -374,7 +375,7 @@ var tektite = {
   xCenter: 18.75,  //x center of hit box
   yCenter: 20,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 16, //number of px to move
   numberOfSpaces: [0, 1, 2, 3], //possible spaces moved
   type: 'random',  //what type of enemy
@@ -443,7 +444,7 @@ var keese = {
   xCenter: 18.75,  //x center of hit box
   yCenter: 20,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 16, //number of px to move
   numberOfSpaces: [0, 1], //possible spaces moved
   type: 'random',  //what type of enemy
@@ -496,7 +497,7 @@ var gibdo = {
   xCenter: 18.75,  //x center of hit box
   yCenter: 20,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 1.75, //number of px to move
   numberOfSpaces: [0, 1], //possible spaces moved
   type: 'smart',  //what type of enemy
@@ -542,7 +543,7 @@ var stalfos = {
   xCenter: 18.75,  //x center of hit box
   yCenter: 20,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 2, //number of px to move
   numberOfSpaces: [1], //possible spaces moved
   type: 'smart',  //what type of enemy
@@ -588,7 +589,7 @@ var dodongo = {
   xCenter: 18.75,  //x center of hit box
   yCenter: 20,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 0.9, //number of px to move
   numberOfSpaces: [1], //possible spaces moved
   type: 'xRightRunner',  //what type of enemy
@@ -621,7 +622,7 @@ var armos = {
   xCenter: 23,  //x center of hit box
   yCenter: 23,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 1.2, //number of px to move
   numberOfSpaces: [1], //possible spaces moved
   type: 'smart',  //what type of enemy
@@ -675,7 +676,7 @@ var wizzrobe = {
   xCenter: 23,  //x center of hit box
   yCenter: 23,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 1, //number of px to move
   numberOfSpaces: [1], //possible spaces moved
   type: 'scared',  //what type of enemy
@@ -760,7 +761,7 @@ var darknut = {
   xCenter: 23,  //x center of hit box
   yCenter: 23,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 1.6, //number of px to move
   numberOfSpaces: [1], //possible spaces moved
   type: 'yRunner',  //what type of enemy
@@ -793,7 +794,7 @@ var aquamentus = {
   xCenter: 19,  //x center of hit box
   yCenter: 25,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 1.15, //number of px to move
   numberOfSpaces: [1], //possible spaces moved
   type: 'xLeftRunner',  //what type of enemy
@@ -849,7 +850,7 @@ var moblin = {
   xCenter: 35,  //x center of hit box
   yCenter: 35,  //y center of hit box
   moveAnimation: null,  //movement AI
-  moveDirection: [this.xMove, this.yMove], //move directions
+  // moveDirection: [this.xMove, this.yMove], //move directions
   moveSpeed: 2.1, //number of px to move
   cycleOne: 11,  //cycle of movement for stage one
   cycleTwo: 11,  //cycle of movement for stage two
