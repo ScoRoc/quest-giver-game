@@ -1,5 +1,5 @@
-import testLog from './modules/testLog.js';
-console.log(testLog);
+// import testLog from './modules/testLog.js';
+// console.log(testLog);
 
 
 
@@ -16,7 +16,6 @@ var game = {
   needToKill: 1,  //tracks how many enemies link needs to kill to progress
   now: null,  //current game time
   endTime: null,  //tracks game end time
-  soundFx: true,  //soundFx on or off
   // delta: null,  //change in now and then game time, ie frame rate
   // then: null,  ////previous game time (last frame)
 
@@ -1555,10 +1554,6 @@ var enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
     if (hitRadius <= 33 && !link.invincible) {
       link.linkHit();
       link.life -= enemy.strength;
-      var heartLose = new Audio('heart-lose.wav');
-      if (game.soundFx) {
-        heartLose.play();
-      };
       link.heartDisplay();
     };
   } else if (link.isAttacking && ((game.now - link.attackTime) / 1000) > .2 && enemy.life > 0) {
@@ -1574,19 +1569,8 @@ var enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
     if (hitRadius <= 32 || hitRadiusRight <= 32 || hitRadiusDown <= 32) {
       link.linkAttack();
       enemy.life -= 1;
-      var hitEnemy = new Audio('hit-enemy.wav');
-      if (!enemy.dead && game.soundFx) {
-        hitEnemy.play()
-      };
       if (enemy.life === 0) {
         enemy.dead = true;
-        if (game.soundFx && enemy.type !== 'boss') {
-          var enemyExplosion = new Audio('enemy-explosion.mp3');
-          enemyExplosion.play();
-        } else if (enemy.type === 'boss') {
-          var horn = new Audio('horn.mp3');
-          horn.play();
-        };
       };
       if (enemy.dead) {
         if (enemy.type !== 'boss') {
@@ -1618,12 +1602,7 @@ var heartCollisionDetection = function(x1, y1, x2, y2, object) {
   var crashZone = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
   if (crashZone <= 30 && link.life <= 3.5 && object.show === true) {
     object.show = false;
-    var heartGain = new Audio('heart-gain.mp3');
-    var bigHeartGain = new Audio('big-heart-gain.wav');
     if (object === bigHeart) {
-      if (game.soundFx) {
-        bigHeartGain.play();
-      };
       object.x = xStarting(object.spriteWidth);
       object.y = yStarting(object.spriteHeight);
       if (link.life <= 3.5 && ((game.now - link.heartTime) / 1000) > 1) {
@@ -1645,9 +1624,6 @@ var heartCollisionDetection = function(x1, y1, x2, y2, object) {
         $('#heart-four').removeClass('damaged');
       };
     } else if (object === heart) {
-      if (game.soundFx) {
-        heartGain.play();
-      };
       object.x = xStarting(object.spriteWidth);
       object.y = yStarting(object.spriteHeight);
       if (link.life === 0.5 && ((game.now - link.heartTime) / 1000) > 1) {
@@ -1743,10 +1719,6 @@ var gameOver = function() {
     clearInterval(animateLinkDeath);
     ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
     ctxSpriteMap.drawImage(explosionPng, 40, 10, 280, 285, link.xMove, link.yMove, 60, 60);
-    var linkExplosion = new Audio('link-explosion.wav');
-    if (game.soundFx) {
-      linkExplosion.play();
-    };
     setTimeout(function() {
       gameOverScreen();
       startGameButton.html('Replay game');
@@ -1803,7 +1775,6 @@ var animationLoop = function() {
 
   if (!game.over && !game.win) {
     game.setGameNow();
-    game.soundFx = $('#soundFx').prop('checked');
 
 
     ctxEnemyMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
