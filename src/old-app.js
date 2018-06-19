@@ -26,6 +26,14 @@ import {
   winCanvas,
   ctxWinCanvas
 } from './modules/maps.js';
+import {
+  winGame,
+  gameOverScreen,
+  gameOver,
+  linkDies
+} from './modules/gameState/gameStateImporter.js';
+import { heartCollisionDetection, enemyCollisionDetection } from './modules/collisionDetectors/collisionDetectorImporter.js';
+import { xRightResetOffscreenEnemies, xLeftResetOffscreenEnemies, yResetOffscreenEnemies } from './modules/resetEnemyHelpers.js';
 import link from './modules/player.js';
 
 
@@ -35,7 +43,6 @@ let game = {
   over: true,  //tracks game over or not
   continuous: false,  //tracks continous or boss mode
   score: 0,  //tracks current kill score
-  highScore: 0,  //tracks high score
   level: 1,  //which level player is on
   needToKill: 1,  //tracks how many enemies link needs to kill to progress
   now: null,  //current game time
@@ -203,23 +210,23 @@ let zeldaPng = new Image();
 zeldaPng.src = 'images/zelda.png';
 
 
-//rest xRightRunner offscreen enemies
-let xRightResetOffscreenEnemies = function (enemy) {
-  enemy.xMove = -100;
-  enemy.yMove = yStarting(enemy.spriteHeight);
-};
-
-//rest xLeftRunner offscreen enemies
-let xLeftResetOffscreenEnemies = function (enemy) {
-  enemy.xMove = 555;
-  enemy.yMove = yStarting(enemy.spriteHeight);
-};
-
-//rest y offscreen enemies
-let yResetOffscreenEnemies = function (enemy) {
-  enemy.xMove = xStarting(enemy.spriteWidth);
-  enemy.yMove = -60;
-};
+// //rest xRightRunner offscreen enemies
+// let xRightResetOffscreenEnemies = function (enemy) {
+//   enemy.xMove = -100;
+//   enemy.yMove = yStarting(enemy.spriteHeight);
+// };
+//
+// //rest xLeftRunner offscreen enemies
+// let xLeftResetOffscreenEnemies = function (enemy) {
+//   enemy.xMove = 555;
+//   enemy.yMove = yStarting(enemy.spriteHeight);
+// };
+//
+// //rest y offscreen enemies
+// let yResetOffscreenEnemies = function (enemy) {
+//   enemy.xMove = xStarting(enemy.spriteWidth);
+//   enemy.yMove = -60;
+// };
 
 
 //All enemies array
@@ -228,216 +235,8 @@ let allEnemies = [tektite, keese, gibdo, stalfos, dodongo, armos, wizzrobe, dark
 let liveEnemies = [];
 let areEnemiesDead = null;
 
-//Collision Detection between Link and enemies
-let enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
-  if (!link.isAttacking && ((game.now - link.hitTime) / 1000) > 1.25 && enemy.life > 0) {
-    let xDistance = x2 - x1;
-    let yDistance = y2 - (y1 - 4);
-    let hitRadius = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
-    if (hitRadius <= 33 && !link.invincible) {
-      link.linkHit();
-      link.life -= enemy.strength;
-      link.heartDisplay();
-    };
-  } else if (link.isAttacking && ((game.now - link.attackTime) / 1000) > .2 && enemy.life > 0) {
-    let xDistance = x2 - x1;
-    let yDistance = y2 - y1;
-    let hitRadius = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
-    let xRightAttack = x1 + 20;
-    let xDistanceRight = x2 - xRightAttack;
-    let hitRadiusRight = Math.abs(Math.sqrt(Math.pow(xDistanceRight, 2) + Math.pow(yDistance, 2)));
-    let yDownAttack = y1 + 18;
-    let yDistanceDown = y2 - yDownAttack;
-    let hitRadiusDown = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistanceDown, 2)));
-    if (hitRadius <= 32 || hitRadiusRight <= 32 || hitRadiusDown <= 32) {
-      link.linkAttack();
-      enemy.life -= 1;
-      if (enemy.life === 0) {
-        enemy.dead = true;
-      };
-      if (enemy.dead) {
-        if (enemy.type !== 'boss') {
-          ctxExplosionCanvas.drawImage(explosionPng, 40, 10, 280, 285, enemy.xMove, enemy.yMove, 60, 60);
-        } else if (enemy.type === 'boss') {
-          ctxExplosionCanvas.drawImage(bossExplosionPng, 0, 0, 958, 952, moblin.xMove, moblin.yMove, 80, 80);
-        };
-        if (enemy.type !== 'xRightRunner' && enemy.type !== 'xLeftRunner' && enemy.type !== 'yRunner') {
-          enemy.xMove = xStarting(enemy.spriteWidth);
-          enemy.yMove = yStarting(enemy.spriteHeight);
-        } else if (enemy.type === 'xRightRunner') {
-          xRightResetOffscreenEnemies(enemy);
-        } else if (enemy.type === 'xLeftRunner') {
-          xLeftResetOffscreenEnemies(enemy);
-        } else if (enemy.type === 'yRunner') {
-          yResetOffscreenEnemies(enemy);
-        };
-        game.score += enemy.points;
-      };
-    };
-  };
-};
-
-
-//Collision detection between Link and objects
-let heartCollisionDetection = function(x1, y1, x2, y2, object) {
-  let xDistance = x2 - x1;
-  let yDistance = y2 - y1;
-  let crashZone = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
-  if (crashZone <= 30 && link.life <= 3.5 && object.show === true) {
-    object.show = false;
-    if (object === bigHeart) {
-      object.x = xStarting(object.spriteWidth);
-      object.y = yStarting(object.spriteHeight);
-      if (link.life <= 3.5 && ((game.now - link.heartTime) / 1000) > 1) {
-        link.grabHeart();
-        link.life = link.maxLife;
-        $('#heart-one').removeClass('damaged');
-        $('#heart-one').removeClass('heart-hidden');
-        $('#heart-one').addClass('heart-show');
-        $('#heart-two').removeClass('damaged');
-        $('#heart-two').removeClass('heart-hidden');
-        $('#heart-two').addClass('heart-show');
-        $('#heart-three').removeClass('damaged');
-        $('#heart-three').removeClass('heart-hidden');
-        $('#heart-three').addClass('heart-show');
-        $('#heart-four').removeClass('damaged');
-      } else if (link.life === 3.5 && ((game.now - link.heartTime) / 1000) > 1) {
-        link.grabHeart();
-        link.life = link.maxLife;
-        $('#heart-four').removeClass('damaged');
-      };
-    } else if (object === heart) {
-      object.x = xStarting(object.spriteWidth);
-      object.y = yStarting(object.spriteHeight);
-      if (link.life === 0.5 && ((game.now - link.heartTime) / 1000) > 1) {
-        link.grabHeart();
-        link.life += 1;
-        $('#heart-four').removeClass('damaged');
-        $('#heart-three').removeClass('heart-hidden');
-        $('#heart-three').addClass('heart-show');
-      } else if (link.life === 1 && ((game.now - link.heartTime) / 1000) > 1) {
-        link.grabHeart();
-        link.life += 1;
-        $('#heart-three').removeClass('heart-hidden');
-        $('#heart-three').removeClass('damaged');
-        $('#heart-three').addClass('heart-show');
-      } else if (link.life === 1.5 && ((game.now - link.heartTime) / 1000) > 1) {
-        link.grabHeart();
-        link.life += 1;
-        $('#heart-three').removeClass('damaged');
-        $('#heart-two').removeClass('heart-hidden');
-        $('#heart-two').addClass('heart-show');
-      } else if (link.life === 2 && ((game.now - link.heartTime) / 1000) > 1) {
-        link.grabHeart();
-        link.life += 1;
-        $('#heart-two').removeClass('heart-hidden');
-        $('#heart-two').removeClass('damaged');
-        $('#heart-two').addClass('heart-show');
-      } else if (link.life === 2.5 && ((game.now - link.heartTime) / 1000) > 1) {
-        link.grabHeart();
-        link.life += 1;
-        $('#heart-two').removeClass('damaged');
-        $('#heart-one').removeClass('heart-hidden');
-        $('#heart-one').addClass('heart-show');
-      } else if (link.life === 3 && ((game.now - link.heartTime) / 1000) > 1) {
-        link.grabHeart();
-        link.life += 1;
-        $('#heart-one').removeClass('heart-hidden');
-        $('#heart-one').removeClass('damaged');
-        $('#heart-one').addClass('heart-show');
-      } else if (link.life === 3.5 && ((game.now - link.heartTime) / 1000) > 1) {
-        link.grabHeart();
-        link.life += 0.5;
-        $('#heart-one').removeClass('damaged');
-      };
-    };
-  };
-};
-
 
 let startGameButton = $('#start-game');
-
-
-//Game over functions
-  //link death spin
-let linkDies = function() {
-  ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-  ctxSpriteMap.drawImage(link.image, link.xFrame, link.yFrame, link.pngWidth, link.pngHeight, link.xMove, link.yMove, link.spriteWidth, link.spriteHeight);
-  if (link.xFrame === 0 && link.yFrame === 0) {
-    link.xFrame = 90;
-    link.yFrame = 30;
-  } else if (link.xFrame === 90 && link.yFrame === 30) {
-    link.xFrame = 61;
-    link.yFrame = 0;
-  } else if (link.xFrame === 61 && link.yFrame === 0) {
-    link.xFrame = 29;
-    link.yFrame = 0;
-  } else if (link.xFrame === 29 && link.yFrame === 0) {
-    link.xFrame = 0;
-    link.yFrame = 0;
-  };
-};
-
-//game over screen with replay button
-let gameOverScreen = function() {
-  ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-  ctxSpriteMap.fillStyle = 'black';
-  ctxSpriteMap.fillRect(0, 0, spriteMap.width, spriteMap.height);
-  ctxSpriteMap.font = "20px 'Press Start 2P'";
-  ctxSpriteMap.fillStyle = '#afd433';
-  ctxSpriteMap.textAlign = 'center';
-  ctxSpriteMap.fillText('Game Over', 259, 180);  //game over text
-};
-
-//game over function and link explosion
-let gameOver = function() {
-  cancelAnimationFrame(animateGame);
-  ctxEnemyMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-  ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-  deathCanvas.style.opacity = '0.56';
-  link.xFrame = 0;
-  link.yFrame = 0;
-  let animateLinkDeath = setInterval(linkDies, .5);
-  setTimeout(function() {
-    clearInterval(animateLinkDeath);
-    ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-    ctxSpriteMap.drawImage(explosionPng, 40, 10, 280, 285, link.xMove, link.yMove, 60, 60);
-    setTimeout(function() {
-      gameOverScreen();
-      startGameButton.html('Replay game');
-      startGameButton.css('visibility', 'visible');
-    }, 1000);
-  }, 2000);
-};
-
-
-//win game function
-let winGame = function () {
-  cancelAnimationFrame(animateGame);
-  ctxBackgroundMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-  ctxEnemyMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-  ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-  ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-
-  ctxBackgroundMap.drawImage(background.winImage, 0, 0, 1920, 1080, 0, 0, background.mapWidth, background.mapHeight);
-  ctxSpriteMap.drawImage(link.image, 90, 30, link.pngWidth, link.pngHeight, 165, 200, 71.25, 76);
-  ctxSpriteMap.drawImage(zeldaPng, 0, 0, 14, 16, 295, 200, 66.5, 76);
-
-  ctxSpriteMap.font = "20px 'Press Start 2P'";
-  ctxSpriteMap.fillStyle = 'black';
-  ctxSpriteMap.fillText('Oh, you won?', 20, 40);
-
-  ctxSpriteMap.font = "20px 'Press Start 2P'";
-  ctxSpriteMap.fillStyle = 'black';
-  ctxSpriteMap.fillText('That\'s neat I guess.', 20, 70);
-
-  ctxSpriteMap.font = "20px 'Press Start 2P'";
-  ctxSpriteMap.fillStyle = 'black';
-  ctxSpriteMap.fillText('Want a sandwich?', 20, 320);
-
-  startGameButton.html('Replay game');
-  startGameButton.css('visibility', 'visible');
-};
 
 
 //Animation Game Loop
@@ -635,13 +434,8 @@ let animationLoop = function() {
 
 
   //Updates score, high score, level, and kills to advance
-    if (game.score > game.highScore) {
-      game.highScore = game.score;
-      localStorage.highScore = game.highScore;
-    };
     $('#game-num').html(game.level);
     $('#score-num').html(game.score);
-    $('#high-score').html(game.highScore);
 
     animateGame = requestAnimationFrame(animationLoop);
 
@@ -691,84 +485,17 @@ let startGame = function() {
     ctxSpriteMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     backgroundMap.classList.remove('canvas-blur');
     enemyMap.classList.remove('canvas-blur');
-    cancelAnimationFrame(titleScreen);
-    clearInterval(randomizeTitle);
     animationLoop();
     $('#start-game').css('visibility', 'hidden');
   };
 };
 
-let randomizeTitle = setInterval(function() {
-    background.xFrame = xMapStart();
-    background.yFrame = yMapStart();
-    tektite.xMove = xStarting(tektite.spriteWidth);
-    tektite.yMove = yStarting(tektite.spriteHeight);
-    keese.xMove = xStarting(keese.spriteWidth);
-    keese.yMove = yStarting(keese.spriteHeight);
-    gibdo.xMove = xStarting(gibdo.spriteWidth);
-    gibdo.yMove = yStarting(gibdo.spriteHeight);
-    stalfos.xMove = xStarting(stalfos.spriteWidth);
-    stalfos.yMove = yStarting(stalfos.spriteHeight);
-
-  }, 4000);
-
-//title screen
-let titleScreen = null;
-let titleScreenLoop = function () {
-  ctxBackgroundMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
-  ctxEnemyMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
-  ctxBackgroundMap.drawImage(background.image, background.xFrame, background.yFrame, background.pngWidth, background.pngHeight, 0, 0, background.mapWidth, background.mapHeight);
-
-  ctxSpriteMap.fillStyle = '#36c792';
-  ctxSpriteMap.fillRect(95, 145, 327, 28);
-  ctxSpriteMap.font = "20px 'Press Start 2P'";
-  ctxSpriteMap.fillStyle = '#362934';
-  ctxSpriteMap.fillText('Press Start Game', 100, 170);
-
-  ctxEnemyMap.drawImage(tektite.image, tektite.xFrame, tektite.yFrame, tektite.pngWidth, tektite.pngHeight, tektite.xMove, tektite.yMove, tektite.spriteWidth, tektite.spriteHeight);
-  ctxEnemyMap.drawImage(keese.image, keese.xFrame, keese.yFrame, keese.pngWidth, keese.pngHeight, keese.xMove, keese.yMove, keese.spriteWidth, keese.spriteHeight);
-  ctxEnemyMap.drawImage(gibdo.image, gibdo.xFrame, gibdo.yFrame, gibdo.pngWidth, gibdo.pngHeight, gibdo.xMove, gibdo.yMove, gibdo.spriteWidth, gibdo.spriteHeight);
-  ctxEnemyMap.drawImage(stalfos.image, stalfos.xFrame, stalfos.yFrame, stalfos.pngWidth, stalfos.pngHeight, stalfos.xMove, stalfos.yMove, stalfos.spriteWidth, stalfos.spriteHeight);
-  ctxEnemyMap.drawImage(link.image, link.xFrame, link.yFrame, link.pngWidth, link.pngHeight, link.xMove, link.yMove, link.spriteWidth, link.spriteHeight);
-
-  tektite.moveTektite();
-  keese.moveKeese();
-  gibdo.moveGibdo();
-  stalfos.moveStalfos();
-
-  if (coinFlip(2) === 0) {
-    if (link.xMove - stalfos.xMove >= 0) {
-      link.xMove -= 1;
-    } else if (link.xMove - stalfos.xMove < 0) {
-      link.xMove += 1;
-    }
-  } else if (coinFlip(2) === 1) {
-    if (link.yMove - stalfos.yMove >= 0) {
-      link.yMove -= 1;
-    } else if (link.yMove - stalfos.yMove < 0) {
-      link.yMove += 1;
-    };
-  };
-
-  titleScreen = requestAnimationFrame(titleScreenLoop);
-};
-
-//Load high score
-let getHighScore = function() {
-  if(localStorage.hasOwnProperty('highScore')) {
-    game.highScore = localStorage.highScore;
-  };
-};
 
 //Document ready function for DOM events
 document.addEventListener('DOMContentLoaded', function(event) {
-  titleScreenLoop();
-  getHighScore();
-  $('#high-score').text(game.highScore);
   startGameButton.on('click', startGame);
   window.addEventListener('keydown', link.playerAction);
   window.addEventListener('keyup', link.actionStop);
-
 });
 
-export { game, background, areEnemiesDead };
+export { game, background, areEnemiesDead, animateGame, zeldaPng, explosionPng, bossExplosionPng, startGameButton };
