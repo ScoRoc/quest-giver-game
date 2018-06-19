@@ -1,5 +1,6 @@
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
-import { link } from '../../old-app.js';
+// import { link } from '../../old-app.js';
+import link from '../player.js';
 
 let gibdoPng = new Image();
 gibdoPng.src = 'images/gibdo.png';

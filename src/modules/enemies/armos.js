@@ -1,5 +1,6 @@
 import { xStarting, yStarting } from '../mathHelpers.js';
-import { link } from '../../old-app.js';
+// import { link } from '../../old-app.js';
+import link from '../player.js';
 
 let armosPng = new Image();
 armosPng.src = 'images/armos.png';

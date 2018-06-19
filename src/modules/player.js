@@ -1,6 +1,8 @@
 
 import { xStarting, yStarting } from './mathHelpers.js';
 import { backgroundMap } from './maps.js';
+import { game, background, areEnemiesDead } from '../old-app.js';
+import { ctxExplosionCanvas, enemyMap } from './maps.js';
 
 let linkPng = new Image();
 linkPng.src = 'images/link-spritesheet.png';
@@ -348,7 +350,7 @@ let link = {
       };
     };
   }
-  
+
 };
 
 export default link;
