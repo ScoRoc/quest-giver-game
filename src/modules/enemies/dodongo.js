@@ -1,4 +1,4 @@
-import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
+import { yStarting } from '../mathHelpers.js';
 
 let dodongoPng = new Image();
 dodongoPng.src = 'images/dodongo.png';

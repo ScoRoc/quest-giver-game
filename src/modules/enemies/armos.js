@@ -1,4 +1,4 @@
-import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
+import { xStarting, yStarting } from '../mathHelpers.js';
 import { link } from '../../old-app.js';
 
 let armosPng = new Image();

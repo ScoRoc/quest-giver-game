@@ -1,5 +1,5 @@
 //Random Number Generators
-var coinFlip = function(num) {
+let coinFlip = function(num) {
   switch (Math.floor(Math.random() * num)) {
     case 0:
       return 0;
@@ -16,13 +16,20 @@ var coinFlip = function(num) {
   }
 };
 
-
 //Random starting x and y points
-var xStarting = function(spriteWidth) {
+let xStarting = function(spriteWidth) {
   return Math.floor(Math.random() * (510 - spriteWidth));
 };
-var yStarting = function(spriteHeight) {
+let yStarting = function(spriteHeight) {
   return Math.floor(Math.random() * (350 - spriteHeight));
 };
 
-export { coinFlip, xStarting, yStarting };
+//Random starting x and y points for map
+let xMapStart = function(spriteWidth) {
+  return (Math.floor(Math.random() * 16)) * 256;
+};
+let yMapStart = function(spriteHeight) {
+  return (Math.floor(Math.random() * 8)) * 176;
+};
+
+export { coinFlip, xStarting, yStarting, xMapStart, yMapStart };

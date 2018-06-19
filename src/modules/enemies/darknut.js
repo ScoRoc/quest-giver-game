@@ -1,4 +1,4 @@
-import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
+import { xStarting } from '../mathHelpers.js';
 
 let darknutPng = new Image();
 darknutPng.src = 'images/darknut.png';
