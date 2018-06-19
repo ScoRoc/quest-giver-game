@@ -210,25 +210,6 @@ let zeldaPng = new Image();
 zeldaPng.src = 'images/zelda.png';
 
 
-// //rest xRightRunner offscreen enemies
-// let xRightResetOffscreenEnemies = function (enemy) {
-//   enemy.xMove = -100;
-//   enemy.yMove = yStarting(enemy.spriteHeight);
-// };
-//
-// //rest xLeftRunner offscreen enemies
-// let xLeftResetOffscreenEnemies = function (enemy) {
-//   enemy.xMove = 555;
-//   enemy.yMove = yStarting(enemy.spriteHeight);
-// };
-//
-// //rest y offscreen enemies
-// let yResetOffscreenEnemies = function (enemy) {
-//   enemy.xMove = xStarting(enemy.spriteWidth);
-//   enemy.yMove = -60;
-// };
-
-
 //All enemies array
 let allEnemies = [tektite, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 
