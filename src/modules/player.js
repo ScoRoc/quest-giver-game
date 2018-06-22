@@ -59,9 +59,13 @@ let link = {
   },
 
   //heart gif functionality
-  heartGifArray: [$('#heart-one'), $('#heart-two'), $('#heart-three'), $('#heart-four')],  //heart gif icons
+  heartGifArray: [heartOne, heartTwo, heartThree, heartFour],  //heart gif icons
 
   heartDisplay: function() {
+    let heartOne = $('#heart-one');
+    let heartTwo = $('#heart-two');
+    let heartThree = $('#heart-three');
+    let heartFour = $('#heart-four');
     if (link.life === link.maxLife) {
       for (let i = 0; i < link.heartGifArray.length; i ++) {
         if (link.heartGifArray[i].hasClass('heart-hidden')) {
@@ -71,49 +75,49 @@ let link = {
         };
       };
     } else if (link.life === link.maxLife - 0.5) {
-      $('#heart-one').addClass('damaged');
+      heartOne.addClass('damaged');
     } else if (link.life === link.maxLife - 1) {
-      $('#heart-one').addClass('damaged');
-      $('#heart-one').addClass('heart-hidden');
+      heartOne.addClass('damaged');
+      heartOne.addClass('heart-hidden');
     } else if (link.life === link.maxLife - 1.5) {
-      $('#heart-one').addClass('damaged');
-      $('#heart-one').addClass('heart-hidden');
-      $('#heart-two').addClass('damaged');
+      heartOne.addClass('damaged');
+      heartOne.addClass('heart-hidden');
+      heartTwo.addClass('damaged');
     } else if (link.life === link.maxLife - 2) {
-      $('#heart-one').addClass('damaged');
-      $('#heart-one').addClass('heart-hidden');
-      $('#heart-two').addClass('damaged');
-      $('#heart-two').addClass('heart-hidden');
+      heartOne.addClass('damaged');
+      heartOne.addClass('heart-hidden');
+      heartTwo.addClass('damaged');
+      heartTwo.addClass('heart-hidden');
     } else if (link.life === link.maxLife - 2.5) {
-      $('#heart-one').addClass('damaged');
-      $('#heart-one').addClass('heart-hidden');
-      $('#heart-two').addClass('damaged');
-      $('#heart-two').addClass('heart-hidden');
-      $('#heart-three').addClass('damaged');
+      heartOne.addClass('damaged');
+      heartOne.addClass('heart-hidden');
+      heartTwo.addClass('damaged');
+      heartTwo.addClass('heart-hidden');
+      heartThree.addClass('damaged');
     } else if (link.life === link.maxLife - 3) {
-      $('#heart-one').addClass('damaged');
-      $('#heart-one').addClass('heart-hidden');
-      $('#heart-two').addClass('damaged');
-      $('#heart-two').addClass('heart-hidden');
-      $('#heart-three').addClass('damaged');
-      $('#heart-three').addClass('heart-hidden');
+      heartOne.addClass('damaged');
+      heartOne.addClass('heart-hidden');
+      heartTwo.addClass('damaged');
+      heartTwo.addClass('heart-hidden');
+      heartThree.addClass('damaged');
+      heartThree.addClass('heart-hidden');
     } else if (link.life === link.maxLife - 3.5) {
-      $('#heart-one').addClass('damaged');
-      $('#heart-one').addClass('heart-hidden');
-      $('#heart-two').addClass('damaged');
-      $('#heart-two').addClass('heart-hidden');
-      $('#heart-three').addClass('damaged');
-      $('#heart-three').addClass('heart-hidden');
-      $('#heart-four').addClass('damaged');
+      heartOne.addClass('damaged');
+      heartOne.addClass('heart-hidden');
+      heartTwo.addClass('damaged');
+      heartTwo.addClass('heart-hidden');
+      heartThree.addClass('damaged');
+      heartThree.addClass('heart-hidden');
+      heartFour.addClass('damaged');
     } else if (link.life <= 0) {
-      $('#heart-one').addClass('damaged');
-      $('#heart-one').addClass('heart-hidden');
-      $('#heart-two').addClass('damaged');
-      $('#heart-two').addClass('heart-hidden');
-      $('#heart-three').addClass('damaged');
-      $('#heart-three').addClass('heart-hidden');
-      $('#heart-four').addClass('damaged');
-      $('#heart-four').addClass('heart-hidden');
+      heartOne.addClass('damaged');
+      heartOne.addClass('heart-hidden');
+      heartTwo.addClass('damaged');
+      heartTwo.addClass('heart-hidden');
+      heartThree.addClass('damaged');
+      heartThree.addClass('heart-hidden');
+      heartFour.addClass('damaged');
+      heartFour.addClass('heart-hidden');
     }
   },
 
