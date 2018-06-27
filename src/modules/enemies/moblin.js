@@ -1,5 +1,4 @@
 import { xStarting, yStarting } from '../mathHelpers.js';
-// import { link } from '../../old-app.js';
 import link from '../player.js';
 
 let moblinPng = new Image();
