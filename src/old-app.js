@@ -1,4 +1,4 @@
-import { coinFlip, xStarting, yStarting, xMapStart, yMapStart } from './modules/mathHelpers.js';
+import { coinFlip, xStarting, yStarting } from './modules/mathHelpers.js';
 import { newImage } from './modules/nonMathHelpers.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
@@ -51,8 +51,8 @@ let game = {
 let background = {
   image: newImage('images/overworld_map.png'),
   winImage: newImage('images/castle.png'),
-  xFrame: xMapStart(),  //x axis start of current map frame (from src img)
-  yFrame: yMapStart(),  //y axis start of current map frame (from src img)
+  xFrame: (Math.floor(Math.random() * 16)) * 256,  //x axis start of current map frame (from src img)
+  yFrame: (Math.floor(Math.random() * 8)) * 176,  //y axis start of current map frame (from src img)
   moveSpeed: 4,  //speed at which map moves frames
   mapCounter: 0,  //count map frame slides for map move function
   pngWidth: 256,  //map frame width from src img
@@ -423,8 +423,8 @@ let startGame = function() {
     link.yFrame = 0;
     game.over = false;
     game.level = 1;
-    background.xFrame = xMapStart();
-    background.yFrame = yMapStart();
+    background.xFrame = (Math.floor(Math.random() * 16)) * 256;
+    background.yFrame = (Math.floor(Math.random() * 8)) * 176;
     deathCanvas.style.opacity = '0';
     ctxBackgroundMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);

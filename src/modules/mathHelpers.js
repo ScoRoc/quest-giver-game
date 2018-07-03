@@ -18,18 +18,18 @@ let coinFlip = function(num) {
 
 //Random starting x and y points
 let xStarting = function(spriteWidth) {
-  return Math.floor(Math.random() * (510 - spriteWidth));
+  return Math.floor(Math.random() * (875 - spriteWidth));
 };
 let yStarting = function(spriteHeight) {
-  return Math.floor(Math.random() * (350 - spriteHeight));
+  return Math.floor(Math.random() * (600 - spriteHeight));
 };
 
 //Random starting x and y points for map
-let xMapStart = function(spriteWidth) {
-  return (Math.floor(Math.random() * 16)) * 256;
-};
-let yMapStart = function(spriteHeight) {
-  return (Math.floor(Math.random() * 8)) * 176;
-};
+// let xMapStart = function(spriteWidth) {
+//   return (Math.floor(Math.random() * 16)) * 256;
+// };
+// let yMapStart = function(spriteHeight) {
+//   return (Math.floor(Math.random() * 8)) * 176;
+// };
 
-export { coinFlip, xStarting, yStarting, xMapStart, yMapStart };
+export { coinFlip, xStarting, yStarting };
