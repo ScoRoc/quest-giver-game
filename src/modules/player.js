@@ -3,6 +3,7 @@ import { xStarting, yStarting } from './mathHelpers.js';
 import { backgroundMap } from './maps.js';
 import { game, background, areEnemiesDead } from '../old-app.js';
 import { ctxExplosionCanvas, enemyMap } from './maps.js';
+import { heartOne, heartTwo, heartThree, heartFour } from './items/hearts.js';
 
 let linkPng = new Image();
 linkPng.src = 'images/link-spritesheet.png';
@@ -62,10 +63,6 @@ let link = {
   heartGifArray: [heartOne, heartTwo, heartThree, heartFour],  //heart gif icons
 
   heartDisplay: function() {
-    let heartOne = $('#heart-one');
-    let heartTwo = $('#heart-two');
-    let heartThree = $('#heart-three');
-    let heartFour = $('#heart-four');
     if (link.life === link.maxLife) {
       for (let i = 0; i < link.heartGifArray.length; i ++) {
         if (link.heartGifArray[i].hasClass('heart-hidden')) {

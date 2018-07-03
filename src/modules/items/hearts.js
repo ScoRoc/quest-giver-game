@@ -6,6 +6,11 @@ heartPng.src = 'images/heart.gif';
 let bigHeartPng = new Image();
 bigHeartPng.src = 'images/big-heart.png';
 
+let heartOne = $('#heart-one');
+let heartTwo = $('#heart-two');
+let heartThree = $('#heart-three');
+let heartFour = $('#heart-four');
+
 //Define hearts
 let heart = {
   image: heartPng,
@@ -35,4 +40,4 @@ let bigHeart = {
   heartAnimation: null
 };
 
-export { heart, bigHeart };
+export { heart, bigHeart, heartOne, heartTwo, heartThree, heartFour };

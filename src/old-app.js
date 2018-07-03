@@ -41,7 +41,6 @@ import link from './modules/player.js';
 let game = {
   win: false,  //tracks if won game
   over: true,  //tracks game over or not
-  continuous: false,  //tracks continous or boss mode
   score: 0,  //tracks current kill score
   level: 1,  //which level player is on
   needToKill: 1,  //tracks how many enemies link needs to kill to progress
@@ -55,10 +54,6 @@ let game = {
   }
 
 };
-
-backgroundMap.width = 800;
-backgroundMap.height = 352;
-
 
 //Defining backgroundMap canvas
 let backgroundImage = new Image();
@@ -233,10 +228,7 @@ let animationLoop = function() {
     game.over = true;
   };
 
-  game.continuous = $('#continuous-play').prop('checked');
-
-
-  if (!game.continuous && game.level >= 10 && moblin.life <= 0) {
+  if (game.level >= 10 && moblin.life <= 0) {
     game.win = true;
   };
 

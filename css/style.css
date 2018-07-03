@@ -14,6 +14,8 @@ canvas {
 }
 
 .canvas-div {
+  display: flex;
+  justify-content: center;
   grid-column: 2 / 3;
   position: relative;
   margin: 0;
@@ -83,53 +85,37 @@ canvas {
 
 #background-map {
   background: transparent;
-  /* width: 100%;
-  height: auto; */
   z-index: 1;
 }
 
 #enemy-map {
   background: transparent;
-  /* width: 100%;
-  height: auto; */
   z-index: 50;
 }
 
 #death-canvas {
   background: rgba(235, 44, 18, 0.56);
   opacity: 0;
-  /* width: 100%;
-  height: auto; */
   z-index: 70;
 }
 
 #explosion-canvas {
   background: transparent;
-  /* width: 100%;
-  height: auto; */
   z-index: 30;
 }
 
 #sprite-map {
   background: transparent;
-  /* width: 100%;
-  height: auto; */
   z-index: 100;
 }
 
 #win-canvas {
   background: transparent;
-  /* width: 100%;
-  height: auto; */
   z-index: 150;
 }
 
 #invincible {
   margin-bottom: 10px;
-}
-
-#continuous-play {
-  margin-bottom: 25px;
 }
 
 #start-game {
