@@ -1,116 +1,22 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #1F1F1F;
+  background-color: rgba(17, 96, 69, 0.4);
   font-family: 'Press Start 2P', cursive;
-}
-
-.topspace {
-  height: 100px;
-  width: 100px;
-  margin: 0;
-  padding: 20px;
-  background: #3c293a;
-  box-shadow: 0 -1px 8px -2px #afd433 inset, 0 -4px 8px #3c293a inset;
-}
-
-.title {
-  font-size: 27px;
-  font-weight: bold;
-  background-color: #3c293a;
-  color: #36c792;
-  text-align: center;
-  border: 6px solid #36c792;
-  border-radius: 20px;
-}
-
-.left-side {
-  margin: 0;
-  padding-top: 10px;
-  height: 100%;
-  width: 100%;
-  text-align: left;
-  background-color: #333;
-  border: 4px solid #999;
-  border-radius: 5px;
-  box-shadow: 0px 0px 30px 1px #111 inset;
-}
-
-.left-border-box {
-  border-bottom: 1px solid #999;
-}
-
-.left-side div {
-  margin: 5px 0px;
-  padding: 0px;
-}
-
-.left-side p {
-  font-size: 11px;
-  color: #a8c65e;
-  text-align: center;
-  margin: 10px;
-}
-
-#game-num {
-  font-weight: bold;
-}
-
-#score-num {
-  font-weight: bold;
-}
-
-.canvas-div {
-  margin: 0;
 }
 
 canvas {
   position: absolute;
-  top: 0;
-  left: 0;
 }
 
-#background-map {
-  background: transparent;
-  width: 100%;
-  height: auto;
-  z-index: 1;
+.left-side {
+  border: 1px solid black;
 }
 
-#enemy-map {
-  background: transparent;
-  width: 100%;
-  height: auto;
-  z-index: 50;
-}
-
-#death-canvas {
-  background: rgba(235, 44, 18, 0.56);
-  opacity: 0;
-  width: 100%;
-  height: auto;
-  z-index: 70;
-}
-
-#explosion-canvas {
-  background: transparent;
-  width: 100%;
-  height: auto;
-  z-index: 30;
-}
-
-#sprite-map {
-  background: transparent;
-  width: 100%;
-  height: auto;
-  z-index: 100;
-}
-
-#win-canvas {
-  background: transparent;
-  width: 100%;
-  height: auto;
-  z-index: 150;
+.canvas-div {
+  grid-column: 2 / 3;
+  position: relative;
+  margin: 0;
 }
 
 .canvas-blur {
@@ -120,8 +26,6 @@ canvas {
 .hearts-col {
   margin: 0;
   padding-bottom: 30px;
-  height: 100%;
-  width: 100%;
   font-size: 9px;
   color: #a8c65e;
   text-align: center;
@@ -148,10 +52,6 @@ canvas {
   opacity: .3;
 }
 
-#invincible {
-  margin-bottom: 10px;
-}
-
 .hearts-col label {
   margin: 0;
 }
@@ -163,6 +63,75 @@ canvas {
   width: 15px;
 }
 
+.grow-button {
+  animation: grow 3.5s infinite;
+}
+
+#grid-main {
+  display: grid;
+  grid-template-columns: 20% 1fr 20%;
+  grid-template-rows: auto;
+}
+
+#game-num {
+  font-weight: bold;
+}
+
+#score-num {
+  font-weight: bold;
+}
+
+#background-map {
+  background: transparent;
+  /* width: 100%;
+  height: auto; */
+  z-index: 1;
+}
+
+#enemy-map {
+  background: transparent;
+  /* width: 100%;
+  height: auto; */
+  z-index: 50;
+}
+
+#death-canvas {
+  background: rgba(235, 44, 18, 0.56);
+  opacity: 0;
+  /* width: 100%;
+  height: auto; */
+  z-index: 70;
+}
+
+#explosion-canvas {
+  background: transparent;
+  /* width: 100%;
+  height: auto; */
+  z-index: 30;
+}
+
+#sprite-map {
+  background: transparent;
+  /* width: 100%;
+  height: auto; */
+  z-index: 100;
+}
+
+#win-canvas {
+  background: transparent;
+  /* width: 100%;
+  height: auto; */
+  z-index: 150;
+}
+
+#invincible {
+  margin-bottom: 10px;
+}
+
+#continuous-play {
+  margin-bottom: 25px;
+}
+
 #start-game {
   border-color: 2px solid #555;
   border-radius: 3px;
@@ -172,26 +141,6 @@ canvas {
   cursor: pointer;
   padding: 9px 7px;
   box-shadow: 0 0 2px 1px #afd433, -1px -1px 3px #999 inset;
-}
-
-.grow-button {
-  animation: grow 3.5s infinite;
-}
-
-#continuous-play {
-  margin-bottom: 25px;
-}
-
-.text-link {
-  vertical-align: text-top;
-  font-size: 11px;
-}
-
-.text-links:hover {
-  padding-bottom: 2px;
-  height: 24px;
-  width: 24px;
-  border-bottom: 2px solid #36c792;
 }
 
 @keyframes grow {

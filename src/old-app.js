@@ -56,6 +56,10 @@ let game = {
 
 };
 
+backgroundMap.width = 800;
+backgroundMap.height = 352;
+
+
 //Defining backgroundMap canvas
 let backgroundImage = new Image();
 backgroundImage.src = 'images/overworld_map.png';
@@ -471,12 +475,8 @@ let startGame = function() {
   };
 };
 
-
-//Document ready function for DOM events
-document.addEventListener('DOMContentLoaded', function(event) {
-  startGameButton.on('click', startGame);
-  window.addEventListener('keydown', link.playerAction);
-  window.addEventListener('keyup', link.actionStop);
-});
+startGameButton.on('click', startGame);
+window.addEventListener('keydown', link.playerAction);
+window.addEventListener('keyup', link.actionStop);
 
 export { game, background, areEnemiesDead, animateGame, zeldaPng, explosionPng, bossExplosionPng, startGameButton };
