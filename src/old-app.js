@@ -1,4 +1,5 @@
 import { coinFlip, xStarting, yStarting, xMapStart, yMapStart } from './modules/mathHelpers.js';
+import { newImage } from './modules/nonMathHelpers.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
   tektite,
@@ -41,13 +42,9 @@ import link from './modules/player.js';
 let game = {
   win: false,  //tracks if won game
   over: true,  //tracks game over or not
-  score: 0,  //tracks current kill score
   level: 1,  //which level player is on
-  needToKill: 1,  //tracks how many enemies link needs to kill to progress
   now: null,  //current game time
   endTime: null,  //tracks game end time
-  // delta: null,  //change in now and then game time, ie frame rate
-  // then: null,  ////previous game time (last frame)
 
   setGameNow: function() {  //sets game time
     game.now = Date.now();
@@ -55,16 +52,9 @@ let game = {
 
 };
 
-//Defining backgroundMap canvas
-let backgroundImage = new Image();
-backgroundImage.src = 'images/overworld_map.png';
-
-let backgroundWinImage = new Image();
-backgroundWinImage.src = 'images/castle.png';
-
 let background = {
-  image: backgroundImage,
-  winImage: backgroundWinImage,
+  image: newImage('images/overworld_map.png'),
+  winImage: newImage('images/castle.png'),
   xFrame: xMapStart(),  //x axis start of current map frame (from src img)
   yFrame: yMapStart(),  //y axis start of current map frame (from src img)
   moveSpeed: 4,  //speed at which map moves frames
@@ -409,11 +399,6 @@ let animationLoop = function() {
       return liveEnemies.length > 0 ? false : true;
     };
 
-
-  //Updates score, high score, level, and kills to advance
-    $('#game-num').html(game.level);
-    $('#score-num').html(game.score);
-
     animateGame = requestAnimationFrame(animationLoop);
 
   } else if (game.over) {
@@ -450,7 +435,6 @@ let startGame = function() {
     game.win = false;
     game.over = false;
     game.level = 1;
-    game.score = 0;
     background.xFrame = xMapStart();
     background.yFrame = yMapStart();
     deathCanvas.style.opacity = '0';

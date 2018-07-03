@@ -1,17 +1,15 @@
 
 import { xStarting, yStarting } from './mathHelpers.js';
+import { newImage } from './nonMathHelpers.js';
 import { backgroundMap } from './maps.js';
 import { game, background, areEnemiesDead } from '../old-app.js';
 import { ctxExplosionCanvas, enemyMap } from './maps.js';
 import { heartOne, heartTwo, heartThree, heartFour } from './items/hearts.js';
 
-let linkPng = new Image();
-linkPng.src = 'images/link-spritesheet.png';
-
 //Define player
 //Player, aka Link
 let link = {
-  image: linkPng,  //src image
+  image: newImage('images/link-spritesheet.png'),  //src image
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   upFrame: 0,  //placeholder for frame iteration
@@ -119,7 +117,7 @@ let link = {
   },
 
   moveUp: function() {
-    if (link.yMove <= link.upMapMove && game.score >= game.needToKill && background.yFrame > 0 && areEnemiesDead()) {
+    if (link.yMove <= link.upMapMove && background.yFrame > 0 && areEnemiesDead()) {
       background.mapMoving = true;
       background.moveMapUp = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
@@ -140,7 +138,7 @@ let link = {
   },
 
   moveDown: function() {
-    if (link.yMove >= link.downMapMove && game.score >= game.needToKill && background.yFrame < 1232 && areEnemiesDead()) {
+    if (link.yMove >= link.downMapMove && background.yFrame < 1232 && areEnemiesDead()) {
       background.mapMoving = true;
       background.moveMapDown = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
@@ -161,7 +159,7 @@ let link = {
   },
 
   moveLeft: function() {
-    if (link.xMove <= link.leftMapMove && game.score >= game.needToKill && background.xFrame > 0 && areEnemiesDead()) {
+    if (link.xMove <= link.leftMapMove && background.xFrame > 0 && areEnemiesDead()) {
       background.mapMoving = true;
       background.moveMapLeft = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
@@ -182,7 +180,7 @@ let link = {
   },
 
   moveRight: function() {
-    if (link.xMove >= link.rightMapMove && game.score >= game.needToKill && background.xFrame < 3840 && areEnemiesDead()) {
+    if (link.xMove >= link.rightMapMove && background.xFrame < 3840 && areEnemiesDead()) {
       background.mapMoving = true;
       background.moveMapRight = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
