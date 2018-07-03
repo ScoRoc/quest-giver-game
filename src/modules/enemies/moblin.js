@@ -175,8 +175,6 @@ let moblin = {
           this.yMove = 140;
         }
       };
-    } else if (this.life <= 0 && !game.continuous) {
-      game.win
     };
   }
 };

@@ -203,35 +203,35 @@ let link = {
   //Player keyboard actions
   playerAction: function(event) {
     //Up
-    if (event.keyCode === 38 && !game.over && !game.win) {
+    if (event.keyCode === 38 && !game.over) {
       if (!link.isMovingUp && !link.isMoving && !link.isAttacking && link.yMove >= 1) {
           link.isMovingUp = true;
           link.isMoving = true;
         };
     }
     //Down
-    if (event.keyCode === 40 && !game.over && !game.win) {
+    if (event.keyCode === 40 && !game.over) {
       if (!link.isMovingDown && !link.isMoving && !link.isAttacking && link.yMove <= 317) {
           link.isMovingDown = true;
           link.isMoving = true;
         };
     }
     //Left
-    if (event.keyCode === 37 && !game.over && !game.win) {
+    if (event.keyCode === 37 && !game.over) {
       if (!link.isMovingLeft && !link.isMoving && !link.isAttacking && link.xMove >= 0) {
           link.isMovingLeft = true;
           link.isMoving = true;
         };
     }
     //Right
-    if (event.keyCode === 39 && !game.over && !game.win) {
+    if (event.keyCode === 39 && !game.over) {
       if (!link.isMovingRight && !link.isMoving && !link.isAttacking && link.xMove <= 479) {
           link.isMovingRight = true;
           link.isMoving = true;
         };
     }
     //Spacebar
-    if (event.keyCode === 32 && !game.over && !game.win) {
+    if (event.keyCode === 32 && !game.over) {
       switch(true) {
         //if facing up
         case link.xFrame === 61:
@@ -283,31 +283,31 @@ let link = {
 
   actionStop: function(event) {
     //Stop moving up
-    if(event.keyCode === 38 && !game.over && !game.win) {
+    if(event.keyCode === 38 && !game.over) {
       link.isMovingUp = false;
       link.isMoving = false;
       link.yFrame = 30;
     };
     //Stop moving down
-    if(event.keyCode === 40 && !game.over && !game.win) {
+    if(event.keyCode === 40 && !game.over) {
       link.isMovingDown = false;
       link.isMoving = false;
       link.yFrame = 0;
     };
     //Stop moving left
-    if(event.keyCode === 37 && !game.over && !game.win) {
+    if(event.keyCode === 37 && !game.over) {
       link.isMovingLeft = false;
       link.isMoving = false;
       link.yFrame = 0;
     };
     //Stop moving right
-    if(event.keyCode === 39 && !game.over && !game.win) {
+    if(event.keyCode === 39 && !game.over) {
       link.isMovingRight = false;
       link.isMoving = false;
       link.yFrame = 31;
     };
     //Stop attacking
-    if (event.keyCode === 32 && !game.over && !game.win) {
+    if (event.keyCode === 32 && !game.over) {
       switch(true) {
         //if facing up
         case link.xFrame === 60:

@@ -28,7 +28,6 @@ import {
   ctxWinCanvas
 } from './modules/maps.js';
 import {
-  winGame,
   gameOverScreen,
   gameOver,
   linkDies
@@ -40,7 +39,6 @@ import link from './modules/player.js';
 
 //Game info and functions
 let game = {
-  win: false,  //tracks if won game
   over: true,  //tracks game over or not
   level: 1,  //which level player is on
   now: null,  //current game time
@@ -218,11 +216,7 @@ let animationLoop = function() {
     game.over = true;
   };
 
-  if (game.level >= 10 && moblin.life <= 0) {
-    game.win = true;
-  };
-
-  if (!game.over && !game.win) {
+  if (!game.over) {
     game.setGameNow();
 
 
@@ -404,9 +398,6 @@ let animationLoop = function() {
   } else if (game.over) {
     game.endTime = Date.now();
     gameOver();
-  } else if (game.win) {
-    ctxEnemyMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    setTimeout(winGame, 1500);
   };
 
 };
@@ -414,7 +405,7 @@ let animationLoop = function() {
 
 //replay and restart game
 let startGame = function() {
-  if (game.over || game.win) {
+  if (game.over) {
     allEnemies.forEach(function(baddy) {
       baddy.dead = true;
       baddy.life = 0;
@@ -432,7 +423,6 @@ let startGame = function() {
     link.yMove = yStarting(35);
     link.xFrame = 0;
     link.yFrame = 0;
-    game.win = false;
     game.over = false;
     game.level = 1;
     background.xFrame = xMapStart();
