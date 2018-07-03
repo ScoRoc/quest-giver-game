@@ -1,14 +1,12 @@
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
+import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
-
-let gibdoPng = new Image();
-gibdoPng.src = 'images/gibdo.png';
 
 //mummy creature, moves 1px frequently, somewhat slow and towards link
 //worth 1 point || strength 1 || max life 2
 //level 3+
 let gibdo = {
-  image: gibdoPng,
+  image: newImage('images/gibdo.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 16,  //width of src img sprite size

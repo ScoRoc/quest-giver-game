@@ -1,14 +1,12 @@
 import { xStarting, yStarting } from '../mathHelpers.js';
+import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
-
-let moblinPng = new Image();
-moblinPng.src = 'images/moblin.png';
 
 //boss - goblin type creature, 3 stages 1) circle, 2) runner, 3) scared
 //worth 5 points || strength 1 || max life 6
 //level 10
 let moblin = {
-  image: moblinPng,
+  image: newImage('images/moblin.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 16,  //width of src img sprite size

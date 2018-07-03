@@ -1,14 +1,12 @@
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
+import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
-
-let stalfosPng = new Image();
-stalfosPng.src = 'images/stalfos.png';
 
 //skeleton creature, moves quickly towards link
 //worth 1 point || strength 1.5 || max life 2
 // level 4+
 let stalfos = {
-  image: stalfosPng,
+  image: newImage('images/stalfos.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 16,  //width of src img sprite size

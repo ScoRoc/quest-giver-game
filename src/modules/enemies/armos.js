@@ -1,14 +1,12 @@
 import { xStarting, yStarting } from '../mathHelpers.js';
+import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
-
-let armosPng = new Image();
-armosPng.src = 'images/armos.png';
 
 //statue knight creature, stands still until link is near then moves towards
 //worth 2 points || strength 2 || max life 2
 // level 6+
 let armos = {
-  image: armosPng,
+  image: newImage('images/armos.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 16,  //width of src img sprite size

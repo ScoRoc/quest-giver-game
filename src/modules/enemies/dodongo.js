@@ -1,13 +1,11 @@
 import { yStarting } from '../mathHelpers.js';
-
-let dodongoPng = new Image();
-dodongoPng.src = 'images/dodongo.png';
+import { newImage } from '../nonMathHelpers.js';
 
 //dinosaur creature, moves normal across the screen, L to R
 //worth 2 points || strength 2.5 || max life 3
 // level 5+
 let dodongo = {
-  image: dodongoPng,
+  image: newImage('images/dodongo.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 32,  //width of src img sprite size

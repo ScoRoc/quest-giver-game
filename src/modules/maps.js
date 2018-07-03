@@ -26,11 +26,6 @@ let ctxSpriteMap = spriteMap.getContext('2d');
 spriteMap.width = 880;
 spriteMap.height = 605;
 
-let winCanvas = document.getElementById('win-canvas');
-let ctxWinCanvas = winCanvas.getContext('2d');
-winCanvas.width = 880;
-winCanvas.height = 605;
-
 export {
   backgroundMap,
   ctxBackgroundMap,
@@ -41,7 +36,5 @@ export {
   deathCanvas,
   ctxDeathCanvas,
   spriteMap,
-  ctxSpriteMap,
-  winCanvas,
-  ctxWinCanvas
+  ctxSpriteMap
 };

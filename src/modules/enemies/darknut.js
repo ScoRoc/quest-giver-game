@@ -1,13 +1,11 @@
 import { xStarting } from '../mathHelpers.js';
-
-let darknutPng = new Image();
-darknutPng.src = 'images/darknut.png';
+import { newImage } from '../nonMathHelpers.js';
 
 //knight creature rushes down screen like dodongo but faster or randomly after enemy dies
 //worth 3 points || strength 2.5 || max life 1
 // level 8+
 let darknut = {
-  image: darknutPng,
+  image: newImage('images/darknut.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 16,  //width of src img sprite size

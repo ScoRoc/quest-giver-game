@@ -23,9 +23,7 @@ import {
   deathCanvas,
   ctxDeathCanvas,
   spriteMap,
-  ctxSpriteMap,
-  winCanvas,
-  ctxWinCanvas
+  ctxSpriteMap
 } from './modules/maps.js';
 import {
   gameOverScreen,
@@ -431,7 +429,6 @@ let startGame = function() {
     ctxBackgroundMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxDeathCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    ctxWinCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxEnemyMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxSpriteMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     backgroundMap.classList.remove('canvas-blur');

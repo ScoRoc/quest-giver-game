@@ -1,13 +1,11 @@
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
-
-let tektitePng = new Image();
-tektitePng.src = 'images/tektite.png';
+import { newImage } from '../nonMathHelpers.js';
 
 //spider creature, jumps up to 3 spaces, slowly and randomly
 //worth 1 point || strength 0.5 || max life 1
 //level 1+
 let tektite = {
-  image: tektitePng,
+  image: newImage('images/tektite.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 16,  //width of src img sprite size

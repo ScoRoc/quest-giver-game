@@ -1,15 +1,12 @@
 import { xStarting, yStarting } from '../mathHelpers.js';
+import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
-
-
-let aquamentusPng = new Image();
-aquamentusPng.src = 'images/aquamentus.png';
 
 //loch ness monster creature, rush across screen R to L, goes towards link if hes near
 //worth 3 points || strength 2 || max life 2
 // level 9+
 let aquamentus = {
-  image: aquamentusPng,
+  image: newImage('images/aquamentus.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 24,  //width of src img sprite size

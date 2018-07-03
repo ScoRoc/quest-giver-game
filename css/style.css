@@ -109,11 +109,6 @@ canvas {
   z-index: 100;
 }
 
-#win-canvas {
-  background: transparent;
-  z-index: 150;
-}
-
 #invincible {
   margin-bottom: 10px;
 }

@@ -1,14 +1,12 @@
 import { xStarting, yStarting } from '../mathHelpers.js';
+import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
-
-let wizzrobePng = new Image();
-wizzrobePng.src = 'images/wizzrobe.png';
 
 //scared wizard creature, runs away from link
 //worth 1 point || strength 1 || max life 2
 //leve 7+
 let wizzrobe = {
-  image: wizzrobePng,
+  image: newImage('images/wizzrobe.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 15,  //width of src img sprite size

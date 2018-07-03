@@ -1,13 +1,11 @@
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
-
-let keesePng = new Image();
-keesePng.src = 'images/keese.png';
+import { newImage } from '../nonMathHelpers.js';
 
 //bat creature, moves 1 space, normal speed and randomly
 //worth 1 point || strength 0.5 || max life 1
 // level 2+
 let keese = {
-  image: keesePng,
+  image: newImage('images/keese.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 16,  //width of src img sprite size
