@@ -3,7 +3,7 @@ import Keese from './enemies/Keese.js';
 import Gibdo from './enemies/Gibdo.js';
 import Stalfos from './enemies/Stalfos.js';
 import Dodongo from './enemies/Dodongo.js';
-import armos from './enemies/armos-old.js';
+import Armos from './enemies/Armos.js';
 import wizzrobe from './enemies/wizzrobe-old.js';
 import darknut from './enemies/darknut-old.js';
 import aquamentus from './enemies/aquamentus-old.js';
@@ -16,7 +16,7 @@ export {
   Gibdo,
   Stalfos,
   Dodongo,
-  armos,
+  Armos,
   wizzrobe,
   darknut,
   aquamentus,

@@ -7,7 +7,7 @@ import {
   Gibdo,
   Stalfos,
   Dodongo,
-  armos,
+  Armos,
   wizzrobe,
   darknut,
   aquamentus,
@@ -188,7 +188,7 @@ let keeseInstance = new Keese();
 let gibdoInstance = new Gibdo();
 let stalfosInstance = new Stalfos();
 let dodongoInstance = new Dodongo();
-// let armosInstance = new Armos();
+let armosInstance = new Armos();
 // let wizzrobeInstance = new Wizzrobe();
 // let darknutInstance = new Darknut();
 // let aquamentusInstance = new Aquamentus();
@@ -202,7 +202,7 @@ let dodongoInstance = new Dodongo();
 
 //All enemies array
 // let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
-let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, stalfosInstance, dodongoInstance, armos, wizzrobe, darknut, aquamentus, moblin];
+let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, stalfosInstance, dodongoInstance, armosInstance, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
@@ -313,10 +313,10 @@ let animationLoop = function() {
       xRightResetOffscreenEnemies(dodongoInstance);
     };
 
-    //Animates armos
-    if (!armos.dead && game.level >= armos.levelShowUp) {
-      ctxEnemyMap.drawImage(armos.image, armos.xFrame, armos.yFrame, armos.pngWidth, armos.pngHeight, armos.xMove, armos.yMove, armos.spriteWidth, armos.spriteHeight);
-      armos.moveArmos();
+    //Animates armosInstance
+    if (!armosInstance.dead && game.level >= armosInstance.levelShowUp) {
+      ctxEnemyMap.drawImage(armosInstance.image, armosInstance.xFrame, armosInstance.yFrame, armosInstance.pngWidth, armosInstance.pngHeight, armosInstance.x, armosInstance.y, armosInstance.spriteWidth, armosInstance.spriteHeight);
+      armosInstance.move();
     };
 
     //Animates wizzrobe
@@ -390,8 +390,8 @@ let animationLoop = function() {
     enemyCollisionDetection(link.x, link.y, stalfosInstance.x, stalfosInstance.y, stalfosInstance);
     //dodongoInstance
     enemyCollisionDetection(link.x, link.y, dodongoInstance.x, dodongoInstance.y, dodongoInstance);
-    //armos
-    enemyCollisionDetection(link.x, link.y, armos.xMove, armos.yMove, armos);
+    //armosInstance
+    enemyCollisionDetection(link.x, link.y, armosInstance.x, armosInstance.y, armosInstance);
     //wizzrobe
     enemyCollisionDetection(link.x, link.y, wizzrobe.xMove, wizzrobe.yMove, wizzrobe);
     //darknut
