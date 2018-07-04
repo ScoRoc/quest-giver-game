@@ -67,7 +67,7 @@ let background = {
   moveMapRight: false,  //turns on map moving right
 
   moveMapFrameUpStart: function() {
-      link.yMove += (background.moveSpeed * 1.25);
+      link.y += (background.moveSpeed * 1.25);
       background.yFrame -= (background.moveSpeed * 0.6875);
       background.mapCounter++
     },
@@ -76,7 +76,7 @@ let background = {
     background.mapCounter = 0;
     background.mapMoving = false;
     background.moveMapUp = false;
-    link.yMove = backgroundMap.height - link.spriteHeight;
+    link.y = backgroundMap.height - link.spriteHeight;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblin && baddy.dead && game.level >= baddy.levelShowUp) {
@@ -96,7 +96,7 @@ let background = {
   },
 
   moveMapFrameDownStart: function() {
-      link.yMove -= (background.moveSpeed * 1.25);
+      link.y -= (background.moveSpeed * 1.25);
       background.yFrame += (background.moveSpeed * 0.6875);
       background.mapCounter++
     },
@@ -105,7 +105,7 @@ let background = {
     background.mapCounter = 0;
     background.mapMoving = false;
     background.moveMapDown = false;
-    link.yMove = 0;
+    link.y = 0;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblin && baddy.dead && game.level >= baddy.levelShowUp) {
@@ -125,7 +125,7 @@ let background = {
   },
 
   moveMapFrameLeftStart: function() {
-    link.xMove += (background.moveSpeed * 1.85);
+    link.x += (background.moveSpeed * 1.85);
     background.xFrame -= background.moveSpeed;
     background.mapCounter++
     },
@@ -134,7 +134,7 @@ let background = {
     background.mapCounter = 0;
     background.mapMoving = false;
     background.moveMapLeft = false;
-    link.xMove = backgroundMap.width - link.spriteWidth;
+    link.x = backgroundMap.width - link.spriteWidth;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblin && baddy.dead && game.level >= baddy.levelShowUp) {
@@ -154,7 +154,7 @@ let background = {
   },
 
   moveMapFrameRightStart: function() {
-    link.xMove -= (background.moveSpeed * 1.85);
+    link.x -= (background.moveSpeed * 1.85);
     background.xFrame += background.moveSpeed;
     background.mapCounter++
   },
@@ -163,7 +163,7 @@ let background = {
     background.mapCounter = 0;
     background.mapMoving = false;
     background.moveMapRight = false;
-    link.xMove = 0;
+    link.x = 0;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblin && baddy.dead && game.level >= baddy.levelShowUp) {
@@ -352,7 +352,7 @@ let animationLoop = function() {
     };
 
     //Animates link and explosion steps
-    ctxSpriteMap.drawImage(link.image, link.xFrame, link.yFrame, link.pngWidth, link.pngHeight, link.xMove, link.yMove, link.spriteWidth, link.spriteHeight);
+    ctxSpriteMap.drawImage(link.image, link.xFrame, link.yFrame, link.pngWidth, link.pngHeight, link.x, link.y, link.spriteWidth, link.spriteHeight);
     link.invincible = $('#invincible').prop('checked');
 
     if (link.isMovingUp) {
@@ -370,36 +370,36 @@ let animationLoop = function() {
 
   //Collision checks
     //heart
-    heartCollisionDetection(link.xMove, link.yMove, heart.x, heart.y, heart);
+    heartCollisionDetection(link.x, link.y, heart.x, heart.y, heart);
     //big heart
-    heartCollisionDetection(link.xMove, link.yMove, bigHeart.x, bigHeart.y, bigHeart);
+    heartCollisionDetection(link.x, link.y, bigHeart.x, bigHeart.y, bigHeart);
 
     //tektiteInstance
-    enemyCollisionDetection(link.xMove, link.yMove, tektiteInstance.x, tektiteInstance.y, tektiteInstance);
+    enemyCollisionDetection(link.x, link.y, tektiteInstance.x, tektiteInstance.y, tektiteInstance);
 
     ////// for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
-    //   enemyCollisionDetection(link.xMove, link.yMove, tektiteArray[i].x, tektiteArray[i].y, tektiteArray[i]);
+    //   enemyCollisionDetection(link.x, link.y, tektiteArray[i].x, tektiteArray[i].y, tektiteArray[i]);
     // }
 
     //keeseInstance
-    enemyCollisionDetection(link.xMove, link.yMove, keeseInstance.x, keeseInstance.y, keeseInstance);
+    enemyCollisionDetection(link.x, link.y, keeseInstance.x, keeseInstance.y, keeseInstance);
     //gibdoInstance
-    enemyCollisionDetection(link.xMove, link.yMove, gibdoInstance.x, gibdoInstance.y, gibdoInstance);
+    enemyCollisionDetection(link.x, link.y, gibdoInstance.x, gibdoInstance.y, gibdoInstance);
     //stalfosInstance
-    enemyCollisionDetection(link.xMove, link.yMove, stalfosInstance.x, stalfosInstance.y, stalfosInstance);
+    enemyCollisionDetection(link.x, link.y, stalfosInstance.x, stalfosInstance.y, stalfosInstance);
     //dodongo
-    enemyCollisionDetection(link.xMove, link.yMove, dodongo.xMove, dodongo.yMove, dodongo);
+    enemyCollisionDetection(link.x, link.y, dodongo.xMove, dodongo.yMove, dodongo);
     //armos
-    enemyCollisionDetection(link.xMove, link.yMove, armos.xMove, armos.yMove, armos);
+    enemyCollisionDetection(link.x, link.y, armos.xMove, armos.yMove, armos);
     //wizzrobe
-    enemyCollisionDetection(link.xMove, link.yMove, wizzrobe.xMove, wizzrobe.yMove, wizzrobe);
+    enemyCollisionDetection(link.x, link.y, wizzrobe.xMove, wizzrobe.yMove, wizzrobe);
     //darknut
-    enemyCollisionDetection(link.xMove, link.yMove, darknut.xMove, darknut.yMove, darknut);
+    enemyCollisionDetection(link.x, link.y, darknut.xMove, darknut.yMove, darknut);
     //aquamentus
-    enemyCollisionDetection(link.xMove, link.yMove, aquamentus.xMove, aquamentus.yMove, aquamentus);
+    enemyCollisionDetection(link.x, link.y, aquamentus.xMove, aquamentus.yMove, aquamentus);
     //moblin
-    enemyCollisionDetection(link.xMove, link.yMove, moblin.xMove, moblin.yMove, moblin);
+    enemyCollisionDetection(link.x, link.y, moblin.xMove, moblin.yMove, moblin);
 
 
     //Array of live enemies
@@ -444,8 +444,8 @@ let startGame = function() {
     heart.show = false;
     link.life = link.maxLife;
     link.heartDisplay();
-    link.xMove = xStarting(32);
-    link.yMove = yStarting(35);
+    link.x = xStarting(32);
+    link.y = yStarting(35);
     link.xFrame = 0;
     link.yFrame = 0;
     game.over = false;
