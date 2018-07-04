@@ -5,13 +5,6 @@ import link from '../player.js';
 //mummy creature, moves 1px frequently, somewhat slow and towards link
 //worth 1 point || strength 1 || max life 2
 //level 3+
-class Gibdo extends Enemy {
-  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp) {
-    super(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp);
-  };
-
-};
-
 let gibdo = {
   image: newImage('images/gibdo.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
@@ -54,19 +47,4 @@ let gibdo = {
   }
 };
 
-const gibdoStats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
-};
-
-export { Gibdo, gibdoStats };
+export default gibdo;

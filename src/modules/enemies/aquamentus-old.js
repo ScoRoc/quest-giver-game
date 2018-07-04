@@ -5,13 +5,6 @@ import link from '../player.js';
 //loch ness monster creature, rush across screen R to L, goes towards link if hes near
 //worth 3 points || strength 2 || max life 2
 // level 9+
-class Aquamentus extends Enemy {
-  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp) {
-    super(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp);
-  };
-
-};
-
 let aquamentus = {
   image: newImage('images/aquamentus.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
@@ -64,19 +57,4 @@ let aquamentus = {
   }
 };
 
-const aquamentusStats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
-};
-
-export { Aquamentus, aquamentusStats };
+export default aquamentus;

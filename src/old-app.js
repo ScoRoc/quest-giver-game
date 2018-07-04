@@ -3,6 +3,7 @@ import { newImage } from './modules/nonMathHelpers.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
   Tektite,
+  tektiteStats,
   keese,
   gibdo,
   stalfos,
@@ -183,7 +184,20 @@ let background = {
   }
 };
 
-let tektiteInstance = new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1);
+let tektiteInstance = new Tektite(
+  tektiteStats.img,
+  tektiteStats.pngWidth,
+  tektiteStats.pngHeight,
+  tektiteStats.spriteWidth,
+  tektiteStats.spriteHeight,
+  tektiteStats.xStart,
+  tektiteStats.yStart,
+  tektiteStats.speed,
+  tektiteStats.maxLife,
+  tektiteStats.strength,
+  tektiteStats.points,
+  tektiteStats.levelShowUp
+);
 
 // let tektiteArray = [];
 // for (let i = 0; i < 10; i++) {

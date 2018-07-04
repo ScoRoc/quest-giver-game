@@ -4,14 +4,6 @@ import { newImage } from '../nonMathHelpers.js';
 //bat creature, moves 1 space, normal speed and randomly
 //worth 1 point || strength 0.5 || max life 1
 // level 2+
-
-class Keese extends Enemy {
-  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp) {
-    super(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp);
-  };
-
-};
-
 let keese = {
   image: newImage('images/keese.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
@@ -61,19 +53,4 @@ let keese = {
   }
 };
 
-const keeseStats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
-};
-
-export { Keese, keeseStats };
+export default keese;

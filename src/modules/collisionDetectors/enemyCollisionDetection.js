@@ -2,7 +2,6 @@
 import link from '../player.js';
 import { game } from '../../old-app.js';
 import { ctxExplosionCanvas } from '../maps.js';
-import moblin from '../enemies/moblin.js';
 import { xStarting, yStarting, } from '../mathHelpers.js';
 import { newImage } from '../nonMathHelpers.js';
 import { xRightResetOffscreenEnemies, xLeftResetOffscreenEnemies, yResetOffscreenEnemies } from '../resetEnemyHelpers.js';
@@ -47,7 +46,7 @@ let enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
         if (enemy.type !== 'boss') {
           ctxExplosionCanvas.drawImage(explosion, 40, 10, 280, 285, enemy.xMove, enemy.yMove, 60, 60);
         } else if (enemy.type === 'boss') {
-          ctxExplosionCanvas.drawImage(bossExplosion, 0, 0, 958, 952, moblin.xMove, moblin.yMove, 80, 80);
+          ctxExplosionCanvas.drawImage(bossExplosion, 0, 0, 958, 952, enemy.xMove, enemy.yMove, 80, 80);
         };
         if (enemy.type !== 'xRightRunner' && enemy.type !== 'xLeftRunner' && enemy.type !== 'yRunner') {
           enemy.xMove = xStarting(enemy.spriteWidth);

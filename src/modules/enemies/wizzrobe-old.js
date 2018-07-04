@@ -5,13 +5,6 @@ import link from '../player.js';
 //scared wizard creature, runs away from link
 //worth 1 point || strength 1 || max life 2
 //leve 7+
-class Wizzrobe extends Enemy {
-  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp) {
-    super(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp);
-  };
-
-};
-
 let wizzrobe = {
   image: newImage('images/wizzrobe.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
@@ -93,19 +86,4 @@ let wizzrobe = {
   }
 };
 
-const wizzrobeStats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
-};
-
-export { Wizzrobe, wizzrobeStats };
+export default wizzrobe;
