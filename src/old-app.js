@@ -184,10 +184,15 @@ let background = {
   }
 };
 
-let firstTektite = new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1)
+let firstTektite = new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1);
+
+let tektiteArray = [];
+for (let i = 0; i < 10; i++) {
+  tektiteArray.push(new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1));
+}
 
 //All enemies array
-let allEnemies = [Tektite, tektite, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+let allEnemies = [...tektiteArray, firstTektite, tektite, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
@@ -263,10 +268,18 @@ let animationLoop = function() {
     };
 
     ///// Tektite
-    if (!firstTektite.dead && game.level >= firstTektite.levelShowUp) {
-      ctxEnemyMap.drawImage(firstTektite.image, firstTektite.xFrame, firstTektite.yFrame, firstTektite.pngWidth, firstTektite.pngHeight, firstTektite.xMove, firstTektite.yMove, firstTektite.spriteWidth, firstTektite.spriteHeight);
-      firstTektite.moveTektite();
-    };
+    // if (!firstTektite.dead && game.level >= firstTektite.levelShowUp) {
+    //   ctxEnemyMap.drawImage(firstTektite.image, firstTektite.xFrame, firstTektite.yFrame, firstTektite.pngWidth, firstTektite.pngHeight, firstTektite.xMove, firstTektite.yMove, firstTektite.spriteWidth, firstTektite.spriteHeight);
+    //   firstTektite.moveTektite();
+    // };
+    ///////
+    ///////
+    for (let i = 0; i < tektiteArray.length; i++) {
+      if (!tektiteArray[i].dead && game.level >= tektiteArray[i].levelShowUp) {
+        tektiteArray[i].draw();
+        tektiteArray[i].moveTektite();
+      };
+    }
     ///////
 
     //Animates keese
@@ -359,6 +372,9 @@ let animationLoop = function() {
     heartCollisionDetection(link.xMove, link.yMove, bigHeart.x, bigHeart.y, bigHeart);
     //tektite
     enemyCollisionDetection(link.xMove, link.yMove, tektite.xMove, tektite.yMove, tektite);
+    for (let i = 0; i < tektiteArray.length; i++) {
+      enemyCollisionDetection(link.xMove, link.yMove, tektiteArray[i].xMove, tektiteArray[i].yMove, tektiteArray[i]);
+    }
 
     //// Tektite
     enemyCollisionDetection(link.xMove, link.yMove, firstTektite.xMove, firstTektite.yMove, firstTektite);
@@ -419,6 +435,14 @@ let startGame = function() {
     firstTektite.life = firstTektite.maxLife;
     firstTektite.xMove = xStarting(firstTektite.spriteWidth);
     firstTektite.yMove = yStarting(firstTektite.spriteHeight);
+    //
+    //
+    for (let i = 0; i < tektiteArray.length; i++) {
+      tektiteArray[i].dead = false;
+      tektiteArray[i].life = tektiteArray[i].maxLife;
+      tektiteArray[i].xMove = xStarting(tektiteArray[i].spriteWidth);
+      tektiteArray[i].yMove = yStarting(tektiteArray[i].spriteHeight);
+    }
     //
     dodongo.xMove = -100;
     dodongo.yMove = yStarting(50);

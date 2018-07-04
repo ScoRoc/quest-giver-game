@@ -1,4 +1,5 @@
 import { newImage } from '../nonMathHelpers.js';
+import { ctxEnemyMap } from '../maps.js';
 
 class Enemy {
   constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp) {
@@ -20,6 +21,10 @@ class Enemy {
     this.dead = false;  //tracks if dead or not
     this.points = points;  //how many points killing tektite is worth
     this.levelShowUp = levelShowUp;  //first level seen
+  };
+
+  draw() {
+    ctxEnemyMap.drawImage(this.image, this.xFrame, this.yFrame, this.pngWidth, this.pngHeight, this.xMove, this.yMove, this.spriteWidth, this.spriteHeight);
   }
 };
 
