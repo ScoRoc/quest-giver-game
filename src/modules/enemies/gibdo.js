@@ -51,7 +51,6 @@ class Gibdo extends Enemy {
         this.x += this.speed * this.numberOfSpaces[coinFlip(2)];
       }
     } else if (coinFlip(2) === 1) {
-      console.log('==== 0....this.yyyy: ', this.y);
       if (this.y - link.y >= 0) {
         this.y -= this.speed * this.numberOfSpaces[coinFlip(2)];
       } else if (this.y - link.y < 0) {

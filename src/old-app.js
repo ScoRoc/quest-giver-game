@@ -304,9 +304,9 @@ let animationLoop = function() {
     };
 
     //Animates dodongoInstance
-    if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.xMove < 575) {
-      ctxEnemyMap.drawImage(dodongoInstance.image, dodongoInstance.xFrame, dodongoInstance.yFrame, dodongoInstance.pngWidth, dodongoInstance.pngHeight, dodongoInstance.xMove, dodongoInstance.yMove, dodongoInstance.spriteWidth, dodongoInstance.spriteHeight);
-      dodongoInstance.moveDodongo();
+    if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x < 575) {
+      ctxEnemyMap.drawImage(dodongoInstance.image, dodongoInstance.xFrame, dodongoInstance.yFrame, dodongoInstance.pngWidth, dodongoInstance.pngHeight, dodongoInstance.x, dodongoInstance.y, dodongoInstance.spriteWidth, dodongoInstance.spriteHeight);
+      dodongoInstance.move();
     };
     if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x >= 575) {
       dodongoInstance.dead = true;
@@ -439,8 +439,8 @@ let startGame = function() {
     //   tektiteArray[i].x = xStarting(tektiteArray[i].spriteWidth);
     //   tektiteArray[i].y = yStarting(tektiteArray[i].spriteHeight);
     // }
-    dodongo.x = -100;
-    dodongo.y = yStarting(50);
+    dodongoInstance.x = -100;
+    dodongoInstance.y = yStarting(50);
     heart.show = false;
     link.life = link.maxLife;
     link.heartDisplay();

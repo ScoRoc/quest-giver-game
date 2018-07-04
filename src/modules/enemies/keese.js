@@ -1,5 +1,6 @@
 import Enemy from './Enemy.js';
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
+import { backgroundMap } from './modules/maps.js';
 
 //bat creature, moves 1 space, normal speed and randomly
 //worth 1 point || strength 0.5 || max life 1
@@ -46,19 +47,19 @@ class Keese extends Enemy {
     if (coinFlip(20) === 0) {
       let keeseJump = coinFlip(4);
       if (keeseJump === 0) {  //for negative x movement
-        if (this.x >= 32) {
+        if (this.x >= this.spriteWidth) {
           this.x -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (keeseJump === 1) {  //for positive x movement
-        if (this.x <= 464) {
+        if (this.x <= backgroundMap.width - this.spriteWidth) {
           this.x += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (keeseJump === 2) {  //for negative y movement
-        if (this.y >= 32) {
+        if (this.y >= this.spriteHeight) {
           this.y -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (keeseJump === 3) {  //for positive y movement
-        if (this.y <= 304) {
+        if (this.y <= backgroundMap.height - this.spriteHeight) {
           this.y += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       };

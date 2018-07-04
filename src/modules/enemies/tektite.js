@@ -1,5 +1,7 @@
 import Enemy from './Enemy.js';
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
+import { backgroundMap } from './modules/maps.js';
+
 
 //spider creature, jumps up to 3 spaces, slowly and randomly
 //worth 1 point || strength 0.5 || max life 1
@@ -46,35 +48,35 @@ class Tektite extends Enemy {
     if (coinFlip(55) === 0) {
       let tektiteJump = coinFlip(4);
       if (tektiteJump === 0) {  //for negative x movement
-        if (this.x >= 64) {
+        if (this.x >= this.spriteWidth * 3) {
           this.x -= this.speed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.x >= 48) {
+        } else if (this.x >= this.spriteWidth * 2) {
           this.x -= this.speed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.x >= 32) {
+        } else if (this.x >= this.spriteWidth) {
           this.x -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (tektiteJump === 1) {  //for positive x movement
-        if (this.x <= 432) {
+        if (this.x <= backgroundMap.width - this.spriteWidth * 3) {
           this.x += this.speed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.x <= 448) {
+        } else if (this.x <= backgroundMap.width - this.spriteWidth * 2) {
           this.x += this.speed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.x <= 464) {
+        } else if (this.x <= backgroundMap.width - this.spriteWidth) {
           this.x += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (tektiteJump === 2) {  //for negative y movement
-        if (this.y >= 64) {
+        if (this.y >= this.spriteHeight * 3) {
           this.y -= this.speed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.y >= 48) {
+        } else if (this.y >= this.spriteHeight * 2) {
           this.y -= this.speed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.y >= 32) {
+        } else if (this.y >= this.spriteHeight) {
           this.y -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (tektiteJump === 3) {  //for positive y movement
-        if (this.y <= 272) {
+        if (this.y <= backgroundMap.height - this.spriteHeight * 3) {
           this.y += this.speed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.y <= 288) {
+        } else if (this.y <= backgroundMap.height - this.spriteHeight * 2) {
           this.y += this.speed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.y <= 304) {
+        } else if (this.y <= backgroundMap.height - this.spriteHeight) {
           this.y += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       };

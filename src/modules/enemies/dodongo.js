@@ -40,7 +40,7 @@ class Dodongo extends Enemy {
     );
   };
 
-  moveDodongo() {
+  move() {
     this.x += this.speed;
   }
 
