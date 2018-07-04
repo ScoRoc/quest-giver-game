@@ -7,7 +7,7 @@ import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
 
 const stats = {
   img: 'images/tektite.png',
-  pngWidth: 15,
+  pngWidth: 16,
   pngHeight: 15,
   spriteWidth: 37.5,
   spriteHeight: 40,
