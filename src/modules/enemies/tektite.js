@@ -1,6 +1,6 @@
 import Enemy from './Enemy.js';
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
-import { backgroundMap } from './modules/maps.js';
+import { backgroundMap } from '../maps.js';
 
 
 //spider creature, jumps up to 3 spaces, slowly and randomly

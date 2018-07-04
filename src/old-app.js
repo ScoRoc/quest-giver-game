@@ -304,11 +304,11 @@ let animationLoop = function() {
     };
 
     //Animates dodongoInstance
-    if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x < 575) {
+    if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x < backgroundMap.width + dodongoInstance.spriteWidth) {
       ctxEnemyMap.drawImage(dodongoInstance.image, dodongoInstance.xFrame, dodongoInstance.yFrame, dodongoInstance.pngWidth, dodongoInstance.pngHeight, dodongoInstance.x, dodongoInstance.y, dodongoInstance.spriteWidth, dodongoInstance.spriteHeight);
       dodongoInstance.move();
     };
-    if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x >= 575) {
+    if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x >= backgroundMap.width + dodongoInstance.spriteWidth) {
       dodongoInstance.dead = true;
       xRightResetOffscreenEnemies(dodongoInstance);
     };

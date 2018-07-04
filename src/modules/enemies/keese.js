@@ -1,6 +1,6 @@
 import Enemy from './Enemy.js';
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
-import { backgroundMap } from './modules/maps.js';
+import { backgroundMap } from '../maps.js';
 
 //bat creature, moves 1 space, normal speed and randomly
 //worth 1 point || strength 0.5 || max life 1
