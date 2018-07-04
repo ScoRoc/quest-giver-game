@@ -9,7 +9,7 @@ import {
   Dodongo,
   Armos,
   Wizzrobe,
-  darknut,
+  Darknut,
   aquamentus,
   moblin
 } from './modules/enemyImporter.js';
@@ -190,7 +190,7 @@ let stalfosInstance = new Stalfos();
 let dodongoInstance = new Dodongo();
 let armosInstance = new Armos();
 let wizzrobeInstance = new Wizzrobe();
-// let darknutInstance = new Darknut();
+let darknutInstance = new Darknut();
 // let aquamentusInstance = new Aquamentus();
 // let moblinInstance = new Moblin();
 
@@ -202,7 +202,10 @@ let wizzrobeInstance = new Wizzrobe();
 
 //All enemies array
 // let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
-let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, stalfosInstance, dodongoInstance, armosInstance, wizzrobeInstance, darknut, aquamentus, moblin];
+let allEnemies = [
+  tektiteInstance, keeseInstance, gibdoInstance, stalfosInstance, dodongoInstance,
+  armosInstance, wizzrobeInstance, darknutInstance, aquamentus, moblin
+];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
@@ -325,14 +328,14 @@ let animationLoop = function() {
       wizzrobeInstance.move();
     };
 
-    //Animates darknut
-    if (!darknut.dead && game.level >= darknut.levelShowUp && darknut.yMove < 375) {
-      ctxEnemyMap.drawImage(darknut.image, darknut.xFrame, darknut.yFrame, darknut.pngWidth, darknut.pngHeight, darknut.xMove, darknut.yMove, darknut.spriteWidth, darknut.spriteHeight);
-      darknut.moveDarknut();
+    //Animates darknutInstance
+    if (!darknutInstance.dead && game.level >= darknutInstance.levelShowUp && darknutInstance.y < backgroundMap.height + darknutInstance.spriteHeight) {
+      ctxEnemyMap.drawImage(darknutInstance.image, darknutInstance.xFrame, darknutInstance.yFrame, darknutInstance.pngWidth, darknutInstance.pngHeight, darknutInstance.x, darknutInstance.y, darknutInstance.spriteWidth, darknutInstance.spriteHeight);
+      darknutInstance.move();
     };
-    if (!darknut.dead && game.level >= darknut.levelShowUp && darknut.yMove >= 375) {
-      darknut.dead = true;
-      yResetOffscreenEnemies(darknut);
+    if (!darknutInstance.dead && game.level >= darknutInstance.levelShowUp && darknutInstance.yMove >= backgroundMap.height + darknutInstance.spriteHeight) {
+      darknutInstance.dead = true;
+      yResetOffscreenEnemies(darknutInstance);
     };
 
     //Animates aquamentus
@@ -394,8 +397,8 @@ let animationLoop = function() {
     enemyCollisionDetection(link.x, link.y, armosInstance.x, armosInstance.y, armosInstance);
     //wizzrobeInstance
     enemyCollisionDetection(link.x, link.y, wizzrobeInstance.x, wizzrobeInstance.y, wizzrobeInstance);
-    //darknut
-    enemyCollisionDetection(link.x, link.y, darknut.xMove, darknut.yMove, darknut);
+    //darknutInstance
+    enemyCollisionDetection(link.x, link.y, darknutInstance.x, darknutInstance.y, darknutInstance);
     //aquamentus
     enemyCollisionDetection(link.x, link.y, aquamentus.xMove, aquamentus.yMove, aquamentus);
     //moblin
