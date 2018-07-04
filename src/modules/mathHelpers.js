@@ -1,3 +1,5 @@
+import { backgroundMap } from './maps.js';
+
 //Random Number Generators
 let coinFlip = function(num) {
   switch (Math.floor(Math.random() * num)) {
@@ -18,10 +20,10 @@ let coinFlip = function(num) {
 
 //Random starting x and y points
 let xStarting = function(spriteWidth) {
-  return Math.floor(Math.random() * (875 - spriteWidth));
+  return Math.floor(Math.random() * (backgroundMap.width - spriteWidth));
 };
 let yStarting = function(spriteHeight) {
-  return Math.floor(Math.random() * (600 - spriteHeight));
+  return Math.floor(Math.random() * (backgroundMap.height - spriteHeight));
 };
 
 //Random starting x and y points for map

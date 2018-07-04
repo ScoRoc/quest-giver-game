@@ -1,24 +1,26 @@
 import Enemy from './Enemy.js';
 import { xStarting, yStarting } from '../mathHelpers.js';
 import link from '../player.js';
+import { backgroundMap } from '../maps.js';
 
 //scared wizard creature, runs away from link
 //worth 1 point || strength 1 || max life 2
 //leve 7+
 
 const stats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
+  img: 'images/wizzrobe.png',
+  pngWidth: 15,
+  pngHeight: 16,
+  spriteWidth: 40.3124,
+  spriteHeight: 43,
+  xStart: xStarting(45),
   yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
+  speed: 1,
+  type: 'scared',
+  maxLife: 2,
+  strength: 1,
   points: 1,
-  levelShowUp: 1
+  levelShowUp: 7
 };
 
 class Wizzrobe extends Enemy {
@@ -32,6 +34,7 @@ class Wizzrobe extends Enemy {
       stats.xStart,
       stats.yStart,
       stats.speed,
+      stats.type,
       stats.maxLife,
       stats.strength,
       stats.points,
@@ -39,87 +42,62 @@ class Wizzrobe extends Enemy {
     );
   };
 
-};
-
-let wizzrobe = {
-  image: newImage('images/wizzrobe.png'),
-  xFrame: 0,  //x starting point of src img for sprite frame
-  yFrame: 0,  //y starting point of src img for sprite frame
-  pngWidth: 15,  //width of src img sprite size
-  pngHeight: 16,  //height of src img sprite size
-  spriteWidth: 40.3125,  //width of sprite on canvas
-  spriteHeight: 43,  //height of sprite on canvas
-  xMove: xStarting(45),  //x point of wizzrobe on canvas
-  yMove: yStarting(45),  //y point of wizzrobe on canvas
-  xCenter: 23,  //x center of hit box
-  yCenter: 23,  //y center of hit box
-  moveAnimation: null,  //movement AI
-  // moveDirection: [this.xMove, this.yMove], //move directions
-  moveSpeed: 1, //number of px to move
-  numberOfSpaces: [1], //possible spaces moved
-  type: 'scared',  //what type of enemy
-  life: 0,  //how much life
-  maxLife: 2,  //how much starting life
-  strength: 1,  //how much life taken per hit to link
-  dead: true,  //tracks if dead or not
-  points: 1,  //how many points killing wizzrobe is worth
-  levelShowUp: 7,  //first level seen
-
-  moveWizzrobe: function() {
+  move() {
     //move diagonally bottom right
-    if (this.xMove - link.xMove >= 0 && this.yMove - link.yMove >= 0) {
-      if (this.xMove < 445 && this.yMove < 285) {
-        this.xMove += this.moveSpeed;
-        this.yMove += this.moveSpeed;
-      } else if (this.xMove >= 445 && this.yMove < 285) {
-        this.yMove += this.moveSpeed;
-      } else if (this.xMove < 445 && this.yMove >= 285) {
-        this.xMove += this.moveSpeed;
-      } else if (this.xMove >= 445 && this.yMove >= 285) {
-        this.xMove = 230;
-        this.yMove = 140;
+    if (this.x - link.x >= 0 && this.y - link.y >= 0) {
+      if (this.x < backgroundMap.width - this.spriteWidth && this.y < backgroundMap.height - this.spriteHeight) {
+        this.x += this.speed;
+        this.y += this.speed;
+      } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y < backgroundMap.height - this.spriteHeight) {
+        this.y += this.speed;
+      } else if (this.x < backgroundMap.width - this.spriteWidth && this.y >= backgroundMap.height - this.spriteHeight) {
+        this.x += this.speed;
+      } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y >= backgroundMap.height - this.spriteHeight) {
+        this.x = backgroundMap.width / 2;
+        this.y = backgroundMap.height / 2;
       };
       //move diagonally top right
-    } else if (this.xMove - link.xMove >= 0 && this.yMove - link.yMove <= 0) {
-      if (this.xMove < 445 && this.yMove > 0) {
-        this.xMove += this.moveSpeed;
-        this.yMove -= this.moveSpeed;
-      } else if (this.xMove >= 445 && this.yMove > 0) {
-        this.yMove -= this.moveSpeed;
-      } else if (this.xMove < 445 && this.yMove <= 0) {
-        this.xMove += this.moveSpeed;
-      } else if (this.xMove >= 445 && this.yMove <= 0) {
-        this.xMove = 230;
-        this.yMove = 140;
+    } else if (this.x - link.x >= 0 && this.y - link.y <= 0) {
+      if (this.x < backgroundMap.width - this.spriteWidth && this.y > 0) {
+        this.x += this.speed;
+        this.y -= this.speed;
+      } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y > 0) {
+        this.y -= this.speed;
+      } else if (this.x < backgroundMap.width - this.spriteWidth && this.y <= 0) {
+        this.x += this.speed;
+      } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y <= 0) {
+        this.x = backgroundMap.width / 2;
+        this.y = backgroundMap.height / 2;
       };
       //move diagonally top left
-    } else if (this.xMove - link.xMove <= 0 && this.yMove - link.yMove <= 0) {
-      if (this.xMove > 0 && this.yMove > 0) {
-        this.xMove -= this.moveSpeed;
-        this.yMove -= this.moveSpeed;
-      } else if (this.xMove <= 0 && this.yMove > 0) {
-        this.yMove -= this.moveSpeed;
-      } else if (this.xMove > 0 && this.yMove <= 0) {
-        this.xMove -= this.moveSpeed;
-      } else if (this.xMove <= 0 && this.yMove <= 0) {
-        this.xMove = 230;
-        this.yMove = 140;
+    } else if (this.x - link.x <= 0 && this.y - link.y <= 0) {
+      if (this.x > 0 && this.y > 0) {
+        this.x -= this.speed;
+        this.y -= this.speed;
+      } else if (this.x <= 0 && this.y > 0) {
+        this.y -= this.speed;
+      } else if (this.x > 0 && this.y <= 0) {
+        this.x -= this.speed;
+      } else if (this.x <= 0 && this.y <= 0) {
+        this.x = backgroundMap.width / 2;
+        this.y = backgroundMap.height / 2;
       };
       //move diagonally bottom left
-    } else if (this.xMove - link.xMove <= 0 && this.yMove - link.yMove >= 0) {
-      if (this.xMove > 0 && this.yMove < 285) {
-        this.xMove -= this.moveSpeed;
-        this.yMove += this.moveSpeed;
-      } else if (this.xMove <= 0 && this.yMove < 285) {
-        this.yMove += this.moveSpeed;
-      } else if (this.xMove > 0 && this.yMove >= 285) {
-        this.xMove -= this.moveSpeed;
-      } else if (this.xMove <= 0 && this.yMove >= 285) {
-        this.xMove = 230;
-        this.yMove = 140;
+    } else if (this.x - link.x <= 0 && this.y - link.y >= 0) {
+      if (this.x > 0 && this.y < backgroundMap.height - this.spriteHeight) {
+        this.x -= this.speed;
+        this.y += this.speed;
+      } else if (this.x <= 0 && this.y < backgroundMap.height - this.spriteHeight) {
+        this.y += this.speed;
+      } else if (this.x > 0 && this.y >= backgroundMap.height - this.spriteHeight) {
+        this.x -= this.speed;
+      } else if (this.x <= 0 && this.y >= backgroundMap.height - this.spriteHeight) {
+        this.x = backgroundMap.width / 2;
+        this.y = backgroundMap.height / 2;
       }
     };
-  }
+  };
+
 };
 
 export default Wizzrobe;

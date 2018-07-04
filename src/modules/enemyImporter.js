@@ -4,7 +4,7 @@ import Gibdo from './enemies/Gibdo.js';
 import Stalfos from './enemies/Stalfos.js';
 import Dodongo from './enemies/Dodongo.js';
 import Armos from './enemies/Armos.js';
-import wizzrobe from './enemies/wizzrobe-old.js';
+import Wizzrobe from './enemies/Wizzrobe.js';
 import darknut from './enemies/darknut-old.js';
 import aquamentus from './enemies/aquamentus-old.js';
 import moblin from './enemies/moblin-old.js';
@@ -17,7 +17,7 @@ export {
   Stalfos,
   Dodongo,
   Armos,
-  wizzrobe,
+  Wizzrobe,
   darknut,
   aquamentus,
   moblin
