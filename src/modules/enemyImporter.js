@@ -1,5 +1,5 @@
 import Tektite from './enemies/Tektite.js';
-import keese from './enemies/keese-old.js';
+import Keese from './enemies/Keese.js';
 import gibdo from './enemies/gibdo-old.js';
 import stalfos from './enemies/stalfos-old.js';
 import dodongo from './enemies/dodongo-old.js';
@@ -12,7 +12,7 @@ import moblin from './enemies/moblin-old.js';
 
 export {
   Tektite,
-  keese,
+  Keese,
   gibdo,
   stalfos,
   dodongo,

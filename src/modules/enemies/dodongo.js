@@ -1,5 +1,5 @@
+import Enemy from './Enemy.js';
 import { yStarting } from '../mathHelpers.js';
-import { newImage } from '../nonMathHelpers.js';
 
 //dinosaur creature, moves normal across the screen, L to R
 //worth 2 points || strength 2.5 || max life 3

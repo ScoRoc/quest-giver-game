@@ -1,5 +1,5 @@
+import Enemy from './Enemy.js';
 import { xStarting, yStarting } from '../mathHelpers.js';
-import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
 
 //loch ness monster creature, rush across screen R to L, goes towards link if hes near

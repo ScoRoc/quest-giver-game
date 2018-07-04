@@ -3,7 +3,7 @@ import { newImage } from './modules/nonMathHelpers.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
   Tektite,
-  keese,
+  Keese,
   gibdo,
   stalfos,
   dodongo,
@@ -184,6 +184,7 @@ let background = {
 };
 
 let tektiteInstance = new Tektite();
+let keeseInstance = new Keese();
 
 // let tektiteArray = [];
 // for (let i = 0; i < 10; i++) {
@@ -192,7 +193,7 @@ let tektiteInstance = new Tektite();
 
 //All enemies array
 // let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
-let allEnemies = [tektiteInstance, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+let allEnemies = [tektiteInstance, keeseInstance, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
@@ -275,10 +276,10 @@ let animationLoop = function() {
     // }
     ///////
 
-    //Animates keese
-    if (!keese.dead && game.level >= keese.levelShowUp) {
-      ctxEnemyMap.drawImage(keese.image, keese.xFrame, keese.yFrame, keese.pngWidth, keese.pngHeight, keese.xMove, keese.yMove, keese.spriteWidth, keese.spriteHeight);
-      keese.moveKeese();
+    //Animates keeseInstance
+    if (!keeseInstance.dead && game.level >= keeseInstance.levelShowUp) {
+      ctxEnemyMap.drawImage(keeseInstance.image, keeseInstance.xFrame, keeseInstance.yFrame, keeseInstance.pngWidth, keeseInstance.pngHeight, keeseInstance.xMove, keeseInstance.yMove, keeseInstance.spriteWidth, keeseInstance.spriteHeight);
+      keeseInstance.moveKeese();
     };
 
     //Animates gibdo
@@ -372,8 +373,8 @@ let animationLoop = function() {
     //   enemyCollisionDetection(link.xMove, link.yMove, tektiteArray[i].xMove, tektiteArray[i].yMove, tektiteArray[i]);
     // }
 
-    //keese
-    enemyCollisionDetection(link.xMove, link.yMove, keese.xMove, keese.yMove, keese);
+    //keeseInstance
+    enemyCollisionDetection(link.xMove, link.yMove, keeseInstance.xMove, keeseInstance.yMove, keeseInstance);
     //gibdo
     enemyCollisionDetection(link.xMove, link.yMove, gibdo.xMove, gibdo.yMove, gibdo);
     //stalfos

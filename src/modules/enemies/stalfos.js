@@ -1,5 +1,5 @@
+import Enemy from './Enemy.js';
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
-import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
 
 //skeleton creature, moves quickly towards link

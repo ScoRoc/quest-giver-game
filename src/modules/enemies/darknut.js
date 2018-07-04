@@ -1,5 +1,5 @@
+import Enemy from './Enemy.js';
 import { xStarting } from '../mathHelpers.js';
-import { newImage } from '../nonMathHelpers.js';
 
 //knight creature rushes down screen like dodongo but faster or randomly after enemy dies
 //worth 3 points || strength 2.5 || max life 1

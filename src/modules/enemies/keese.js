@@ -1,23 +1,23 @@
+import Enemy from './Enemy.js';
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
-import { newImage } from '../nonMathHelpers.js';
 
 //bat creature, moves 1 space, normal speed and randomly
 //worth 1 point || strength 0.5 || max life 1
 // level 2+
 
 const stats = {
-  img: 'images/tektite.png',
+  img: 'images/keese.png',
   pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
+  pngHeight: 10,
+  spriteWidth: 36,
+  spriteHeight: 22.5,
   xStart: xStarting(40),
   yStart: yStarting(45),
   speed: 16,
   maxLife: 1,
   strength: 0.5,
   points: 1,
-  levelShowUp: 1
+  levelShowUp: 2
 };
 
 class Keese extends Enemy {
@@ -36,35 +36,10 @@ class Keese extends Enemy {
       stats.points,
       stats.levelShowUp
     );
+    this.numberOfSpaces = [0, 1];
   };
 
-};
-
-let keese = {
-  image: newImage('images/keese.png'),
-  xFrame: 0,  //x starting point of src img for sprite frame
-  yFrame: 0,  //y starting point of src img for sprite frame
-  pngWidth: 16,  //width of src img sprite size
-  pngHeight: 10,  //height of src img sprite size
-  spriteWidth: 36,  //width of sprite on canvas
-  spriteHeight: 22.5,  //height of sprite on canvas
-  xMove: xStarting(40),  //x point of keese on canvas
-  yMove: yStarting(45),  //y point of keese on canvas
-  xCenter: 18.75,  //x center of hit box
-  yCenter: 20,  //y center of hit box
-  moveAnimation: null,  //movement AI
-  // moveDirection: [this.xMove, this.yMove], //move directions
-  moveSpeed: 16, //number of px to move
-  numberOfSpaces: [0, 1], //possible spaces moved
-  type: 'random',  //what type of enemy
-  life: 0,  //how much current life
-  maxLife: 1,  //how much starting life
-  strength: 0.5,  //how much life taken per hit to link
-  dead: true,  //tracks if dead or not
-  points: 1,  //how many points killing keese is worth
-  levelShowUp: 2,  //first level seen
-
-  moveKeese: function() {
+  moveKeese() {
     //Moves if coinFlip is 1
     if (coinFlip(20) === 0) {
       let keeseJump = coinFlip(4);
@@ -87,6 +62,7 @@ let keese = {
       };
     };
   }
+
 };
 
 export default Keese;

@@ -1,5 +1,5 @@
+import Enemy from './Enemy.js';
 import { xStarting, yStarting } from '../mathHelpers.js';
-import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
 
 //boss - goblin type creature, 3 stages 1) circle, 2) runner, 3) scared

@@ -1,5 +1,5 @@
+import Enemy from './Enemy.js';
 import { xStarting, yStarting } from '../mathHelpers.js';
-import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
 
 //scared wizard creature, runs away from link
