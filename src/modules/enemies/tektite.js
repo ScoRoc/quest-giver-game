@@ -10,7 +10,7 @@ const stats = {
   pngWidth: 16,
   pngHeight: 15,
   spriteWidth: 37.5,
-  spriteHeight: 40,
+  spriteHeight: 45,
   xStart: xStarting(40),
   yStart: yStarting(45),
   speed: 16,
