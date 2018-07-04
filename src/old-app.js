@@ -4,7 +4,7 @@ import { heart, bigHeart } from './modules/items/hearts.js';
 import {
   Tektite,
   Keese,
-  gibdo,
+  Gibdo,
   stalfos,
   dodongo,
   armos,
@@ -185,6 +185,15 @@ let background = {
 
 let tektiteInstance = new Tektite();
 let keeseInstance = new Keese();
+let gibdoInstance = new Gibdo();
+// let stalfosInstance = new Stalfos();
+// let dodongoInstance = new Dodongo();
+// let armosInstance = new Armos();
+// let wizzrobeInstance = new Wizzrobe();
+// let darknutInstance = new Darknut();
+// let aquamentusInstance = new Aquamentus();
+// let moblinInstance = new Moblin();
+
 
 // let tektiteArray = [];
 // for (let i = 0; i < 10; i++) {
@@ -193,7 +202,7 @@ let keeseInstance = new Keese();
 
 //All enemies array
 // let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
-let allEnemies = [tektiteInstance, keeseInstance, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
@@ -282,10 +291,10 @@ let animationLoop = function() {
       keeseInstance.moveKeese();
     };
 
-    //Animates gibdo
-    if (!gibdo.dead && game.level >= gibdo.levelShowUp) {
-      ctxEnemyMap.drawImage(gibdo.image, gibdo.xFrame, gibdo.yFrame, gibdo.pngWidth, gibdo.pngHeight, gibdo.xMove, gibdo.yMove, gibdo.spriteWidth, gibdo.spriteHeight);
-      gibdo.moveGibdo();
+    //Animates gibdoInstance
+    if (!gibdoInstance.dead && game.level >= gibdoInstance.levelShowUp) {
+      ctxEnemyMap.drawImage(gibdoInstance.image, gibdoInstance.xFrame, gibdoInstance.yFrame, gibdoInstance.pngWidth, gibdoInstance.pngHeight, gibdoInstance.xMove, gibdoInstance.yMove, gibdoInstance.spriteWidth, gibdoInstance.spriteHeight);
+      gibdoInstance.moveGibdo();
     };
 
     //Animates stalfos
@@ -375,8 +384,8 @@ let animationLoop = function() {
 
     //keeseInstance
     enemyCollisionDetection(link.xMove, link.yMove, keeseInstance.xMove, keeseInstance.yMove, keeseInstance);
-    //gibdo
-    enemyCollisionDetection(link.xMove, link.yMove, gibdo.xMove, gibdo.yMove, gibdo);
+    //gibdoInstance
+    enemyCollisionDetection(link.xMove, link.yMove, gibdoInstance.xMove, gibdoInstance.yMove, gibdoInstance);
     //stalfos
     enemyCollisionDetection(link.xMove, link.yMove, stalfos.xMove, stalfos.yMove, stalfos);
     //dodongo
