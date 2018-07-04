@@ -40,19 +40,19 @@ class Gibdo extends Enemy {
     this.numberOfSpaces = [0, 1];
   };
 
-  moveGibdo() {
+  move() {
     //Moves on coinFlip
     if (coinFlip(2) === 0) {
       if (this.xMove - link.xMove >= 0) {
-        this.xMove -= this.moveSpeed * this.numberOfSpaces[coinFlip(2)];
+        this.xMove -= this.speed * this.numberOfSpaces[coinFlip(2)];
       } else if (this.xMove - link.xMove < 0) {
-        this.xMove += this.moveSpeed * this.numberOfSpaces[coinFlip(2)];
+        this.xMove += this.speed * this.numberOfSpaces[coinFlip(2)];
       }
     } else if (coinFlip(2) === 1) {
       if (this.yMove - link.yMove >= 0) {
-        this.yMove -= this.moveSpeed * this.numberOfSpaces[coinFlip(2)];
+        this.yMove -= this.speed * this.numberOfSpaces[coinFlip(2)];
       } else if (this.yMove - link.yMove < 0) {
-        this.yMove += this.moveSpeed * this.numberOfSpaces[coinFlip(2)];
+        this.yMove += this.speed * this.numberOfSpaces[coinFlip(2)];
       };
     };
   };

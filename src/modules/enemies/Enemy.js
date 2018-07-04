@@ -10,11 +10,11 @@ class Enemy {
     this.pngHeight = pngHeight;  //height of src img sprite size
     this.spriteWidth = spriteWidth;  //width of sprite on canvas
     this.spriteHeight = spriteHeight;  //height of sprite on canvas
-    this.xMove = xStart;  //x point of enemy on canvas
-    this.yMove = yStart;  //y point of enemy on canvas
+    this.x = xStart;  //x point of enemy on canvas
+    this.y = yStart;  //y point of enemy on canvas
     this.xCenter = this.spriteWidth / 2;  //x center of hit box
     this.yCenter = this.spriteHeight / 2;  //y center of hit box
-    this.moveSpeed = speed; //number of px to move
+    this.speed = speed; //number of px to move
     this.maxLife = maxLife;  //how much starting life is
     this.currentLife = this.maxLife;  //how much current life
     this.strength = strength;  //how much life taken per hit to link

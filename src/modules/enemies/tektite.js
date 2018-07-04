@@ -39,41 +39,41 @@ class Tektite extends Enemy {
     this.numberOfSpaces = [0, 1, 2, 3];
   };
 
-  moveTektite() {
+  move() {
     //Moves if coinFlip is 1
     if (coinFlip(55) === 0) {
       let tektiteJump = coinFlip(4);
       if (tektiteJump === 0) {  //for negative x movement
-        if (this.xMove >= 64) {
-          this.xMove -= this.moveSpeed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.xMove >= 48) {
-          this.xMove -= this.moveSpeed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.xMove >= 32) {
-          this.xMove -= this.moveSpeed * this.numberOfSpaces[coinFlip(2)];
+        if (this.x >= 64) {
+          this.x -= this.speed * this.numberOfSpaces[coinFlip(4)];
+        } else if (this.x >= 48) {
+          this.x -= this.speed * this.numberOfSpaces[coinFlip(3)];
+        } else if (this.x >= 32) {
+          this.x -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (tektiteJump === 1) {  //for positive x movement
-        if (this.xMove <= 432) {
-          this.xMove += this.moveSpeed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.xMove <= 448) {
-          this.xMove += this.moveSpeed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.xMove <= 464) {
-          this.xMove += this.moveSpeed * this.numberOfSpaces[coinFlip(2)];
+        if (this.x <= 432) {
+          this.x += this.speed * this.numberOfSpaces[coinFlip(4)];
+        } else if (this.x <= 448) {
+          this.x += this.speed * this.numberOfSpaces[coinFlip(3)];
+        } else if (this.x <= 464) {
+          this.x += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (tektiteJump === 2) {  //for negative y movement
-        if (this.yMove >= 64) {
-          this.yMove -= this.moveSpeed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.yMove >= 48) {
-          this.yMove -= this.moveSpeed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.yMove >= 32) {
-          this.yMove -= this.moveSpeed * this.numberOfSpaces[coinFlip(2)];
+        if (this.y >= 64) {
+          this.y -= this.speed * this.numberOfSpaces[coinFlip(4)];
+        } else if (this.y >= 48) {
+          this.y -= this.speed * this.numberOfSpaces[coinFlip(3)];
+        } else if (this.y >= 32) {
+          this.y -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (tektiteJump === 3) {  //for positive y movement
-        if (this.yMove <= 272) {
-          this.yMove += this.moveSpeed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.yMove <= 288) {
-          this.yMove += this.moveSpeed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.yMove <= 304) {
-          this.yMove += this.moveSpeed * this.numberOfSpaces[coinFlip(2)];
+        if (this.y <= 272) {
+          this.y += this.speed * this.numberOfSpaces[coinFlip(4)];
+        } else if (this.y <= 288) {
+          this.y += this.speed * this.numberOfSpaces[coinFlip(3)];
+        } else if (this.y <= 304) {
+          this.y += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       };
     };

@@ -1,7 +1,7 @@
 import Tektite from './enemies/Tektite.js';
 import Keese from './enemies/Keese.js';
 import Gibdo from './enemies/Gibdo.js';
-import stalfos from './enemies/stalfos-old.js';
+import Stalfos from './enemies/Stalfos.js';
 import dodongo from './enemies/dodongo-old.js';
 import armos from './enemies/armos-old.js';
 import wizzrobe from './enemies/wizzrobe-old.js';
@@ -14,7 +14,7 @@ export {
   Tektite,
   Keese,
   Gibdo,
-  stalfos,
+  Stalfos,
   dodongo,
   armos,
   wizzrobe,

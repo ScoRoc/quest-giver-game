@@ -186,7 +186,7 @@ let background = {
 let tektiteInstance = new Tektite();
 let keeseInstance = new Keese();
 let gibdoInstance = new Gibdo();
-// let stalfosInstance = new Stalfos();
+let stalfosInstance = new Stalfos();
 // let dodongoInstance = new Dodongo();
 // let armosInstance = new Armos();
 // let wizzrobeInstance = new Wizzrobe();
@@ -202,7 +202,7 @@ let gibdoInstance = new Gibdo();
 
 //All enemies array
 // let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
-let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, Stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
@@ -274,13 +274,13 @@ let animationLoop = function() {
     //Animates tektiteInstance
     if (!tektiteInstance.dead && game.level >= tektiteInstance.levelShowUp) {
       ctxEnemyMap.drawImage(tektiteInstance.image, tektiteInstance.xFrame, tektiteInstance.yFrame, tektiteInstance.pngWidth, tektiteInstance.pngHeight, tektiteInstance.xMove, tektiteInstance.yMove, tektiteInstance.spriteWidth, tektiteInstance.spriteHeight);
-      tektiteInstance.moveTektite();
+      tektiteInstance.move();
     };
     /////// for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
     //   if (!tektiteArray[i].dead && game.level >= tektiteArray[i].levelShowUp) {
     //     tektiteArray[i].draw();
-    //     tektiteArray[i].moveTektite();
+    //     tektiteArray[i].move();
     //   };
     // }
     ///////
@@ -297,10 +297,10 @@ let animationLoop = function() {
       gibdoInstance.moveGibdo();
     };
 
-    //Animates stalfos
-    if (!stalfos.dead && game.level >= stalfos.levelShowUp) {
-      ctxEnemyMap.drawImage(stalfos.image, stalfos.xFrame, stalfos.yFrame, stalfos.pngWidth, stalfos.pngHeight, stalfos.xMove, stalfos.yMove, stalfos.spriteWidth, stalfos.spriteHeight);
-      stalfos.moveStalfos();
+    //Animates stalfosInstance
+    if (!stalfosInstance.dead && game.level >= stalfosInstance.levelShowUp) {
+      ctxEnemyMap.drawImage(stalfosInstance.image, stalfosInstance.xFrame, stalfosInstance.yFrame, stalfosInstance.pngWidth, stalfosInstance.pngHeight, stalfosInstance.xMove, stalfosInstance.yMove, stalfosInstance.spriteWidth, stalfosInstance.spriteHeight);
+      stalfosInstance.moveStalfos();
     };
 
     //Animates dodongo
