@@ -3,7 +3,6 @@ import { newImage } from './modules/nonMathHelpers.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
   Tektite,
-  tektite,
   keese,
   gibdo,
   stalfos,
@@ -184,15 +183,16 @@ let background = {
   }
 };
 
-let firstTektite = new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1);
+let tektiteInstance = new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1);
 
-let tektiteArray = [];
-for (let i = 0; i < 10; i++) {
-  tektiteArray.push(new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1));
-}
+// let tektiteArray = [];
+// for (let i = 0; i < 10; i++) {
+//   tektiteArray.push(new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1));
+// }
 
 //All enemies array
-let allEnemies = [...tektiteArray, firstTektite, tektite, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+// let allEnemies = [...tektiteArray, tektite, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+let allEnemies = [tektiteInstance, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
@@ -261,25 +261,18 @@ let animationLoop = function() {
     if (bigHeart.show) {
       ctxEnemyMap.drawImage(bigHeart.image, bigHeart.xFrame, bigHeart.yFrame, bigHeart.pngWidth, bigHeart.pngHeight, bigHeart.x, bigHeart.y, bigHeart.spriteWidth, bigHeart.spriteHeight);
     };
-    //Animates tektites
-    if (!tektite.dead && game.level >= tektite.levelShowUp) {
-      ctxEnemyMap.drawImage(tektite.image, tektite.xFrame, tektite.yFrame, tektite.pngWidth, tektite.pngHeight, tektite.xMove, tektite.yMove, tektite.spriteWidth, tektite.spriteHeight);
-      tektite.moveTektite();
+    //Animates tektiteInstance
+    if (!tektiteInstance.dead && game.level >= tektiteInstance.levelShowUp) {
+      ctxEnemyMap.drawImage(tektiteInstance.image, tektiteInstance.xFrame, tektiteInstance.yFrame, tektiteInstance.pngWidth, tektiteInstance.pngHeight, tektiteInstance.xMove, tektiteInstance.yMove, tektiteInstance.spriteWidth, tektiteInstance.spriteHeight);
+      tektiteInstance.moveTektite();
     };
-
-    ///// Tektite
-    // if (!firstTektite.dead && game.level >= firstTektite.levelShowUp) {
-    //   ctxEnemyMap.drawImage(firstTektite.image, firstTektite.xFrame, firstTektite.yFrame, firstTektite.pngWidth, firstTektite.pngHeight, firstTektite.xMove, firstTektite.yMove, firstTektite.spriteWidth, firstTektite.spriteHeight);
-    //   firstTektite.moveTektite();
-    // };
-    ///////
-    ///////
-    for (let i = 0; i < tektiteArray.length; i++) {
-      if (!tektiteArray[i].dead && game.level >= tektiteArray[i].levelShowUp) {
-        tektiteArray[i].draw();
-        tektiteArray[i].moveTektite();
-      };
-    }
+    /////// for multiple tektites
+    // for (let i = 0; i < tektiteArray.length; i++) {
+    //   if (!tektiteArray[i].dead && game.level >= tektiteArray[i].levelShowUp) {
+    //     tektiteArray[i].draw();
+    //     tektiteArray[i].moveTektite();
+    //   };
+    // }
     ///////
 
     //Animates keese
@@ -370,15 +363,14 @@ let animationLoop = function() {
     heartCollisionDetection(link.xMove, link.yMove, heart.x, heart.y, heart);
     //big heart
     heartCollisionDetection(link.xMove, link.yMove, bigHeart.x, bigHeart.y, bigHeart);
-    //tektite
-    enemyCollisionDetection(link.xMove, link.yMove, tektite.xMove, tektite.yMove, tektite);
-    for (let i = 0; i < tektiteArray.length; i++) {
-      enemyCollisionDetection(link.xMove, link.yMove, tektiteArray[i].xMove, tektiteArray[i].yMove, tektiteArray[i]);
-    }
 
-    //// Tektite
-    enemyCollisionDetection(link.xMove, link.yMove, firstTektite.xMove, firstTektite.yMove, firstTektite);
-    /////
+    //tektiteInstance
+    enemyCollisionDetection(link.xMove, link.yMove, tektiteInstance.xMove, tektiteInstance.yMove, tektiteInstance);
+
+    ////// for multiple tektites
+    // for (let i = 0; i < tektiteArray.length; i++) {
+    //   enemyCollisionDetection(link.xMove, link.yMove, tektiteArray[i].xMove, tektiteArray[i].yMove, tektiteArray[i]);
+    // }
 
     //keese
     enemyCollisionDetection(link.xMove, link.yMove, keese.xMove, keese.yMove, keese);
@@ -426,24 +418,17 @@ let startGame = function() {
       baddy.dead = true;
       baddy.life = 0;
     });
-    tektite.dead = false;
-    tektite.life = tektite.maxLife;
-    tektite.xMove = xStarting(tektite.spriteWidth);
-    tektite.yMove = yStarting(tektite.spriteHeight);
-    //
-    firstTektite.dead = false;
-    firstTektite.life = firstTektite.maxLife;
-    firstTektite.xMove = xStarting(firstTektite.spriteWidth);
-    firstTektite.yMove = yStarting(firstTektite.spriteHeight);
-    //
-    //
-    for (let i = 0; i < tektiteArray.length; i++) {
-      tektiteArray[i].dead = false;
-      tektiteArray[i].life = tektiteArray[i].maxLife;
-      tektiteArray[i].xMove = xStarting(tektiteArray[i].spriteWidth);
-      tektiteArray[i].yMove = yStarting(tektiteArray[i].spriteHeight);
-    }
-    //
+    tektiteInstance.dead = false;
+    tektiteInstance.life = tektiteInstance.maxLife;
+    tektiteInstance.xMove = xStarting(tektiteInstance.spriteWidth);
+    tektiteInstance.yMove = yStarting(tektiteInstance.spriteHeight);
+    // for multiple tektites
+    // for (let i = 0; i < tektiteArray.length; i++) {
+    //   tektiteArray[i].dead = false;
+    //   tektiteArray[i].life = tektiteArray[i].maxLife;
+    //   tektiteArray[i].xMove = xStarting(tektiteArray[i].spriteWidth);
+    //   tektiteArray[i].yMove = yStarting(tektiteArray[i].spriteHeight);
+    // }
     dodongo.xMove = -100;
     dodongo.yMove = yStarting(50);
     heart.show = false;
