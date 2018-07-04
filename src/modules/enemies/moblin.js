@@ -5,9 +5,38 @@ import link from '../player.js';
 //boss - goblin type creature, 3 stages 1) circle, 2) runner, 3) scared
 //worth 5 points || strength 1 || max life 6
 //level 10
+
+const stats = {
+  img: 'images/tektite.png',
+  pngWidth: 16,
+  pngHeight: 15,
+  spriteWidth: 37.5,
+  spriteHeight: 40,
+  xStart: xStarting(40),
+  yStart: yStarting(45),
+  speed: 16,
+  maxLife: 1,
+  strength: 0.5,
+  points: 1,
+  levelShowUp: 1
+};
+
 class Moblin extends Enemy {
-  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp) {
-    super(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp);
+  constructor() {
+    super(
+      stats.img,
+      stats.pngWidth,
+      stats.pngHeight,
+      stats.spriteWidth,
+      stats.spriteHeight,
+      stats.xStart,
+      stats.yStart,
+      stats.speed,
+      stats.maxLife,
+      stats.strength,
+      stats.points,
+      stats.levelShowUp
+    );
   };
 
 };
@@ -184,19 +213,4 @@ let moblin = {
   }
 };
 
-const moblinStats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
-};
-
-export { Moblin, moblinStats };
+export default Moblin;

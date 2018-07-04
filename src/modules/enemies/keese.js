@@ -5,9 +5,37 @@ import { newImage } from '../nonMathHelpers.js';
 //worth 1 point || strength 0.5 || max life 1
 // level 2+
 
+const stats = {
+  img: 'images/tektite.png',
+  pngWidth: 16,
+  pngHeight: 15,
+  spriteWidth: 37.5,
+  spriteHeight: 40,
+  xStart: xStarting(40),
+  yStart: yStarting(45),
+  speed: 16,
+  maxLife: 1,
+  strength: 0.5,
+  points: 1,
+  levelShowUp: 1
+};
+
 class Keese extends Enemy {
-  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp) {
-    super(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp);
+  constructor() {
+    super(
+      stats.img,
+      stats.pngWidth,
+      stats.pngHeight,
+      stats.spriteWidth,
+      stats.spriteHeight,
+      stats.xStart,
+      stats.yStart,
+      stats.speed,
+      stats.maxLife,
+      stats.strength,
+      stats.points,
+      stats.levelShowUp
+    );
   };
 
 };
@@ -61,19 +89,4 @@ let keese = {
   }
 };
 
-const keeseStats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
-};
-
-export { Keese, keeseStats };
+export default Keese;

@@ -4,9 +4,38 @@ import { newImage } from '../nonMathHelpers.js';
 //dinosaur creature, moves normal across the screen, L to R
 //worth 2 points || strength 2.5 || max life 3
 // level 5+
+
+const stats = {
+  img: 'images/tektite.png',
+  pngWidth: 16,
+  pngHeight: 15,
+  spriteWidth: 37.5,
+  spriteHeight: 40,
+  xStart: xStarting(40),
+  yStart: yStarting(45),
+  speed: 16,
+  maxLife: 1,
+  strength: 0.5,
+  points: 1,
+  levelShowUp: 1
+};
+
 class Dodongo extends Enemy {
-  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp) {
-    super(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp);
+  constructor() {
+    super(
+      stats.img,
+      stats.pngWidth,
+      stats.pngHeight,
+      stats.spriteWidth,
+      stats.spriteHeight,
+      stats.xStart,
+      stats.yStart,
+      stats.speed,
+      stats.maxLife,
+      stats.strength,
+      stats.points,
+      stats.levelShowUp
+    );
   };
 
 };
@@ -40,19 +69,4 @@ let dodongo = {
   }
 };
 
-const dodongoStats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
-};
-
-export { Dodongo, dodongoStats };
+export default Dodongo;

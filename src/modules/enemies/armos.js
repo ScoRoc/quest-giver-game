@@ -5,9 +5,38 @@ import link from '../player.js';
 //statue knight creature, stands still until link is near then moves towards
 //worth 2 points || strength 2 || max life 2
 // level 6+
+
+const stats = {
+  img: 'images/tektite.png',
+  pngWidth: 16,
+  pngHeight: 15,
+  spriteWidth: 37.5,
+  spriteHeight: 40,
+  xStart: xStarting(40),
+  yStart: yStarting(45),
+  speed: 16,
+  maxLife: 1,
+  strength: 0.5,
+  points: 1,
+  levelShowUp: 1
+};
+
 class Armos extends Enemy {
-  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp) {
-    super(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, maxLife, strength, points, levelShowUp);
+  constructor() {
+    super(
+      stats.img,
+      stats.pngWidth,
+      stats.pngHeight,
+      stats.spriteWidth,
+      stats.spriteHeight,
+      stats.xStart,
+      stats.yStart,
+      stats.speed,
+      stats.maxLife,
+      stats.strength,
+      stats.points,
+      stats.levelShowUp
+    );
   };
 
 };
@@ -62,19 +91,4 @@ let armos = {
   }
 };
 
-const armosStats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
-};
-
-export { Armos, armosStats };
+export default Armos;

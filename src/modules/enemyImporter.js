@@ -1,4 +1,4 @@
-import { Tektite, tektiteStats } from './enemies/Tektite.js';
+import Tektite from './enemies/Tektite.js';
 import keese from './enemies/keese-old.js';
 import gibdo from './enemies/gibdo-old.js';
 import stalfos from './enemies/stalfos-old.js';
@@ -12,7 +12,6 @@ import moblin from './enemies/moblin-old.js';
 
 export {
   Tektite,
-  tektiteStats,
   keese,
   gibdo,
   stalfos,

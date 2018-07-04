@@ -3,7 +3,6 @@ import { newImage } from './modules/nonMathHelpers.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
   Tektite,
-  tektiteStats,
   keese,
   gibdo,
   stalfos,
@@ -184,28 +183,15 @@ let background = {
   }
 };
 
-let tektiteInstance = new Tektite(
-  tektiteStats.img,
-  tektiteStats.pngWidth,
-  tektiteStats.pngHeight,
-  tektiteStats.spriteWidth,
-  tektiteStats.spriteHeight,
-  tektiteStats.xStart,
-  tektiteStats.yStart,
-  tektiteStats.speed,
-  tektiteStats.maxLife,
-  tektiteStats.strength,
-  tektiteStats.points,
-  tektiteStats.levelShowUp
-);
+let tektiteInstance = new Tektite();
 
 // let tektiteArray = [];
 // for (let i = 0; i < 10; i++) {
-//   tektiteArray.push(new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1));
+//   tektiteArray.push(new Tektite());
 // }
 
 //All enemies array
-// let allEnemies = [...tektiteArray, tektite, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+// let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 let allEnemies = [tektiteInstance, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
