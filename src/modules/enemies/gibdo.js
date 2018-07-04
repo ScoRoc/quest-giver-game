@@ -41,6 +41,7 @@ class Gibdo extends Enemy {
   };
 
   move() {
+    console.log('inside Gibdos move');
     //Moves on coinFlip
     if (coinFlip(2) === 0) {
       if (this.x - link.x >= 0) {

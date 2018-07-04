@@ -202,7 +202,7 @@ let stalfosInstance = new Stalfos();
 
 //All enemies array
 // let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
-let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, Stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, stalfosInstance, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
@@ -295,6 +295,7 @@ let animationLoop = function() {
     if (!gibdoInstance.dead && game.level >= gibdoInstance.levelShowUp) {
       ctxEnemyMap.drawImage(gibdoInstance.image, gibdoInstance.xFrame, gibdoInstance.yFrame, gibdoInstance.pngWidth, gibdoInstance.pngHeight, gibdoInstance.x, gibdoInstance.y, gibdoInstance.spriteWidth, gibdoInstance.spriteHeight);
       gibdoInstance.move();
+      console.log('inside animate where we call Gibdo.move');
     };
 
     //Animates stalfosInstance
