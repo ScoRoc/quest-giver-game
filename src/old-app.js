@@ -5,7 +5,7 @@ import {
   Tektite,
   Keese,
   Gibdo,
-  stalfos,
+  Stalfos,
   dodongo,
   armos,
   wizzrobe,
@@ -273,7 +273,7 @@ let animationLoop = function() {
     };
     //Animates tektiteInstance
     if (!tektiteInstance.dead && game.level >= tektiteInstance.levelShowUp) {
-      ctxEnemyMap.drawImage(tektiteInstance.image, tektiteInstance.xFrame, tektiteInstance.yFrame, tektiteInstance.pngWidth, tektiteInstance.pngHeight, tektiteInstance.xMove, tektiteInstance.yMove, tektiteInstance.spriteWidth, tektiteInstance.spriteHeight);
+      ctxEnemyMap.drawImage(tektiteInstance.image, tektiteInstance.xFrame, tektiteInstance.yFrame, tektiteInstance.pngWidth, tektiteInstance.pngHeight, tektiteInstance.x, tektiteInstance.y, tektiteInstance.spriteWidth, tektiteInstance.spriteHeight);
       tektiteInstance.move();
     };
     /////// for multiple tektites
@@ -287,20 +287,20 @@ let animationLoop = function() {
 
     //Animates keeseInstance
     if (!keeseInstance.dead && game.level >= keeseInstance.levelShowUp) {
-      ctxEnemyMap.drawImage(keeseInstance.image, keeseInstance.xFrame, keeseInstance.yFrame, keeseInstance.pngWidth, keeseInstance.pngHeight, keeseInstance.xMove, keeseInstance.yMove, keeseInstance.spriteWidth, keeseInstance.spriteHeight);
-      keeseInstance.moveKeese();
+      ctxEnemyMap.drawImage(keeseInstance.image, keeseInstance.xFrame, keeseInstance.yFrame, keeseInstance.pngWidth, keeseInstance.pngHeight, keeseInstance.x, keeseInstance.y, keeseInstance.spriteWidth, keeseInstance.spriteHeight);
+      keeseInstance.move();
     };
 
     //Animates gibdoInstance
     if (!gibdoInstance.dead && game.level >= gibdoInstance.levelShowUp) {
-      ctxEnemyMap.drawImage(gibdoInstance.image, gibdoInstance.xFrame, gibdoInstance.yFrame, gibdoInstance.pngWidth, gibdoInstance.pngHeight, gibdoInstance.xMove, gibdoInstance.yMove, gibdoInstance.spriteWidth, gibdoInstance.spriteHeight);
-      gibdoInstance.moveGibdo();
+      ctxEnemyMap.drawImage(gibdoInstance.image, gibdoInstance.xFrame, gibdoInstance.yFrame, gibdoInstance.pngWidth, gibdoInstance.pngHeight, gibdoInstance.x, gibdoInstance.y, gibdoInstance.spriteWidth, gibdoInstance.spriteHeight);
+      gibdoInstance.move();
     };
 
     //Animates stalfosInstance
     if (!stalfosInstance.dead && game.level >= stalfosInstance.levelShowUp) {
-      ctxEnemyMap.drawImage(stalfosInstance.image, stalfosInstance.xFrame, stalfosInstance.yFrame, stalfosInstance.pngWidth, stalfosInstance.pngHeight, stalfosInstance.xMove, stalfosInstance.yMove, stalfosInstance.spriteWidth, stalfosInstance.spriteHeight);
-      stalfosInstance.moveStalfos();
+      ctxEnemyMap.drawImage(stalfosInstance.image, stalfosInstance.xFrame, stalfosInstance.yFrame, stalfosInstance.pngWidth, stalfosInstance.pngHeight, stalfosInstance.x, stalfosInstance.y, stalfosInstance.spriteWidth, stalfosInstance.spriteHeight);
+      stalfosInstance.move();
     };
 
     //Animates dodongo
@@ -375,19 +375,19 @@ let animationLoop = function() {
     heartCollisionDetection(link.xMove, link.yMove, bigHeart.x, bigHeart.y, bigHeart);
 
     //tektiteInstance
-    enemyCollisionDetection(link.xMove, link.yMove, tektiteInstance.xMove, tektiteInstance.yMove, tektiteInstance);
+    enemyCollisionDetection(link.xMove, link.yMove, tektiteInstance.x, tektiteInstance.y, tektiteInstance);
 
     ////// for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
-    //   enemyCollisionDetection(link.xMove, link.yMove, tektiteArray[i].xMove, tektiteArray[i].yMove, tektiteArray[i]);
+    //   enemyCollisionDetection(link.xMove, link.yMove, tektiteArray[i].x, tektiteArray[i].y, tektiteArray[i]);
     // }
 
     //keeseInstance
-    enemyCollisionDetection(link.xMove, link.yMove, keeseInstance.xMove, keeseInstance.yMove, keeseInstance);
+    enemyCollisionDetection(link.xMove, link.yMove, keeseInstance.x, keeseInstance.y, keeseInstance);
     //gibdoInstance
-    enemyCollisionDetection(link.xMove, link.yMove, gibdoInstance.xMove, gibdoInstance.yMove, gibdoInstance);
-    //stalfos
-    enemyCollisionDetection(link.xMove, link.yMove, stalfos.xMove, stalfos.yMove, stalfos);
+    enemyCollisionDetection(link.xMove, link.yMove, gibdoInstance.x, gibdoInstance.y, gibdoInstance);
+    //stalfosInstance
+    enemyCollisionDetection(link.xMove, link.yMove, stalfosInstance.x, stalfosInstance.y, stalfosInstance);
     //dodongo
     enemyCollisionDetection(link.xMove, link.yMove, dodongo.xMove, dodongo.yMove, dodongo);
     //armos
@@ -430,14 +430,14 @@ let startGame = function() {
     });
     tektiteInstance.dead = false;
     tektiteInstance.life = tektiteInstance.maxLife;
-    tektiteInstance.xMove = xStarting(tektiteInstance.spriteWidth);
-    tektiteInstance.yMove = yStarting(tektiteInstance.spriteHeight);
+    tektiteInstance.x = xStarting(tektiteInstance.spriteWidth);
+    tektiteInstance.y = yStarting(tektiteInstance.spriteHeight);
     // for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
     //   tektiteArray[i].dead = false;
     //   tektiteArray[i].life = tektiteArray[i].maxLife;
-    //   tektiteArray[i].xMove = xStarting(tektiteArray[i].spriteWidth);
-    //   tektiteArray[i].yMove = yStarting(tektiteArray[i].spriteHeight);
+    //   tektiteArray[i].x = xStarting(tektiteArray[i].spriteWidth);
+    //   tektiteArray[i].y = yStarting(tektiteArray[i].spriteHeight);
     // }
     dodongo.xMove = -100;
     dodongo.yMove = yStarting(50);

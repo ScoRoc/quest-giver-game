@@ -44,20 +44,20 @@ class Keese extends Enemy {
     if (coinFlip(20) === 0) {
       let keeseJump = coinFlip(4);
       if (keeseJump === 0) {  //for negative x movement
-        if (this.xMove >= 32) {
-          this.xMove -= this.speed * this.numberOfSpaces[coinFlip(2)];
+        if (this.x >= 32) {
+          this.x -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (keeseJump === 1) {  //for positive x movement
-        if (this.xMove <= 464) {
-          this.xMove += this.speed * this.numberOfSpaces[coinFlip(2)];
+        if (this.x <= 464) {
+          this.x += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (keeseJump === 2) {  //for negative y movement
-        if (this.yMove >= 32) {
-          this.yMove -= this.speed * this.numberOfSpaces[coinFlip(2)];
+        if (this.y >= 32) {
+          this.y -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (keeseJump === 3) {  //for positive y movement
-        if (this.yMove <= 304) {
-          this.yMove += this.speed * this.numberOfSpaces[coinFlip(2)];
+        if (this.y <= 304) {
+          this.y += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       };
     };

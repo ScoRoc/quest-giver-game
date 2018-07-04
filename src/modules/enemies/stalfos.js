@@ -43,16 +43,16 @@ class Stalfos extends Enemy {
   move() {
     //Moves if coinFlip is 1
     if (coinFlip(2) === 0) {
-      if (this.xMove - link.xMove >= 0) {
-        this.xMove -= this.speed * this.numberOfSpaces[coinFlip(1)];
-      } else if (this.xMove - link.xMove < 0) {
-        this.xMove += this.speed * this.numberOfSpaces[coinFlip(1)];
+      if (this.x - link.x >= 0) {
+        this.x -= this.speed * this.numberOfSpaces[coinFlip(1)];
+      } else if (this.x - link.x < 0) {
+        this.x += this.speed * this.numberOfSpaces[coinFlip(1)];
       }
     } else if (coinFlip(2) === 1) {
-      if (this.yMove - link.yMove >= 0) {
-        this.yMove -= this.speed * this.numberOfSpaces[coinFlip(1)];
-      } else if (this.yMove - link.yMove < 0) {
-        this.yMove += this.speed * this.numberOfSpaces[coinFlip(1)];
+      if (this.y - link.y >= 0) {
+        this.y -= this.speed * this.numberOfSpaces[coinFlip(1)];
+      } else if (this.y - link.y < 0) {
+        this.y += this.speed * this.numberOfSpaces[coinFlip(1)];
       };
     };
   }

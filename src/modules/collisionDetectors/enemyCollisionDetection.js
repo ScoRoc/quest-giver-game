@@ -44,13 +44,13 @@ let enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
       };
       if (enemy.dead) {
         if (enemy.type !== 'boss') {
-          ctxExplosionCanvas.drawImage(explosion, 40, 10, 280, 285, enemy.xMove, enemy.yMove, 60, 60);
+          ctxExplosionCanvas.drawImage(explosion, 40, 10, 280, 285, enemy.x, enemy.y, 60, 60);
         } else if (enemy.type === 'boss') {
-          ctxExplosionCanvas.drawImage(bossExplosion, 0, 0, 958, 952, enemy.xMove, enemy.yMove, 80, 80);
+          ctxExplosionCanvas.drawImage(bossExplosion, 0, 0, 958, 952, enemy.x, enemy.y, 80, 80);
         };
         if (enemy.type !== 'xRightRunner' && enemy.type !== 'xLeftRunner' && enemy.type !== 'yRunner') {
-          enemy.xMove = xStarting(enemy.spriteWidth);
-          enemy.yMove = yStarting(enemy.spriteHeight);
+          enemy.x = xStarting(enemy.spriteWidth);
+          enemy.y = yStarting(enemy.spriteHeight);
         } else if (enemy.type === 'xRightRunner') {
           xRightResetOffscreenEnemies(enemy);
         } else if (enemy.type === 'xLeftRunner') {
