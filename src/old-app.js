@@ -453,6 +453,26 @@ let startGame = function() {
   };
 };
 
+  //////////////////////////////////////////
+ // Working example for a click on enemy //
+//////////////////////////////////////////
+// let testClick = (e, tek) => {
+//   let sMap = document.getElementById('sprite-map');
+//   console.log('testClick');
+//   let x = e.clientX - sMap.offsetParent.offsetLeft - sMap.offsetLeft;
+//   let y = e.clientY - sMap.offsetParent.offsetTop;
+//   let tx = tek.xMove;
+//   let ty = tek.yMove
+//   console.log('x: ', x, 'y: ', y, 'tx: ', tx, 'ty : ', ty);
+//   if (x >= tx && x <= tx + tek.spriteWidth && y >= ty && y <= ty + tek.spriteHeight) {
+//     console.log('in testClick if');
+//     sMap.style.backgroundColor = 'red';
+//   }
+// };
+// document.getElementById('sprite-map').addEventListener('click', e => {
+//   testClick(e, tektiteInstance);
+// });
+
 startGameButton.on('click', startGame);
 window.addEventListener('keydown', link.playerAction);
 window.addEventListener('keyup', link.actionStop);
