@@ -22,9 +22,9 @@ let link = {
   spriteHeight: 34,  //height of sprite on canvas
   bottomBound: backgroundMap.height - 35,
   rightBound: backgroundMap.width - 33,
-  xMove: xStarting(32),  //x point of link on canvas
-  yMove: yStarting(35),  //y point of link on canvas
-  moveSpeed: 10,  //number of px moved per interval
+  x: xStarting(32),  //x point of link on canvas
+  y: yStarting(35),  //y point of link on canvas
+  speed: 10,  //number of px moved per interval
   frameSpeed: 14,  //number to calculate frame switch rate
   isMoving: false, //tracks to see if moving
   isMovingUp: false, //tracks to see if moving up
@@ -119,12 +119,12 @@ let link = {
   },
 
   moveUp: function() {
-    if (link.yMove <= link.upMapMove && background.yFrame > 0 && areEnemiesDead()) {
+    if (link.y <= link.upMapMove && background.yFrame > 0 && areEnemiesDead()) {
       background.mapMoving = true;
       background.moveMapUp = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.yMove >= 0) {
-      link.yMove -= link.moveSpeed;
+    } else if (!background.mapMoving && link.y >= 0) {
+      link.y -= link.speed;
       link.xFrame = 61;
       link.yFrame = 0;
       if (link.upFrame < (link.frameSpeed / 2)) {
@@ -140,12 +140,12 @@ let link = {
   },
 
   moveDown: function() {
-    if (link.yMove >= link.downMapMove && background.yFrame < 1232 && areEnemiesDead()) {
+    if (link.y >= link.downMapMove && background.yFrame < 1232 && areEnemiesDead()) {
       background.mapMoving = true;
       background.moveMapDown = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.yMove <= link.bottomBound) {
-      link.yMove += link.moveSpeed;
+    } else if (!background.mapMoving && link.y <= link.bottomBound) {
+      link.y += link.speed;
       link.xFrame = 0;
       link.yFrame = 0;
       if (link.downFrame < (link.frameSpeed / 2)) {
@@ -161,12 +161,12 @@ let link = {
   },
 
   moveLeft: function() {
-    if (link.xMove <= link.leftMapMove && background.xFrame > 0 && areEnemiesDead()) {
+    if (link.x <= link.leftMapMove && background.xFrame > 0 && areEnemiesDead()) {
       background.mapMoving = true;
       background.moveMapLeft = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.xMove >= 0) {
-      link.xMove -= link.moveSpeed;
+    } else if (!background.mapMoving && link.x >= 0) {
+      link.x -= link.speed;
       link.xFrame = 29;
       link.yFrame = 30;
       if (link.leftFrame < (link.frameSpeed * .5)) {
@@ -182,12 +182,12 @@ let link = {
   },
 
   moveRight: function() {
-    if (link.xMove >= link.rightMapMove && background.xFrame < 3840 && areEnemiesDead()) {
+    if (link.x >= link.rightMapMove && background.xFrame < 3840 && areEnemiesDead()) {
       background.mapMoving = true;
       background.moveMapRight = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.xMove <= link.rightBound) {
-      link.xMove += link.moveSpeed;
+    } else if (!background.mapMoving && link.x <= link.rightBound) {
+      link.x += link.speed;
       link.xFrame = 90;
       link.yFrame = 0;
       if (link.rightFrame < (link.frameSpeed / 2)) {
@@ -206,28 +206,28 @@ let link = {
   playerAction: function(event) {
     //Up
     if (event.keyCode === 38 && !game.over) {
-      if (!link.isMovingUp && !link.isMoving && !link.isAttacking && link.yMove >= 1) {
+      if (!link.isMovingUp && !link.isMoving && !link.isAttacking && link.y >= 1) {
           link.isMovingUp = true;
           link.isMoving = true;
         };
     }
     //Down
     if (event.keyCode === 40 && !game.over) {
-      if (!link.isMovingDown && !link.isMoving && !link.isAttacking && link.yMove <= link.bottomBound) {
+      if (!link.isMovingDown && !link.isMoving && !link.isAttacking && link.y <= link.bottomBound) {
           link.isMovingDown = true;
           link.isMoving = true;
         };
     }
     //Left
     if (event.keyCode === 37 && !game.over) {
-      if (!link.isMovingLeft && !link.isMoving && !link.isAttacking && link.xMove >= 0) {
+      if (!link.isMovingLeft && !link.isMoving && !link.isAttacking && link.x >= 0) {
           link.isMovingLeft = true;
           link.isMoving = true;
         };
     }
     //Right
     if (event.keyCode === 39 && !game.over) {
-      if (!link.isMovingRight && !link.isMoving && !link.isAttacking && link.xMove <= link.rightBound) {
+      if (!link.isMovingRight && !link.isMoving && !link.isAttacking && link.x <= link.rightBound) {
           link.isMovingRight = true;
           link.isMoving = true;
         };
@@ -241,7 +241,7 @@ let link = {
           link.pngHeight = 28;
           link.spriteHeight = 59.5;
           link.yFrame = 84;
-          link.yMove -= 29;
+          link.y -= 29;
           link.isMovingUp = false;
           link.isMoving = false;
           link.isAttacking = true;
@@ -252,7 +252,7 @@ let link = {
           link.pngHeight = 28;
           link.spriteHeight = 59.5;
           link.yFrame = 84;
-          link.yMove += 3;
+          link.y += 3;
           link.isMovingDown = false;
           link.isMoving = false;
           link.isAttacking = true;
@@ -263,7 +263,7 @@ let link = {
           link.pngWidth = 28;
           link.spriteWidth = 59.5;
           link.yFrame = 90;
-          link.xMove -= 30;
+          link.x -= 30;
           link.isMovingLeft = false;
           link.isMoving = false;
           link.isAttacking = true;
@@ -274,7 +274,7 @@ let link = {
           link.pngWidth = 28;
           link.spriteWidth = 59.5;
           link.yFrame = 90;
-          link.xMove += 6;
+          link.x += 6;
           link.isMovingRight = false;
           link.isMoving = false;
           link.isAttacking = true;
@@ -317,7 +317,7 @@ let link = {
           link.pngHeight = 16;
           link.spriteHeight = 34;
           link.yFrame = 30;
-          link.yMove += 29;
+          link.y += 29;
           link.isAttacking = false;
           break;
           //if facing down
@@ -326,7 +326,7 @@ let link = {
           link.pngHeight = 16;
           link.spriteHeight = 34;
           link.yFrame = 0;
-          link.yMove -= 3;
+          link.y -= 3;
           link.isAttacking = false;
           break;
           //if facing left
@@ -335,7 +335,7 @@ let link = {
           link.pngWidth = 15;
           link.spriteWidth = 31.875;
           link.yFrame = 0;
-          link.xMove += 30;
+          link.x += 30;
           link.isAttacking = false;
           break;
           link.yFrame = 100;
@@ -345,7 +345,7 @@ let link = {
           link.pngWidth = 15;
           link.spriteWidth = 31.875;
           link.yFrame = 31;
-          link.xMove -= 6;
+          link.x -= 6;
           link.isAttacking = false;
           break;
       };

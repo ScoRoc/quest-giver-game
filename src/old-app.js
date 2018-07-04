@@ -295,7 +295,6 @@ let animationLoop = function() {
     if (!gibdoInstance.dead && game.level >= gibdoInstance.levelShowUp) {
       ctxEnemyMap.drawImage(gibdoInstance.image, gibdoInstance.xFrame, gibdoInstance.yFrame, gibdoInstance.pngWidth, gibdoInstance.pngHeight, gibdoInstance.x, gibdoInstance.y, gibdoInstance.spriteWidth, gibdoInstance.spriteHeight);
       gibdoInstance.move();
-      console.log('inside animate where we call Gibdo.move');
     };
 
     //Animates stalfosInstance
