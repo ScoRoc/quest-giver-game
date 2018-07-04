@@ -1,10 +1,18 @@
 
 import link from '../player.js';
-import { game, explosionPng, bossExplosionPng } from '../../old-app.js';
+import { game } from '../../old-app.js';
 import { ctxExplosionCanvas } from '../maps.js';
 import moblin from '../enemies/moblin.js';
 import { xStarting, yStarting, } from '../mathHelpers.js';
+import { newImage } from '../nonMathHelpers.js';
 import { xRightResetOffscreenEnemies, xLeftResetOffscreenEnemies, yResetOffscreenEnemies } from '../resetEnemyHelpers.js';
+
+// wtfffffffff why do i need explosionPng and bossExplosionPng????????
+let explosionPng = new Image();
+explosionPng.src = 'images/explosion-death.png';
+
+let bossExplosionPng = new Image();
+bossExplosionPng.src = 'images/boss-explosion.png';
 
 //Collision Detection between Link and enemies
 let enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
@@ -27,6 +35,8 @@ let enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
     let yDownAttack = y1 + 18;
     let yDistanceDown = y2 - yDownAttack;
     let hitRadiusDown = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistanceDown, 2)));
+    let explosion = newImage('images/explosion-death.png');
+    let bossExplosion = newImage('images/boss-explosion.png');
     if (hitRadius <= 32 || hitRadiusRight <= 32 || hitRadiusDown <= 32) {
       link.linkAttack();
       enemy.life -= 1;
@@ -35,9 +45,9 @@ let enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
       };
       if (enemy.dead) {
         if (enemy.type !== 'boss') {
-          ctxExplosionCanvas.drawImage(explosionPng, 40, 10, 280, 285, enemy.xMove, enemy.yMove, 60, 60);
+          ctxExplosionCanvas.drawImage(explosion, 40, 10, 280, 285, enemy.xMove, enemy.yMove, 60, 60);
         } else if (enemy.type === 'boss') {
-          ctxExplosionCanvas.drawImage(bossExplosionPng, 0, 0, 958, 952, moblin.xMove, moblin.yMove, 80, 80);
+          ctxExplosionCanvas.drawImage(bossExplosion, 0, 0, 958, 952, moblin.xMove, moblin.yMove, 80, 80);
         };
         if (enemy.type !== 'xRightRunner' && enemy.type !== 'xLeftRunner' && enemy.type !== 'yRunner') {
           enemy.xMove = xStarting(enemy.spriteWidth);

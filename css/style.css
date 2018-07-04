@@ -21,10 +21,6 @@ canvas {
   margin: 0;
 }
 
-.canvas-blur {
-  filter: blur(2px);
-}
-
 .hearts-col {
   margin: 0;
   padding-bottom: 30px;

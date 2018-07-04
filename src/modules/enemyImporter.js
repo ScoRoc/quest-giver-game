@@ -1,3 +1,4 @@
+import Tektite from './enemies/TektiteClass.js';
 import tektite from './enemies/tektite.js';
 import keese from './enemies/keese.js';
 import gibdo from './enemies/gibdo.js';
@@ -11,6 +12,7 @@ import moblin from './enemies/moblin.js';
 
 
 export {
+  Tektite,
   tektite,
   keese,
   gibdo,

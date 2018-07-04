@@ -1,10 +1,8 @@
 import { xStarting, yStarting } from '../mathHelpers.js';
+import { newImage } from '../nonMathHelpers.js';
 
-let heartPng = new Image();
-heartPng.src = 'images/heart.gif';
-
-let bigHeartPng = new Image();
-bigHeartPng.src = 'images/big-heart.png';
+// let bigHeartPng = new Image();
+// bigHeartPng.src = 'images/big-heart.png';
 
 let heartOne = $('#heart-one');
 let heartTwo = $('#heart-two');
@@ -13,7 +11,7 @@ let heartFour = $('#heart-four');
 
 //Define hearts
 let heart = {
-  image: heartPng,
+  image: newImage('images/heart.gif'),
   xFrame: 57,  //x starting point of src img for sprite frame
   yFrame: 62,  //y starting point of src img for sprite frame
   pngWidth: 59,  //width of src img sprite size
@@ -27,7 +25,7 @@ let heart = {
 };
 
 let bigHeart = {
-  image: bigHeartPng,
+  image: newImage('images/big-heart.png'),
   xFrame: 0,  //x starting point of src img for sprite frame
   yFrame: 0,  //y starting point of src img for sprite frame
   pngWidth: 13,  //width of src img sprite size

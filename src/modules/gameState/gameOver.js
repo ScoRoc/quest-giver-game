@@ -1,9 +1,10 @@
 
 import { ctxEnemyMap, ctxSpriteMap, spriteMap, deathCanvas } from '../maps.js';
+import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
 import linkDies from './linkDies.js';
 import gameOverScreen from './gameOverScreen.js';
-import { startGameButton, animateGame, explosionPng } from '../../old-app.js';
+import { startGameButton, animateGame } from '../../old-app.js';
 
 //game over function and link explosion
 let gameOver = function() {
@@ -17,7 +18,7 @@ let gameOver = function() {
   setTimeout(function() {
     clearInterval(animateLinkDeath);
     ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-    ctxSpriteMap.drawImage(explosionPng, 40, 10, 280, 285, link.xMove, link.yMove, 60, 60);
+    ctxSpriteMap.drawImage(newImage('images/explosion-death.png'), 40, 10, 280, 285, link.xMove, link.yMove, 60, 60);
     setTimeout(function() {
       gameOverScreen();
       startGameButton.html('Replay game');

@@ -20,9 +20,11 @@ let link = {
   pngHeight: 16,  //height of src img sprite size
   spriteWidth: 31.875,  //width of sprite on canvas
   spriteHeight: 34,  //height of sprite on canvas
+  bottomBound: backgroundMap.height - 35,
+  rightBound: backgroundMap.width - 33,
   xMove: xStarting(32),  //x point of link on canvas
   yMove: yStarting(35),  //y point of link on canvas
-  moveSpeed: 3,  //number of px moved per interval
+  moveSpeed: 10,  //number of px moved per interval
   frameSpeed: 14,  //number to calculate frame switch rate
   isMoving: false, //tracks to see if moving
   isMovingUp: false, //tracks to see if moving up
@@ -142,7 +144,7 @@ let link = {
       background.mapMoving = true;
       background.moveMapDown = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.yMove <= 317) {
+    } else if (!background.mapMoving && link.yMove <= link.bottomBound) {
       link.yMove += link.moveSpeed;
       link.xFrame = 0;
       link.yFrame = 0;
@@ -184,7 +186,7 @@ let link = {
       background.mapMoving = true;
       background.moveMapRight = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.xMove <= 479) {
+    } else if (!background.mapMoving && link.xMove <= link.rightBound) {
       link.xMove += link.moveSpeed;
       link.xFrame = 90;
       link.yFrame = 0;
@@ -211,7 +213,7 @@ let link = {
     }
     //Down
     if (event.keyCode === 40 && !game.over) {
-      if (!link.isMovingDown && !link.isMoving && !link.isAttacking && link.yMove <= 317) {
+      if (!link.isMovingDown && !link.isMoving && !link.isAttacking && link.yMove <= link.bottomBound) {
           link.isMovingDown = true;
           link.isMoving = true;
         };
@@ -225,7 +227,7 @@ let link = {
     }
     //Right
     if (event.keyCode === 39 && !game.over) {
-      if (!link.isMovingRight && !link.isMoving && !link.isAttacking && link.xMove <= 479) {
+      if (!link.isMovingRight && !link.isMoving && !link.isAttacking && link.xMove <= link.rightBound) {
           link.isMovingRight = true;
           link.isMoving = true;
         };

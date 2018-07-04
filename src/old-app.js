@@ -2,6 +2,7 @@ import { coinFlip, xStarting, yStarting } from './modules/mathHelpers.js';
 import { newImage } from './modules/nonMathHelpers.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
+  Tektite,
   tektite,
   keese,
   gibdo,
@@ -183,27 +184,16 @@ let background = {
   }
 };
 
-
-//Define character images
-let explosionPng = new Image();
-explosionPng.src = 'images/explosion-death.png';
-
-let bossExplosionPng = new Image();
-bossExplosionPng.src = 'images/boss-explosion.png';
-
-let zeldaPng = new Image();
-zeldaPng.src = 'images/zelda.png';
-
+let firstTektite = new Tektite('images/tektite.png', 16, 15, 37.5, 40, xStarting(40), yStarting(45), 16, 1, 0.5, 1, 1)
 
 //All enemies array
-let allEnemies = [tektite, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+let allEnemies = [Tektite, tektite, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
 
 
 let startGameButton = $('#start-game');
-
 
 //Animation Game Loop
 let animateGame = null;
@@ -271,6 +261,13 @@ let animationLoop = function() {
       ctxEnemyMap.drawImage(tektite.image, tektite.xFrame, tektite.yFrame, tektite.pngWidth, tektite.pngHeight, tektite.xMove, tektite.yMove, tektite.spriteWidth, tektite.spriteHeight);
       tektite.moveTektite();
     };
+
+    ///// Tektite
+    if (!firstTektite.dead && game.level >= firstTektite.levelShowUp) {
+      ctxEnemyMap.drawImage(firstTektite.image, firstTektite.xFrame, firstTektite.yFrame, firstTektite.pngWidth, firstTektite.pngHeight, firstTektite.xMove, firstTektite.yMove, firstTektite.spriteWidth, firstTektite.spriteHeight);
+      firstTektite.moveTektite();
+    };
+    ///////
 
     //Animates keese
     if (!keese.dead && game.level >= keese.levelShowUp) {
@@ -362,6 +359,11 @@ let animationLoop = function() {
     heartCollisionDetection(link.xMove, link.yMove, bigHeart.x, bigHeart.y, bigHeart);
     //tektite
     enemyCollisionDetection(link.xMove, link.yMove, tektite.xMove, tektite.yMove, tektite);
+
+    //// Tektite
+    enemyCollisionDetection(link.xMove, link.yMove, firstTektite.xMove, firstTektite.yMove, firstTektite);
+    /////
+
     //keese
     enemyCollisionDetection(link.xMove, link.yMove, keese.xMove, keese.yMove, keese);
     //gibdo
@@ -412,6 +414,12 @@ let startGame = function() {
     tektite.life = tektite.maxLife;
     tektite.xMove = xStarting(tektite.spriteWidth);
     tektite.yMove = yStarting(tektite.spriteHeight);
+    //
+    firstTektite.dead = false;
+    firstTektite.life = firstTektite.maxLife;
+    firstTektite.xMove = xStarting(firstTektite.spriteWidth);
+    firstTektite.yMove = yStarting(firstTektite.spriteHeight);
+    //
     dodongo.xMove = -100;
     dodongo.yMove = yStarting(50);
     heart.show = false;
@@ -431,8 +439,6 @@ let startGame = function() {
     ctxDeathCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxEnemyMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxSpriteMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    backgroundMap.classList.remove('canvas-blur');
-    enemyMap.classList.remove('canvas-blur');
     animationLoop();
     $('#start-game').css('visibility', 'hidden');
   };
@@ -442,4 +448,4 @@ startGameButton.on('click', startGame);
 window.addEventListener('keydown', link.playerAction);
 window.addEventListener('keyup', link.actionStop);
 
-export { game, background, areEnemiesDead, animateGame, zeldaPng, explosionPng, bossExplosionPng, startGameButton };
+export { game, background, areEnemiesDead, animateGame, startGameButton };
