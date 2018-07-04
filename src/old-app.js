@@ -6,7 +6,7 @@ import {
   Keese,
   Gibdo,
   Stalfos,
-  dodongo,
+  Dodongo,
   armos,
   wizzrobe,
   darknut,
@@ -187,7 +187,7 @@ let tektiteInstance = new Tektite();
 let keeseInstance = new Keese();
 let gibdoInstance = new Gibdo();
 let stalfosInstance = new Stalfos();
-// let dodongoInstance = new Dodongo();
+let dodongoInstance = new Dodongo();
 // let armosInstance = new Armos();
 // let wizzrobeInstance = new Wizzrobe();
 // let darknutInstance = new Darknut();
@@ -202,7 +202,7 @@ let stalfosInstance = new Stalfos();
 
 //All enemies array
 // let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
-let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, stalfosInstance, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
+let allEnemies = [tektiteInstance, keeseInstance, gibdoInstance, stalfosInstance, dodongoInstance, armos, wizzrobe, darknut, aquamentus, moblin];
 
 let liveEnemies = [];
 let areEnemiesDead = null;
@@ -303,14 +303,14 @@ let animationLoop = function() {
       stalfosInstance.move();
     };
 
-    //Animates dodongo
-    if (!dodongo.dead && game.level >= dodongo.levelShowUp && dodongo.xMove < 575) {
-      ctxEnemyMap.drawImage(dodongo.image, dodongo.xFrame, dodongo.yFrame, dodongo.pngWidth, dodongo.pngHeight, dodongo.xMove, dodongo.yMove, dodongo.spriteWidth, dodongo.spriteHeight);
-      dodongo.moveDodongo();
+    //Animates dodongoInstance
+    if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.xMove < 575) {
+      ctxEnemyMap.drawImage(dodongoInstance.image, dodongoInstance.xFrame, dodongoInstance.yFrame, dodongoInstance.pngWidth, dodongoInstance.pngHeight, dodongoInstance.xMove, dodongoInstance.yMove, dodongoInstance.spriteWidth, dodongoInstance.spriteHeight);
+      dodongoInstance.moveDodongo();
     };
-    if (!dodongo.dead && game.level >= dodongo.levelShowUp && dodongo.xMove >= 575) {
-      dodongo.dead = true;
-      xRightResetOffscreenEnemies(dodongo);
+    if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x >= 575) {
+      dodongoInstance.dead = true;
+      xRightResetOffscreenEnemies(dodongoInstance);
     };
 
     //Animates armos
@@ -388,8 +388,8 @@ let animationLoop = function() {
     enemyCollisionDetection(link.x, link.y, gibdoInstance.x, gibdoInstance.y, gibdoInstance);
     //stalfosInstance
     enemyCollisionDetection(link.x, link.y, stalfosInstance.x, stalfosInstance.y, stalfosInstance);
-    //dodongo
-    enemyCollisionDetection(link.x, link.y, dodongo.xMove, dodongo.yMove, dodongo);
+    //dodongoInstance
+    enemyCollisionDetection(link.x, link.y, dodongoInstance.x, dodongoInstance.y, dodongoInstance);
     //armos
     enemyCollisionDetection(link.x, link.y, armos.xMove, armos.yMove, armos);
     //wizzrobe
@@ -439,8 +439,8 @@ let startGame = function() {
     //   tektiteArray[i].x = xStarting(tektiteArray[i].spriteWidth);
     //   tektiteArray[i].y = yStarting(tektiteArray[i].spriteHeight);
     // }
-    dodongo.xMove = -100;
-    dodongo.yMove = yStarting(50);
+    dodongo.x = -100;
+    dodongo.y = yStarting(50);
     heart.show = false;
     link.life = link.maxLife;
     link.heartDisplay();

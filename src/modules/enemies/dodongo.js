@@ -6,18 +6,19 @@ import { yStarting } from '../mathHelpers.js';
 // level 5+
 
 const stats = {
-  img: 'images/tektite.png',
-  pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
+  img: 'images/dodongo.png',
+  pngWidth: 32,
+  pngHeight: 16,
+  spriteWidth: 90,
+  spriteHeight: 45,
+  xStart: -100,
+  yStart: yStarting(50),
+  speed: 0.9,
+  type: 'xRightRunner',
+  maxLife: 3,
+  strength: 2.5,
+  points: 2,
+  levelShowUp: 5
 };
 
 class Dodongo extends Enemy {
@@ -31,6 +32,7 @@ class Dodongo extends Enemy {
       stats.xStart,
       stats.yStart,
       stats.speed,
+      stats.type,
       stats.maxLife,
       stats.strength,
       stats.points,
@@ -38,35 +40,10 @@ class Dodongo extends Enemy {
     );
   };
 
-};
-
-let dodongo = {
-  image: newImage('images/dodongo.png'),
-  xFrame: 0,  //x starting point of src img for sprite frame
-  yFrame: 0,  //y starting point of src img for sprite frame
-  pngWidth: 32,  //width of src img sprite size
-  pngHeight: 16,  //height of src img sprite size
-  spriteWidth: 90,  //width of sprite on canvas
-  spriteHeight: 45,  //height of sprite on canvas
-  xMove: -100,  //x point of dodongo on canvas
-  yMove: yStarting(50),  //y point of dodongo on canvas
-  xCenter: 18.75,  //x center of hit box
-  yCenter: 20,  //y center of hit box
-  moveAnimation: null,  //movement AI
-  // moveDirection: [this.xMove, this.yMove], //move directions
-  moveSpeed: 0.9, //number of px to move
-  numberOfSpaces: [1], //possible spaces moved
-  type: 'xRightRunner',  //what type of enemy
-  life: 0,  //how much life
-  maxLife: 3,  //how much starting life
-  strength: 2.5,  //how much life taken per hit to link
-  dead: true,  //tracks if dead or not
-  points: 2,  //how many points killing dodongo is worth
-  levelShowUp: 5,  //first level seen
-
-  moveDodongo: function() {
-    this.xMove += this.moveSpeed;
+  moveDodongo() {
+    this.x += this.speed;
   }
+
 };
 
 export default Dodongo;
