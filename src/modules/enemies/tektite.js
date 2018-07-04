@@ -13,7 +13,7 @@ const stats = {
   spriteHeight: 40,
   xStart: xStarting(40),
   yStart: yStarting(45),
-  speed: 15,
+  speed: 16,
   maxLife: 1,
   strength: 0.5,
   points: 1,
