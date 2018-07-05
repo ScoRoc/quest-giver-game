@@ -15,7 +15,7 @@ const stats = {
   spriteHeight: 65,
   xStart: xStarting(70),
   yStart: yStarting(70),
-  speed: 2.1,
+  speed: 1,
   type: 'boss',
   maxLife: 6,
   strength: 1,
@@ -46,11 +46,13 @@ class Moblin extends Enemy {
 
   move() {
     if (this.life > 4) {  //Stage One
-      this.speed = 2.1;
+      // this.speed = 2.1;
       if (this.cycleOne === 11) {  //Move R
         if (this.x < backgroundMap.width - this.spriteWidth) {
           this.x += this.speed;
+          this.speed += 0.2;
         } else if (this.x >= backgroundMap.width - this.spriteWidth) {
+          this.speed = 2.1;
           this.cycleOne++;
         };
       } else if (this.cycleOne === 12) {  //Move slightly back L
@@ -111,7 +113,7 @@ class Moblin extends Enemy {
           this.x += this.speed;
         } else if (this.x >= this.spriteWidth * 1.2) {
           this.x = this.spriteWidth * 2.3;
-          this.y = backgroundmap.height + this.spriteHeight * 0.25;
+          this.y = backgroundMap.height + this.spriteHeight * 0.25;
           this.cycleTwo++;
         };
       } else if (this.cycleTwo === 13) {  //Bottom to Top

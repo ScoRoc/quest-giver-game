@@ -79,10 +79,10 @@ let background = {
     link.y = backgroundMap.height - link.spriteHeight;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
-      if (baddy !== moblin && baddy.dead && game.level >= baddy.levelShowUp) {
+      if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
         baddy.dead = false;
         baddy.life = baddy.maxLife;
-      } else if (baddy === moblin && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
+      } else if (baddy === moblinInstance && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
         baddy.dead = false;
         baddy.life = baddy.maxLife;
       };
@@ -108,10 +108,10 @@ let background = {
     link.y = 0;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
-      if (baddy !== moblin && baddy.dead && game.level >= baddy.levelShowUp) {
+      if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
         baddy.dead = false;
         baddy.life = baddy.maxLife;
-      } else if (baddy === moblin && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
+      } else if (baddy === moblinInstance && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
         baddy.dead = false;
         baddy.life = baddy.maxLife;
       };
@@ -137,10 +137,10 @@ let background = {
     link.x = backgroundMap.width - link.spriteWidth;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
-      if (baddy !== moblin && baddy.dead && game.level >= baddy.levelShowUp) {
+      if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
         baddy.dead = false;
         baddy.life = baddy.maxLife;
-      } else if (baddy === moblin && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
+      } else if (baddy === moblinInstance && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
         baddy.dead = false;
         baddy.life = baddy.maxLife;
       };
@@ -166,10 +166,10 @@ let background = {
     link.x = 0;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
-      if (baddy !== moblin && baddy.dead && game.level >= baddy.levelShowUp) {
+      if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
         baddy.dead = false;
         baddy.life = baddy.maxLife;
-      } else if (baddy === moblin && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
+      } else if (baddy === moblinInstance && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
         baddy.dead = false;
         baddy.life = baddy.maxLife;
       };
@@ -452,7 +452,7 @@ let startGame = function() {
     link.xFrame = 0;
     link.yFrame = 0;
     game.over = false;
-    game.level = 1;
+    game.level = 9;
     background.xFrame = (Math.floor(Math.random() * 16)) * 256;
     background.yFrame = (Math.floor(Math.random() * 8)) * 176;
     deathCanvas.style.opacity = '0';
