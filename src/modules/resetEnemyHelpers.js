@@ -9,7 +9,7 @@ let xRightResetOffscreenEnemies = function (enemy) {
 
 //rest xLeftRunner offscreen enemies
 let xLeftResetOffscreenEnemies = function (enemy) {
-  enemy.x = backgroundMap + enemy.spriteWidth;
+  enemy.x = backgroundMap.width + enemy.spriteWidth;
   enemy.y = yStarting(enemy.spriteHeight);
 };
 

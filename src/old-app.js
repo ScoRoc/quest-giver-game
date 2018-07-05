@@ -10,7 +10,7 @@ import {
   Armos,
   Wizzrobe,
   Darknut,
-  aquamentus,
+  Aquamentus,
   moblin
 } from './modules/enemyImporter.js';
 import {
@@ -191,7 +191,7 @@ let dodongoInstance = new Dodongo();
 let armosInstance = new Armos();
 let wizzrobeInstance = new Wizzrobe();
 let darknutInstance = new Darknut();
-// let aquamentusInstance = new Aquamentus();
+let aquamentusInstance = new Aquamentus();
 // let moblinInstance = new Moblin();
 
 
@@ -204,7 +204,7 @@ let darknutInstance = new Darknut();
 // let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 let allEnemies = [
   tektiteInstance, keeseInstance, gibdoInstance, stalfosInstance, dodongoInstance,
-  armosInstance, wizzrobeInstance, darknutInstance, aquamentus, moblin
+  armosInstance, wizzrobeInstance, darknutInstance, aquamentusInstance, moblin
 ];
 
 let liveEnemies = [];
@@ -338,14 +338,14 @@ let animationLoop = function() {
       yResetOffscreenEnemies(darknutInstance);
     };
 
-    //Animates aquamentus
-    if (!aquamentus.dead && game.level >= aquamentus.levelShowUp && aquamentus.xMove > -50) {
-      ctxEnemyMap.drawImage(aquamentus.image, aquamentus.xFrame, aquamentus.yFrame, aquamentus.pngWidth, aquamentus.pngHeight, aquamentus.xMove, aquamentus.yMove, aquamentus.spriteWidth, aquamentus.spriteHeight);
-      aquamentus.moveAquamentus();
+    //Animates aquamentusInstance
+    if (!aquamentusInstance.dead && game.level >= aquamentusInstance.levelShowUp && aquamentusInstance.x > -aquamentusInstance.spriteWidth) {
+      ctxEnemyMap.drawImage(aquamentusInstance.image, aquamentusInstance.xFrame, aquamentusInstance.yFrame, aquamentusInstance.pngWidth, aquamentusInstance.pngHeight, aquamentusInstance.x, aquamentusInstance.y, aquamentusInstance.spriteWidth, aquamentusInstance.spriteHeight);
+      aquamentusInstance.move();
     };
-    if (!aquamentus.dead && game.level >= aquamentus.levelShowUp && aquamentus.xMove <= -50) {
-      aquamentus.dead = true;
-      xLeftResetOffscreenEnemies(aquamentus);
+    if (!aquamentusInstance.dead && game.level >= aquamentusInstance.levelShowUp && aquamentusInstance.x <= -aquamentusInstance.spriteWidth) {
+      aquamentusInstance.dead = true;
+      xLeftResetOffscreenEnemies(aquamentusInstance);
     };
 
     //Animates moblin
@@ -399,8 +399,8 @@ let animationLoop = function() {
     enemyCollisionDetection(link.x, link.y, wizzrobeInstance.x, wizzrobeInstance.y, wizzrobeInstance);
     //darknutInstance
     enemyCollisionDetection(link.x, link.y, darknutInstance.x, darknutInstance.y, darknutInstance);
-    //aquamentus
-    enemyCollisionDetection(link.x, link.y, aquamentus.xMove, aquamentus.yMove, aquamentus);
+    //aquamentusInstance
+    enemyCollisionDetection(link.x, link.y, aquamentusInstance.x, aquamentusInstance.y, aquamentusInstance);
     //moblin
     enemyCollisionDetection(link.x, link.y, moblin.xMove, moblin.yMove, moblin);
 
