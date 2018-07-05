@@ -12,7 +12,7 @@ const stats = {
   spriteWidth: 45,
   spriteHeight: 45,
   xStart: xStarting(50),
-  yStart: -60,
+  get yStart() { return -this.spriteHeight * 1.25 },
   speed: 1.6,
   type: 'yRunner',
   maxLife: 1,
