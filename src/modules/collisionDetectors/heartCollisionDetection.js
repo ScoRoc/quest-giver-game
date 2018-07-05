@@ -2,7 +2,7 @@
 import link from '../player.js';
 import { heart, bigHeart } from '../items/hearts.js';
 import { xStarting, yStarting } from '../mathHelpers.js';
-import { game } from '../../old-app.js';
+import { game } from '../../app.js';
 
 //Collision detection between Link and objects
 let heartCollisionDetection = function(x1, y1, x2, y2, object) {

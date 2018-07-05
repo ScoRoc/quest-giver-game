@@ -4,7 +4,7 @@ import { newImage } from '../nonMathHelpers.js';
 import link from '../player.js';
 import linkDies from './linkDies.js';
 import gameOverScreen from './gameOverScreen.js';
-import { startGameButton, animateGame } from '../../old-app.js';
+import { startGameButton, animateGame } from '../../app.js';
 
 //game over function and link explosion
 let gameOver = function() {

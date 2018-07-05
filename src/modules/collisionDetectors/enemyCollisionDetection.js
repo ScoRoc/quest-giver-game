@@ -1,6 +1,6 @@
 
 import link from '../player.js';
-import { game } from '../../old-app.js';
+import { game } from '../../app.js';
 import { ctxExplosionCanvas } from '../maps.js';
 import { xStarting, yStarting, } from '../mathHelpers.js';
 import { newImage } from '../nonMathHelpers.js';

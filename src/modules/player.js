@@ -2,7 +2,7 @@
 import { xStarting, yStarting } from './mathHelpers.js';
 import { newImage } from './nonMathHelpers.js';
 import { backgroundMap } from './maps.js';
-import { game, background, areEnemiesDead } from '../old-app.js';
+import { game, background, areEnemiesDead } from '../app.js';
 import { ctxExplosionCanvas, enemyMap } from './maps.js';
 import { heartOne, heartTwo, heartThree, heartFour } from './items/hearts.js';
 
