@@ -333,7 +333,7 @@ let animationLoop = function() {
       ctxEnemyMap.drawImage(darknutInstance.image, darknutInstance.xFrame, darknutInstance.yFrame, darknutInstance.pngWidth, darknutInstance.pngHeight, darknutInstance.x, darknutInstance.y, darknutInstance.spriteWidth, darknutInstance.spriteHeight);
       darknutInstance.move();
     };
-    if (!darknutInstance.dead && game.level >= darknutInstance.levelShowUp && darknutInstance.yMove >= backgroundMap.height + darknutInstance.spriteHeight) {
+    if (!darknutInstance.dead && game.level >= darknutInstance.levelShowUp && darknutInstance.y >= backgroundMap.height + darknutInstance.spriteHeight) {
       darknutInstance.dead = true;
       yResetOffscreenEnemies(darknutInstance);
     };

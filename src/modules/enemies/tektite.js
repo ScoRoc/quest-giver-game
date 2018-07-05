@@ -48,35 +48,35 @@ class Tektite extends Enemy {
     if (coinFlip(55) === 0) {
       let tektiteJump = coinFlip(4);
       if (tektiteJump === 0) {  //for negative x movement
-        if (this.x >= this.spriteWidth * 3) {
+        if (this.x >= this.spriteWidth * 4) {
           this.x -= this.speed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.x >= this.spriteWidth * 2) {
+        } else if (this.x >= this.spriteWidth * 3) {
           this.x -= this.speed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.x >= this.spriteWidth) {
+        } else if (this.x >= this.spriteWidth * 2) {
           this.x -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (tektiteJump === 1) {  //for positive x movement
-        if (this.x <= backgroundMap.width - this.spriteWidth * 3) {
+        if (this.x <= backgroundMap.width - this.spriteWidth * 4) {
           this.x += this.speed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.x <= backgroundMap.width - this.spriteWidth * 2) {
+        } else if (this.x <= backgroundMap.width - this.spriteWidth * 3) {
           this.x += this.speed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.x <= backgroundMap.width - this.spriteWidth) {
+        } else if (this.x <= backgroundMap.width - this.spriteWidth * 2) {
           this.x += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (tektiteJump === 2) {  //for negative y movement
-        if (this.y >= this.spriteHeight * 3) {
+        if (this.y >= this.spriteHeight * 4) {
           this.y -= this.speed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.y >= this.spriteHeight * 2) {
+        } else if (this.y >= this.spriteHeight * 3) {
           this.y -= this.speed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.y >= this.spriteHeight) {
+        } else if (this.y >= this.spriteHeight * 2) {
           this.y -= this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       } else if (tektiteJump === 3) {  //for positive y movement
-        if (this.y <= backgroundMap.height - this.spriteHeight * 3) {
+        if (this.y <= backgroundMap.height - this.spriteHeight * 4) {
           this.y += this.speed * this.numberOfSpaces[coinFlip(4)];
-        } else if (this.y <= backgroundMap.height - this.spriteHeight * 2) {
+        } else if (this.y <= backgroundMap.height - this.spriteHeight * 3) {
           this.y += this.speed * this.numberOfSpaces[coinFlip(3)];
-        } else if (this.y <= backgroundMap.height - this.spriteHeight) {
+        } else if (this.y <= backgroundMap.height - this.spriteHeight * 2) {
           this.y += this.speed * this.numberOfSpaces[coinFlip(2)];
         };
       };

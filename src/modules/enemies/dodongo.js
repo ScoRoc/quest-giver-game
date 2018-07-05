@@ -11,7 +11,7 @@ const stats = {
   pngHeight: 16,
   spriteWidth: 90,
   spriteHeight: 45,
-  xStart: -100,
+  get xStart() { return -this.spriteWidth * 1.25 },
   yStart: yStarting(50),
   speed: 0.9,
   type: 'xRightRunner',
