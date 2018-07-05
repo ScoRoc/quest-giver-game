@@ -1,24 +1,26 @@
 import Enemy from './Enemy.js';
 import { xStarting, yStarting } from '../mathHelpers.js';
 import link from '../player.js';
+import { backgroundMap } from '../maps.js';
 
 //boss - goblin type creature, 3 stages 1) circle, 2) runner, 3) scared
 //worth 5 points || strength 1 || max life 6
 //level 10
 
 const stats = {
-  img: 'images/tektite.png',
+  img: 'images/moblin.png',
   pngWidth: 16,
-  pngHeight: 15,
-  spriteWidth: 37.5,
-  spriteHeight: 40,
-  xStart: xStarting(40),
-  yStart: yStarting(45),
-  speed: 16,
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
-  levelShowUp: 1
+  pngHeight: 16,
+  spriteWidth: 65,
+  spriteHeight: 65,
+  xStart: xStarting(70),
+  yStart: yStarting(70),
+  speed: 2.1,
+  type: 'boss',
+  maxLife: 6,
+  strength: 1,
+  points: 5,
+  levelShowUp: 10
 };
 
 class Moblin extends Enemy {
@@ -32,185 +34,161 @@ class Moblin extends Enemy {
       stats.xStart,
       stats.yStart,
       stats.speed,
+      stats.type,
       stats.maxLife,
       stats.strength,
       stats.points,
       stats.levelShowUp
     );
+    this.cycleOne = 11;
+    this.cycleTwo = 11;
   };
 
-};
-
-let moblin = {
-  image: newImage('images/moblin.png'),
-  xFrame: 0,  //x starting point of src img for sprite frame
-  yFrame: 0,  //y starting point of src img for sprite frame
-  pngWidth: 16,  //width of src img sprite size
-  pngHeight: 16,  //height of src img sprite size
-  spriteWidth: 65,  //width of sprite on canvas
-  spriteHeight: 65,  //height of sprite on canvas
-  xMove: xStarting(70),  //x point of moblin on canvas
-  yMove: yStarting(70),  //y point of moblin on canvas
-  xCenter: 35,  //x center of hit box
-  yCenter: 35,  //y center of hit box
-  moveAnimation: null,  //movement AI
-  // moveDirection: [this.xMove, this.yMove], //move directions
-  moveSpeed: 2.1, //number of px to move
-  cycleOne: 11,  //cycle of movement for stage one
-  cycleTwo: 11,  //cycle of movement for stage two
-  numberOfSpaces: [1], //possible spaces moved
-  type: 'boss',  //what type of enemy
-  life: 0,  //how much life
-  maxLife: 6,  //how much starting life
-  strength: 1,  //how much life taken per hit to link
-  dead: true,  //tracks if dead or not
-  points: 5,  //how many points killing moblin is worth
-  levelShowUp: 10,  //first level seen
-
-  moveMoblin: function() {
+  move() {
     if (this.life > 4) {  //Stage One
-      this.moveSpeed = 2.1;
+      this.speed = 2.1;
       if (this.cycleOne === 11) {  //Move R
-        if (this.xMove < 447) {
-          this.xMove += this.moveSpeed;
-        } else if (this.xMove >= 447) {
+        if (this.x < backgroundMap.width - this.spriteWidth) {
+          this.x += this.speed;
+        } else if (this.x >= backgroundMap.width - this.spriteWidth) {
           this.cycleOne++;
         };
       } else if (this.cycleOne === 12) {  //Move slightly back L
-        if (this.xMove > 400) {
-          this.xMove -= this.moveSpeed;
-        } else if (this.xMove <= 400) {
+        if (this.x > backgroundMap.width - this.spriteWidth * 2) {
+          this.x -= this.speed;
+        } else if (this.x <= backgroundMap.width - this.spriteWidth * 2) {
           this.cycleOne = 21;
         };
       } else if (this.cycleOne === 21) {  //Move Up
-        if (this.yMove > 0) {
-          this.yMove -= this.moveSpeed;
-        } else if (this.yMove <= 0) {
+        if (this.y > 0) {
+          this.y -= this.speed;
+        } else if (this.y <= 0) {
           this.cycleOne++;
         };
       } else if (this.cycleOne === 22) {  //Move slightly back down
-        if (this.yMove < 75) {
-          this.yMove += this.moveSpeed;
-        } else if (this.yMove >= 75) {
+        if (this.y < this.spriteHeight) {
+          this.y += this.speed;
+        } else if (this.y >= this.spriteHeight) {
           this.cycleOne = 31;
         };
       } else if (this.cycleOne === 31) {  //Move Left
-        if (this.xMove > 0) {
-          this.xMove -= this.moveSpeed;
-        } else if (this.xMove <= 0) {
+        if (this.x > 0) {
+          this.x -= this.speed;
+        } else if (this.x <= 0) {
           this.cycleOne++;
         };
       } else if (this.cycleOne === 32) {  //Move slightly back right
-        if (this.xMove < 115) {
-          this.xMove += this.moveSpeed;
-        } else if (this.xMove >= 115) {
+        if (this.x < this.spriteWidth * 2) {
+          this.x += this.speed;
+        } else if (this.x >= this.spriteWidth * 2) {
           this.cycleOne = 41;
         };
       } else if (this.cycleOne === 41) {  //Move down
-        if (this.yMove < 287) {
-          this.yMove += this.moveSpeed;
-        } else if (this.yMove >= 287) {
+        if (this.y < backgroundMap.height - this.spriteHeight) {
+          this.y += this.speed;
+        } else if (this.y >= backgroundMap.height - this.spriteHeight) {
           this.cycleOne++;
         };
       } else if (this.cycleOne === 42) {  //Move slight back up
-        if (this.yMove > 200) {
-          this.yMove -= this.moveSpeed;
-        } else if (this.yMove <= 200) {
+        if (this.y > backgroundMap.height - this.spriteHeight * 2) {
+          this.y -= this.speed;
+        } else if (this.y <= backgroundMap.height - this.spriteHeight * 2) {
           this.cycleOne = 11;
         };
       };
     } else if (this.life > 2) {  //Stage Two
-      this.moveSpeed = 2;
+      this.speed = 2;
       if (this.cycleTwo === 11) {  //Top to Bottom
-        if (this.yMove < 430) {
-          this.yMove += this.moveSpeed;
-        } else if (this.yMove >= 430) {
-          this.xMove = -80;
-          this.yMove = 110;
+        if (this.y < this.spriteHeight * 1.2) {
+          this.y += this.speed;
+        } else if (this.y >= this.spriteHeight * 1.2) {
+          this.x = -this.spriteWidth * 1.24;
+          this.y = this.spriteHeight * 1.7;
           this.cycleTwo++;
         };
       } else if (this.cycleTwo === 12) {  //L to R
-        if (this.xMove < 590) {
-          this.xMove += this.moveSpeed;
-        } else if (this.xMove >= 590) {
-          this.xMove = 150;
-          this.yMove = 365;
+        if (this.x < this.spriteWidth * 1.2) {
+          this.x += this.speed;
+        } else if (this.x >= this.spriteWidth * 1.2) {
+          this.x = this.spriteWidth * 2.3;
+          this.y = backgroundmap.height + this.spriteHeight * 0.25;
           this.cycleTwo++;
         };
       } else if (this.cycleTwo === 13) {  //Bottom to Top
-        if (this.yMove > -80) {
-          this.yMove -= this.moveSpeed;
-        } else if (this.yMove <= -80) {
-          this.xMove = 590;
-          this.yMove = 240;
+        if (this.y > -this.spriteHeight * 1.23) {
+          this.y -= this.speed;
+        } else if (this.y <= -this.spriteHeight * 1.23) {
+          this.x = backgroundMap.width + this.spriteWidth * 1.2;
+          this.y = backgroundMap.height - this.spriteHeight * 1.73;
           this.cycleTwo++;
         };
       } else if (this.cycleTwo === 14) {  //R to L
-        if (this.xMove > -80) {
-          this.xMove -= this.moveSpeed;
-        } else if (this.xMove <= -80) {
-          this.xMove = 350;
-          this.yMove = -80;
+        if (this.x > -this.spriteWidth * 1.23) {
+          this.x -= this.speed;
+        } else if (this.x <= -this.spriteWidth * 1.23) {
+          this.x = backgroundMap.width - this.spriteWidth * 2.5;
+          this.y = -this.spriteHeight * 1.23;
           this.cycleTwo = 11;
         };
       };
     } else if (this.life > 0) {   //Stage Three
-      this.moveSpeed = 1.2;
+      this.speed = 1.2;
         //move diagonally bottom right
-      if (this.xMove - link.xMove >= 0 && this.yMove - link.yMove >= 0) {
-        if (this.xMove < 445 && this.yMove < 285) {
-          this.xMove += this.moveSpeed;
-          this.yMove += this.moveSpeed;
-        } else if (this.xMove >= 445 && this.yMove < 285) {
-          this.yMove += this.moveSpeed;
-        } else if (this.xMove < 445 && this.yMove >= 285) {
-          this.xMove += this.moveSpeed;
-        } else if (this.xMove >= 445 && this.yMove >= 285) {
-          this.xMove = 230;
-          this.yMove = 140;
+      if (this.x - link.x >= 0 && this.y - link.y >= 0) {
+        if (this.x < backgroundMap.width - this.spriteWidth && this.y < backgroundMap.height - this.spriteHeight) {
+          this.x += this.speed;
+          this.y += this.speed;
+        } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y < backgroundMap.height - this.spriteHeight) {
+          this.y += this.speed;
+        } else if (this.x < backgroundMap.width - this.spriteWidth && this.y >= backgroundMap.height - this.spriteHeight) {
+          this.x += this.speed;
+        } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y >= backgroundMap.height - this.spriteHeight) {
+          this.x = backgroundMap.width / 2;
+          this.y = backgroundMap.height / 2;
         };
         //move diagonally top right
-      } else if (this.xMove - link.xMove >= 0 && this.yMove - link.yMove <= 0) {
-        if (this.xMove < 445 && this.yMove > 0) {
-          this.xMove += this.moveSpeed;
-          this.yMove -= this.moveSpeed;
-        } else if (this.xMove >= 445 && this.yMove > 0) {
-          this.yMove -= this.moveSpeed;
-        } else if (this.xMove < 445 && this.yMove <= 0) {
-          this.xMove += this.moveSpeed;
-        } else if (this.xMove >= 445 && this.yMove <= 0) {
-          this.xMove = 230;
-          this.yMove = 140;
+      } else if (this.x - link.x >= 0 && this.y - link.y <= 0) {
+        if (this.x < backgroundMap.width - this.spriteWidth && this.y > 0) {
+          this.x += this.speed;
+          this.y -= this.speed;
+        } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y > 0) {
+          this.y -= this.speed;
+        } else if (this.x < backgroundMap.width - this.spriteWidth && this.y <= 0) {
+          this.x += this.speed;
+        } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y <= 0) {
+          this.x = backgroundMap.width / 2;
+          this.y = backgroundMap.height / 2;
         };
         //move diagonally top left
-      } else if (this.xMove - link.xMove <= 0 && this.yMove - link.yMove <= 0) {
-        if (this.xMove > 0 && this.yMove > 0) {
-          this.xMove -= this.moveSpeed;
-          this.yMove -= this.moveSpeed;
-        } else if (this.xMove <= 0 && this.yMove > 0) {
-          this.yMove -= this.moveSpeed;
-        } else if (this.xMove > 0 && this.yMove <= 0) {
-          this.xMove -= this.moveSpeed;
-        } else if (this.xMove <= 0 && this.yMove <= 0) {
-          this.xMove = 230;
-          this.yMove = 140;
+      } else if (this.x - link.x <= 0 && this.y - link.y <= 0) {
+        if (this.x > 0 && this.y > 0) {
+          this.x -= this.speed;
+          this.y -= this.speed;
+        } else if (this.x <= 0 && this.y > 0) {
+          this.y -= this.speed;
+        } else if (this.x > 0 && this.y <= 0) {
+          this.x -= this.speed;
+        } else if (this.x <= 0 && this.y <= 0) {
+          this.x = backgroundMap.width / 2;
+          this.y = backgroundMap.height / 2;
         };
         //move diagonally bottom left
-      } else if (this.xMove - link.xMove <= 0 && this.yMove - link.yMove >= 0) {
-        if (this.xMove > 0 && this.yMove < 285) {
-          this.xMove -= this.moveSpeed;
-          this.yMove += this.moveSpeed;
-        } else if (this.xMove <= 0 && this.yMove < 285) {
-          this.yMove += this.moveSpeed;
-        } else if (this.xMove > 0 && this.yMove >= 285) {
-          this.xMove -= this.moveSpeed;
-        } else if (this.xMove <= 0 && this.yMove >= 285) {
-          this.xMove = 230;
-          this.yMove = 140;
+      } else if (this.x - link.x <= 0 && this.y - link.y >= 0) {
+        if (this.x > 0 && this.y < backgroundMap.height - this.spriteHeight) {
+          this.x -= this.speed;
+          this.y += this.speed;
+        } else if (this.x <= 0 && this.y < backgroundMap.height - this.spriteHeight) {
+          this.y += this.speed;
+        } else if (this.x > 0 && this.y >= backgroundMap.height - this.spriteHeight) {
+          this.x -= this.speed;
+        } else if (this.x <= 0 && this.y >= backgroundMap.height - this.spriteHeight) {
+          this.x = backgroundMap.width / 2;
+          this.y = backgroundMap.height / 2;
         }
       };
     };
-  }
+  };
+
 };
 
 export default Moblin;

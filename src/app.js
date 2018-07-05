@@ -11,7 +11,7 @@ import {
   Wizzrobe,
   Darknut,
   Aquamentus,
-  moblin
+  Moblin
 } from './modules/enemyImporter.js';
 import {
   backgroundMap,
@@ -192,7 +192,7 @@ let armosInstance = new Armos();
 let wizzrobeInstance = new Wizzrobe();
 let darknutInstance = new Darknut();
 let aquamentusInstance = new Aquamentus();
-// let moblinInstance = new Moblin();
+let moblinInstance = new Moblin();
 
 
 // let tektiteArray = [];
@@ -204,7 +204,7 @@ let aquamentusInstance = new Aquamentus();
 // let allEnemies = [...tektiteArray, keese, gibdo, stalfos, dodongo, armos, wizzrobe, darknut, aquamentus, moblin];
 let allEnemies = [
   tektiteInstance, keeseInstance, gibdoInstance, stalfosInstance, dodongoInstance,
-  armosInstance, wizzrobeInstance, darknutInstance, aquamentusInstance, moblin
+  armosInstance, wizzrobeInstance, darknutInstance, aquamentusInstance, moblinInstance
 ];
 
 let liveEnemies = [];
@@ -348,10 +348,10 @@ let animationLoop = function() {
       xLeftResetOffscreenEnemies(aquamentusInstance);
     };
 
-    //Animates moblin
-    if (!moblin.dead && game.level >= moblin.levelShowUp) {
-      ctxEnemyMap.drawImage(moblin.image, moblin.xFrame, moblin.yFrame, moblin.pngWidth, moblin.pngHeight, moblin.xMove, moblin.yMove, moblin.spriteWidth, moblin.spriteHeight);
-      moblin.moveMoblin();
+    //Animates moblinInstance
+    if (!moblinInstance.dead && game.level >= moblinInstance.levelShowUp) {
+      ctxEnemyMap.drawImage(moblinInstance.image, moblinInstance.xFrame, moblinInstance.yFrame, moblinInstance.pngWidth, moblinInstance.pngHeight, moblinInstance.x, moblinInstance.y, moblinInstance.spriteWidth, moblinInstance.spriteHeight);
+      moblinInstance.move();
     };
 
     //Animates link and explosion steps
@@ -401,8 +401,8 @@ let animationLoop = function() {
     enemyCollisionDetection(link.x, link.y, darknutInstance.x, darknutInstance.y, darknutInstance);
     //aquamentusInstance
     enemyCollisionDetection(link.x, link.y, aquamentusInstance.x, aquamentusInstance.y, aquamentusInstance);
-    //moblin
-    enemyCollisionDetection(link.x, link.y, moblin.xMove, moblin.yMove, moblin);
+    //moblinInstance
+    enemyCollisionDetection(link.x, link.y, moblinInstance.x, moblinInstance.y, moblinInstance);
 
 
     //Array of live enemies

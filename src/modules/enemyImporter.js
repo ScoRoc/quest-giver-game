@@ -7,7 +7,7 @@ import Armos from './enemies/Armos.js';
 import Wizzrobe from './enemies/Wizzrobe.js';
 import Darknut from './enemies/Darknut.js';
 import Aquamentus from './enemies/Aquamentus.js';
-import moblin from './enemies/moblin-old.js';
+import Moblin from './enemies/Moblin.js';
 
 
 export {
@@ -20,5 +20,5 @@ export {
   Wizzrobe,
   Darknut,
   Aquamentus,
-  moblin
+  Moblin
 };
