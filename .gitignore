@@ -1,3 +1,6 @@
+# Webpack bundle
+dist/bundle.js
+
 # Logs
 logs
 *.log
