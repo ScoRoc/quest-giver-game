@@ -442,7 +442,7 @@ let startGame = function() {
     //   tektiteArray[i].x = xStarting(tektiteArray[i].spriteWidth);
     //   tektiteArray[i].y = yStarting(tektiteArray[i].spriteHeight);
     // }
-    dodongoInstance.x = -100;
+    dodongoInstance.x = -dodongoInstance.spriteWidth * 1.2;
     dodongoInstance.y = yStarting(50);
     heart.show = false;
     link.life = link.maxLife;
