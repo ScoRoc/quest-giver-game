@@ -20,6 +20,7 @@ import {
   ctxExplosionCanvas,
   enemyMap,
   ctxEnemyMap,
+  ctxEnemyMapDraw,
   deathCanvas,
   ctxDeathCanvas,
   spriteMap,

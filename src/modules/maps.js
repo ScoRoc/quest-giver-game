@@ -13,9 +13,9 @@ let enemyMap = document.getElementById('enemy-map');
 enemyMap.width = 880;
 enemyMap.height = 605;
 let ctxEnemyMap = enemyMap.getContext('2d');
-// let ctxEnemyMapDraw = enemy => {
-//   ctxEnemyMap.drawImage(enemy.image, enemy.xFrame, enemy.yFrame, enemy.pngWidth, enemy.pngHeight, enemy.x, enemy.y, enemy.spriteWidth, enemy.spriteHeight);
-// };
+let ctxEnemyMapDraw = enemy => {
+  ctxEnemyMap.drawImage(enemy.image, enemy.xFrame, enemy.yFrame, enemy.pngWidth, enemy.pngHeight, enemy.x, enemy.y, enemy.spriteWidth, enemy.spriteHeight);
+};
 
 let deathCanvas = document.getElementById('death-canvas');
 deathCanvas.width = 880;
@@ -34,6 +34,7 @@ export {
   ctxExplosionCanvas,
   enemyMap,
   ctxEnemyMap,
+  ctxEnemyMapDraw,
   deathCanvas,
   ctxDeathCanvas,
   spriteMap,
