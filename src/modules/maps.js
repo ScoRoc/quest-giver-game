@@ -13,8 +13,8 @@ let enemyMap = document.getElementById('enemy-map');
 enemyMap.width = 880;
 enemyMap.height = 605;
 let ctxEnemyMap = enemyMap.getContext('2d');
-let ctxEnemyMapDraw = enemy => {
-  ctxEnemyMap.drawImage(enemy.image, enemy.xFrame, enemy.yFrame, enemy.pngWidth, enemy.pngHeight, enemy.x, enemy.y, enemy.spriteWidth, enemy.spriteHeight);
+let ctxEnemyMapDraw = object => {
+  ctxEnemyMap.drawImage(object.image, object.xFrame, object.yFrame, object.pngWidth, object.pngHeight, object.x, object.y, object.spriteWidth, object.spriteHeight);
 };
 
 let deathCanvas = document.getElementById('death-canvas');

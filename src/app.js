@@ -35,7 +35,6 @@ import { heartCollisionDetection, enemyCollisionDetection } from './modules/coll
 import { xRightResetOffscreenEnemies, xLeftResetOffscreenEnemies, yResetOffscreenEnemies } from './modules/resetEnemyHelpers.js';
 import link from './modules/player.js';
 
-
 //Game info and functions
 let game = {
   over: true,  //tracks game over or not
@@ -269,15 +268,18 @@ let animationLoop = function() {
 
     //Animates hearts
     if (heart.show) {
-      ctxEnemyMap.drawImage(heart.image, heart.xFrame, heart.yFrame, heart.pngWidth, heart.pngHeight, heart.x, heart.y, heart.spriteWidth, heart.spriteHeight);
+      ctxEnemyMapDraw(heart);
+      // ctxEnemyMap.drawImage(heart.image, heart.xFrame, heart.yFrame, heart.pngWidth, heart.pngHeight, heart.x, heart.y, heart.spriteWidth, heart.spriteHeight);
     };
     //Animates big hearts
     if (bigHeart.show) {
-      ctxEnemyMap.drawImage(bigHeart.image, bigHeart.xFrame, bigHeart.yFrame, bigHeart.pngWidth, bigHeart.pngHeight, bigHeart.x, bigHeart.y, bigHeart.spriteWidth, bigHeart.spriteHeight);
+      ctxEnemyMapDraw(bigHeart);
+      // ctxEnemyMap.drawImage(bigHeart.image, bigHeart.xFrame, bigHeart.yFrame, bigHeart.pngWidth, bigHeart.pngHeight, bigHeart.x, bigHeart.y, bigHeart.spriteWidth, bigHeart.spriteHeight);
     };
     //Animates tektiteInstance
     if (!tektiteInstance.dead && game.level >= tektiteInstance.levelShowUp) {
-      ctxEnemyMap.drawImage(tektiteInstance.image, tektiteInstance.xFrame, tektiteInstance.yFrame, tektiteInstance.pngWidth, tektiteInstance.pngHeight, tektiteInstance.x, tektiteInstance.y, tektiteInstance.spriteWidth, tektiteInstance.spriteHeight);
+      ctxEnemyMapDraw(tektiteInstance)
+      // ctxEnemyMap.drawImage(tektiteInstance.image, tektiteInstance.xFrame, tektiteInstance.yFrame, tektiteInstance.pngWidth, tektiteInstance.pngHeight, tektiteInstance.x, tektiteInstance.y, tektiteInstance.spriteWidth, tektiteInstance.spriteHeight);
       tektiteInstance.move();
     };
     /////// for multiple tektites
