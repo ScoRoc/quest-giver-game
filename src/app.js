@@ -291,28 +291,24 @@ let animationLoop = function() {
     //Animates keeseInstance
     if (!keeseInstance.dead && game.level >= keeseInstance.levelShowUp) {
       ctxEnemyMapDraw(keeseInstance);
-      // ctxEnemyMap.drawImage(keeseInstance.image, keeseInstance.xFrame, keeseInstance.yFrame, keeseInstance.pngWidth, keeseInstance.pngHeight, keeseInstance.x, keeseInstance.y, keeseInstance.spriteWidth, keeseInstance.spriteHeight);
       keeseInstance.move();
     };
 
     //Animates gibdoInstance
     if (!gibdoInstance.dead && game.level >= gibdoInstance.levelShowUp) {
       ctxEnemyMapDraw(gibdoInstance);
-      // ctxEnemyMap.drawImage(gibdoInstance.image, gibdoInstance.xFrame, gibdoInstance.yFrame, gibdoInstance.pngWidth, gibdoInstance.pngHeight, gibdoInstance.x, gibdoInstance.y, gibdoInstance.spriteWidth, gibdoInstance.spriteHeight);
       gibdoInstance.move();
     };
 
     //Animates stalfosInstance
     if (!stalfosInstance.dead && game.level >= stalfosInstance.levelShowUp) {
       ctxEnemyMapDraw(stalfosInstance);
-      // ctxEnemyMap.drawImage(stalfosInstance.image, stalfosInstance.xFrame, stalfosInstance.yFrame, stalfosInstance.pngWidth, stalfosInstance.pngHeight, stalfosInstance.x, stalfosInstance.y, stalfosInstance.spriteWidth, stalfosInstance.spriteHeight);
       stalfosInstance.move();
     };
 
     //Animates dodongoInstance
     if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x < backgroundMap.width + dodongoInstance.spriteWidth) {
       ctxEnemyMapDraw(dodongoInstance);
-      // ctxEnemyMap.drawImage(dodongoInstance.image, dodongoInstance.xFrame, dodongoInstance.yFrame, dodongoInstance.pngWidth, dodongoInstance.pngHeight, dodongoInstance.x, dodongoInstance.y, dodongoInstance.spriteWidth, dodongoInstance.spriteHeight);
       dodongoInstance.move();
     };
     if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x >= backgroundMap.width + dodongoInstance.spriteWidth) {
@@ -323,21 +319,18 @@ let animationLoop = function() {
     //Animates armosInstance
     if (!armosInstance.dead && game.level >= armosInstance.levelShowUp) {
       ctxEnemyMapDraw(armosInstance);
-      // ctxEnemyMap.drawImage(armosInstance.image, armosInstance.xFrame, armosInstance.yFrame, armosInstance.pngWidth, armosInstance.pngHeight, armosInstance.x, armosInstance.y, armosInstance.spriteWidth, armosInstance.spriteHeight);
       armosInstance.move();
     };
 
     //Animates wizzrobeInstance
     if (!wizzrobeInstance.dead && game.level >= wizzrobeInstance.levelShowUp) {
       ctxEnemyMapDraw(wizzrobeInstance);
-      // ctxEnemyMap.drawImage(wizzrobeInstance.image, wizzrobeInstance.xFrame, wizzrobeInstance.yFrame, wizzrobeInstance.pngWidth, wizzrobeInstance.pngHeight, wizzrobeInstance.x, wizzrobeInstance.y, wizzrobeInstance.spriteWidth, wizzrobeInstance.spriteHeight);
       wizzrobeInstance.move();
     };
 
     //Animates darknutInstance
     if (!darknutInstance.dead && game.level >= darknutInstance.levelShowUp && darknutInstance.y < backgroundMap.height + darknutInstance.spriteHeight) {
       ctxEnemyMapDraw(darknutInstance);
-      // ctxEnemyMap.drawImage(darknutInstance.image, darknutInstance.xFrame, darknutInstance.yFrame, darknutInstance.pngWidth, darknutInstance.pngHeight, darknutInstance.x, darknutInstance.y, darknutInstance.spriteWidth, darknutInstance.spriteHeight);
       darknutInstance.move();
     };
     if (!darknutInstance.dead && game.level >= darknutInstance.levelShowUp && darknutInstance.y >= backgroundMap.height + darknutInstance.spriteHeight) {
@@ -348,7 +341,6 @@ let animationLoop = function() {
     //Animates aquamentusInstance
     if (!aquamentusInstance.dead && game.level >= aquamentusInstance.levelShowUp && aquamentusInstance.x > -aquamentusInstance.spriteWidth) {
       ctxEnemyMapDraw(aquamentusInstance);
-      // ctxEnemyMap.drawImage(aquamentusInstance.image, aquamentusInstance.xFrame, aquamentusInstance.yFrame, aquamentusInstance.pngWidth, aquamentusInstance.pngHeight, aquamentusInstance.x, aquamentusInstance.y, aquamentusInstance.spriteWidth, aquamentusInstance.spriteHeight);
       aquamentusInstance.move();
     };
     if (!aquamentusInstance.dead && game.level >= aquamentusInstance.levelShowUp && aquamentusInstance.x <= -aquamentusInstance.spriteWidth) {
@@ -359,7 +351,6 @@ let animationLoop = function() {
     //Animates moblinInstance
     if (!moblinInstance.dead && game.level >= moblinInstance.levelShowUp) {
       ctxEnemyMapDraw(moblinInstance);
-      // ctxEnemyMap.drawImage(moblinInstance.image, moblinInstance.xFrame, moblinInstance.yFrame, moblinInstance.pngWidth, moblinInstance.pngHeight, moblinInstance.x, moblinInstance.y, moblinInstance.spriteWidth, moblinInstance.spriteHeight);
       moblinInstance.move();
     };
 
