@@ -16,6 +16,7 @@ import {
 import {
   backgroundMap,
   ctxBackgroundMap,
+  ctxBackgroundMapDraw,
   explosionCanvas,
   ctxExplosionCanvas,
   enemyMap,
@@ -228,7 +229,7 @@ let animationLoop = function() {
 
     ctxEnemyMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-    ctxBackgroundMap.drawImage(background.image, background.xFrame, background.yFrame, background.pngWidth, background.pngHeight, 0, 0, background.mapWidth, background.mapHeight);
+    ctxBackgroundMapDraw(background);
 
     //up map frame counter, call, and stop
     if (background.moveMapUp) {
