@@ -51,7 +51,6 @@ let game = {
 
 let background = {
   image: newImage('images/overworld_map.png'),
-  winImage: newImage('images/castle.png'),
   xFrame: (Math.floor(Math.random() * 16)) * 256,  //x axis start of current map frame (from src img)
   yFrame: (Math.floor(Math.random() * 8)) * 176,  //y axis start of current map frame (from src img)
   moveSpeed: 4,  //speed at which map moves frames

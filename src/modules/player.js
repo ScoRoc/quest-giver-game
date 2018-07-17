@@ -119,13 +119,19 @@ let link = {
   },
 
   moveUp: function() {
+    console.log('OUTER: ', link.y);
     // if (link.y <= link.upMapMove && background.yFrame > 0 && areEnemiesDead()) {
     if (link.y <= link.upMapMove && background.yFrame > 0) {
       background.mapMoving = true;
       background.moveMapUp = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
     } else if (!background.mapMoving && link.y >= 0) {
+      console.log('INNER: ', link.y);
       link.y -= link.speed;
+      /////////// ADDED THIS TO FIX CLIPPING ISSUE
+      if (link.y < 0) {
+        link.y = -1
+      }
       link.xFrame = 61;
       link.yFrame = 0;
       if (link.upFrame < (link.frameSpeed / 2)) {
@@ -148,6 +154,10 @@ let link = {
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
     } else if (!background.mapMoving && link.y <= link.bottomBound) {
       link.y += link.speed;
+      /////////// ADDED THIS TO FIX CLIPPING ISSUE
+      if (link.y > backgroundMap.height - link.spriteHeight) {
+        link.y = backgroundMap.height - link.spriteHeight;
+      }
       link.xFrame = 0;
       link.yFrame = 0;
       if (link.downFrame < (link.frameSpeed / 2)) {
