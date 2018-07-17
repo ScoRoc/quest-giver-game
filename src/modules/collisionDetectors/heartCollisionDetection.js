@@ -5,7 +5,11 @@ import { xStarting, yStarting } from '../mathHelpers.js';
 import { game } from '../../app.js';
 
 //Collision detection between Link and objects
-let heartCollisionDetection = function(x1, y1, x2, y2, object) {
+let heartCollisionDetection = function(object1, object2) {
+  let x1 = object1.x;
+  let y1 = object1.y;
+  let x2 = object2.x;
+  let y2 = object2.y;
   let xDistance = x2 - x1;
   let yDistance = y2 - y1;
   let heartOne = $('#heart-one');
@@ -13,11 +17,11 @@ let heartCollisionDetection = function(x1, y1, x2, y2, object) {
   let heartThree = $('#heart-three');
   let heartFour = $('#heart-four');
   let crashZone = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
-  if (crashZone <= 30 && link.life <= 3.5 && object.show === true) {
-    object.show = false;
-    if (object === bigHeart) {
-      object.x = xStarting(object.spriteWidth);
-      object.y = yStarting(object.spriteHeight);
+  if (crashZone <= 30 && link.life <= 3.5 && object2.show === true) {
+    object2.show = false;
+    if (object2 === bigHeart) {
+      object2.x = xStarting(object2.spriteWidth);
+      object2.y = yStarting(object2.spriteHeight);
       if (link.life <= 3.5 && ((game.now - link.heartTime) / 1000) > 1) {
         link.grabHeart();
         link.life = link.maxLife;
@@ -36,9 +40,9 @@ let heartCollisionDetection = function(x1, y1, x2, y2, object) {
         link.life = link.maxLife;
         heartFour.removeClass('damaged');
       };
-    } else if (object === heart) {
-      object.x = xStarting(object.spriteWidth);
-      object.y = yStarting(object.spriteHeight);
+    } else if (object2 === heart) {
+      object2.x = xStarting(object2.spriteWidth);
+      object2.y = yStarting(object2.spriteHeight);
       if (link.life === 0.5 && ((game.now - link.heartTime) / 1000) > 1) {
         link.grabHeart();
         link.life += 1;

@@ -374,9 +374,9 @@ let animationLoop = function() {
 
   //Collision checks
     //heart
-    heartCollisionDetection(link.x, link.y, heart.x, heart.y, heart);
+    heartCollisionDetection(link, heart);
     //big heart
-    heartCollisionDetection(link.x, link.y, bigHeart.x, bigHeart.y, bigHeart);
+    heartCollisionDetection(link, bigHeart);
 
     //tektiteInstance
     enemyCollisionDetection(link.x, link.y, tektiteInstance.x, tektiteInstance.y, tektiteInstance);
