@@ -58,6 +58,8 @@ let background = {
   mapCounter: 0,  //count map frame slides for map move function
   pngWidth: 256,  //map frame width from src img
   pngHeight: 176,  //map frame height from src img
+  pngSourceWidth: 4096,  //width of source png
+  pngSourceHeight: 1408,  //height of source png
   mapWidth: backgroundMap.width,  //how wide the background will be on canvas
   mapHeight: backgroundMap.height,  //how tall the background will be on canvas
   moveMapFrameAnimation: null,

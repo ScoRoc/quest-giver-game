@@ -119,7 +119,8 @@ let link = {
   },
 
   moveUp: function() {
-    if (link.y <= link.upMapMove && background.yFrame > 0 && areEnemiesDead()) {
+    // if (link.y <= link.upMapMove && background.yFrame > 0 && areEnemiesDead()) {
+    if (link.y <= link.upMapMove && background.yFrame > 0) {
       background.mapMoving = true;
       background.moveMapUp = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
@@ -140,7 +141,8 @@ let link = {
   },
 
   moveDown: function() {
-    if (link.y >= link.downMapMove && background.yFrame < 1232 && areEnemiesDead()) {
+    // if (link.y >= link.downMapMove && background.yFrame < background.pngSourceHeight - background.pngHeight && areEnemiesDead()) {
+    if (link.y >= link.downMapMove && background.yFrame < background.pngSourceHeight - background.pngHeight) {
       background.mapMoving = true;
       background.moveMapDown = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
@@ -161,7 +163,8 @@ let link = {
   },
 
   moveLeft: function() {
-    if (link.x <= link.leftMapMove && background.xFrame > 0 && areEnemiesDead()) {
+    // if (link.x <= link.leftMapMove && background.xFrame > 0 && areEnemiesDead()) {
+    if (link.x <= link.leftMapMove && background.xFrame > 0) {
       background.mapMoving = true;
       background.moveMapLeft = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
@@ -182,7 +185,8 @@ let link = {
   },
 
   moveRight: function() {
-    if (link.x >= link.rightMapMove && background.xFrame < 3840 && areEnemiesDead()) {
+    // if (link.x >= link.rightMapMove && background.xFrame < background.pngSourceWidth - background.pngWidth && areEnemiesDead()) {
+    if (link.x >= link.rightMapMove && background.xFrame < background.pngSourceWidth - background.pngWidth) {
       background.mapMoving = true;
       background.moveMapRight = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
