@@ -29,6 +29,9 @@ let spriteMap = document.getElementById('sprite-map');
 spriteMap.width = 880;
 spriteMap.height = 605;
 let ctxSpriteMap = spriteMap.getContext('2d');
+let ctxSpriteMapDraw = object => {
+  ctxSpriteMap.drawImage(object.image, object.xFrame, object.yFrame, object.pngWidth, object.pngHeight, object.x, object.y, object.spriteWidth, object.spriteHeight);
+};
 
 export {
   backgroundMap,
