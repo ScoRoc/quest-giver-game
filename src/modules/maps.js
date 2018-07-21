@@ -45,5 +45,6 @@ export {
   deathCanvas,
   ctxDeathCanvas,
   spriteMap,
-  ctxSpriteMap
+  ctxSpriteMap,
+  ctxSpriteMapDraw
 };
