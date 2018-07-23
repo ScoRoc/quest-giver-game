@@ -359,7 +359,6 @@ let animationLoop = function() {
 
     //Animates link and explosion steps
     ctxSpriteMapDraw(link);
-    // ctxSpriteMap.drawImage(link.image, link.xFrame, link.yFrame, link.pngWidth, link.pngHeight, link.x, link.y, link.spriteWidth, link.spriteHeight);
     link.invincible = $('#invincible').prop('checked');
 
     if (link.isMovingUp) {
