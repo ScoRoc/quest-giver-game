@@ -15,6 +15,7 @@ bossExplosionPng.src = 'images/boss-explosion.png';
 
 //Collision Detection between Link and enemies
 let enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
+  // refactor to onlyl use object1 and object 2 - like heartCollisionDetection
   if (!link.isAttacking && ((game.now - link.hitTime) / 1000) > 1.25 && enemy.life > 0) {
     let xDistance = x2 - x1;
     let yDistance = y2 - (y1 - 4);
