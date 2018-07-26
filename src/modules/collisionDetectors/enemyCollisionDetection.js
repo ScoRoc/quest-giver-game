@@ -14,18 +14,22 @@ let bossExplosionPng = new Image();
 bossExplosionPng.src = 'images/boss-explosion.png';
 
 //Collision Detection between Link and enemies
-let enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
+let enemyCollisionDetection = function(object1, object2) {
   // refactor to onlyl use object1 and object 2 - like heartCollisionDetection
-  if (!link.isAttacking && ((game.now - link.hitTime) / 1000) > 1.25 && enemy.life > 0) {
+  let x1 = object1.x;
+  let y1 = object1.y;
+  let x2 = object2.x;
+  let y2 = object2.y;
+  if (!link.isAttacking && ((game.now - link.hitTime) / 1000) > 1.25 && object2.life > 0) {
     let xDistance = x2 - x1;
     let yDistance = y2 - (y1 - 4);
     let hitRadius = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
     if (hitRadius <= 33 && !link.invincible) {
       link.linkHit();
-      link.life -= enemy.strength;
+      link.life -= object2.strength;
       link.heartDisplay();
     };
-  } else if (link.isAttacking && ((game.now - link.attackTime) / 1000) > .2 && enemy.life > 0) {
+  } else if (link.isAttacking && ((game.now - link.attackTime) / 1000) > .2 && object2.life > 0) {
     let xDistance = x2 - x1;
     let yDistance = y2 - y1;
     let hitRadius = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
@@ -39,27 +43,27 @@ let enemyCollisionDetection = function(x1, y1, x2, y2, enemy) {
     let bossExplosion = newImage('images/boss-explosion.png');
     if (hitRadius <= 32 || hitRadiusRight <= 32 || hitRadiusDown <= 32) {
       link.linkAttack();
-      enemy.life -= 1;
-      if (enemy.life === 0) {
-        enemy.dead = true;
+      object2.life -= 1;
+      if (object2.life === 0) {
+        object2.dead = true;
       };
-      if (enemy.dead) {
-        if (enemy.type !== 'boss') {
-          ctxExplosionCanvas.drawImage(explosion, 40, 10, 280, 285, enemy.x, enemy.y, 60, 60);
-        } else if (enemy.type === 'boss') {
-          ctxExplosionCanvas.drawImage(bossExplosion, 0, 0, 958, 952, enemy.x, enemy.y, 80, 80);
+      if (object2.dead) {
+        if (object2.type !== 'boss') {
+          ctxExplosionCanvas.drawImage(explosion, 40, 10, 280, 285, object2.x, object2.y, 60, 60);
+        } else if (object2.type === 'boss') {
+          ctxExplosionCanvas.drawImage(bossExplosion, 0, 0, 958, 952, object2.x, object2.y, 80, 80);
         };
-        if (enemy.type !== 'xRightRunner' && enemy.type !== 'xLeftRunner' && enemy.type !== 'yRunner') {
-          enemy.x = xStarting(enemy.spriteWidth);
-          enemy.y = yStarting(enemy.spriteHeight);
-        } else if (enemy.type === 'xRightRunner') {
-          xRightResetOffscreenEnemies(enemy);
-        } else if (enemy.type === 'xLeftRunner') {
-          xLeftResetOffscreenEnemies(enemy);
-        } else if (enemy.type === 'yRunner') {
-          yResetOffscreenEnemies(enemy);
+        if (object2.type !== 'xRightRunner' && object2.type !== 'xLeftRunner' && object2.type !== 'yRunner') {
+          object2.x = xStarting(object2.spriteWidth);
+          object2.y = yStarting(object2.spriteHeight);
+        } else if (object2.type === 'xRightRunner') {
+          xRightResetOffscreenEnemies(object2);
+        } else if (object2.type === 'xLeftRunner') {
+          xLeftResetOffscreenEnemies(object2);
+        } else if (object2.type === 'yRunner') {
+          yResetOffscreenEnemies(object2);
         };
-        game.score += enemy.points;
+        game.score += object2.points;
       };
     };
   };

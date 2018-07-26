@@ -381,7 +381,7 @@ let animationLoop = function() {
     heartCollisionDetection(link, bigHeart);
 
     //tektiteInstance
-    enemyCollisionDetection(link.x, link.y, tektiteInstance.x, tektiteInstance.y, tektiteInstance);
+    enemyCollisionDetection(link, tektiteInstance);
 
     ////// for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
@@ -389,23 +389,23 @@ let animationLoop = function() {
     // }
 
     //keeseInstance
-    enemyCollisionDetection(link.x, link.y, keeseInstance.x, keeseInstance.y, keeseInstance);
+    enemyCollisionDetection(link, keeseInstance);
     //gibdoInstance
-    enemyCollisionDetection(link.x, link.y, gibdoInstance.x, gibdoInstance.y, gibdoInstance);
+    enemyCollisionDetection(link, gibdoInstance);
     //stalfosInstance
-    enemyCollisionDetection(link.x, link.y, stalfosInstance.x, stalfosInstance.y, stalfosInstance);
+    enemyCollisionDetection(link, stalfosInstance);
     //dodongoInstance
-    enemyCollisionDetection(link.x, link.y, dodongoInstance.x, dodongoInstance.y, dodongoInstance);
+    enemyCollisionDetection(link, dodongoInstance);
     //armosInstance
-    enemyCollisionDetection(link.x, link.y, armosInstance.x, armosInstance.y, armosInstance);
+    enemyCollisionDetection(link, armosInstance);
     //wizzrobeInstance
-    enemyCollisionDetection(link.x, link.y, wizzrobeInstance.x, wizzrobeInstance.y, wizzrobeInstance);
+    enemyCollisionDetection(link, wizzrobeInstance);
     //darknutInstance
-    enemyCollisionDetection(link.x, link.y, darknutInstance.x, darknutInstance.y, darknutInstance);
+    enemyCollisionDetection(link, darknutInstance);
     //aquamentusInstance
-    enemyCollisionDetection(link.x, link.y, aquamentusInstance.x, aquamentusInstance.y, aquamentusInstance);
+    enemyCollisionDetection(link, aquamentusInstance);
     //moblinInstance
-    enemyCollisionDetection(link.x, link.y, moblinInstance.x, moblinInstance.y, moblinInstance);
+    enemyCollisionDetection(link, moblinInstance);
 
 
     //Array of live enemies
