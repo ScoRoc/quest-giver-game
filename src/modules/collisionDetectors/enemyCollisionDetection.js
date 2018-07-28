@@ -15,7 +15,6 @@ bossExplosionPng.src = 'images/boss-explosion.png';
 
 //Collision Detection between Link and enemies
 let enemyCollisionDetection = function(object1, object2) {
-  // refactor to onlyl use object1 and object 2 - like heartCollisionDetection
   let x1 = object1.x;
   let y1 = object1.y;
   let x2 = object2.x;
