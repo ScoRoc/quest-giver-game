@@ -1,11 +1,12 @@
 
 import link from '../player.js';
-import { ctxSpriteMap, spriteMap } from '../maps.js';
+import { ctxSpriteMap, ctxSpriteMapDraw, spriteMap } from '../maps.js';
 
 //link death spin
 let linkDies = function() {
+  console.log('in linkDies');
   ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-  ctxSpriteMap.drawImage(link.image, link.xFrame, link.yFrame, link.pngWidth, link.pngHeight, link.xMove, link.yMove, link.spriteWidth, link.spriteHeight);
+  ctxSpriteMapDraw(link);
   if (link.xFrame === 0 && link.yFrame === 0) {
     link.xFrame = 90;
     link.yFrame = 30;
