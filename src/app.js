@@ -198,8 +198,12 @@ let darknutInstance = new Darknut();
 let aquamentusInstance = new Aquamentus();
 let moblinInstance = new Moblin();
 
-// testing quest giver as colored block
+
+  //////////////////////////////////////////
+ // testing quest giver as colored block //
+//////////////////////////////////////////
 let questGiverInstance = new QuestGiver(150, 150, 50, 50, '#3FA');
+///////////////////////////////////
 
 
 // let tektiteArray = [];
@@ -273,9 +277,14 @@ let animationLoop = function() {
       };
     };
 
-    // testing drawing quest giver
+
+      ///////////////////////////////////
+     //  testing drawing quest giver  //
+    ///////////////////////////////////
     ctxSpriteMap.fillStyle = questGiverInstance.color;
     ctxSpriteMap.fillRect(questGiverInstance.x, questGiverInstance.y, questGiverInstance.width, questGiverInstance.height);
+    ///////////////////////////////////
+
 
     //Animates hearts
     if (heart.show) {
