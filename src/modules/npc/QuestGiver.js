@@ -30,6 +30,10 @@ class QuestGiver {
     this.color = color;
   };
 
+  click() {
+    console.log('quest giver clicked on');
+  }
+
 };
 
 // class Tektite extends Enemy {
