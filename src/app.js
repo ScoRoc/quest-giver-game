@@ -13,6 +13,7 @@ import {
   Aquamentus,
   Moblin
 } from './modules/enemyImporter.js';
+import QuestGiver from './modules/npc/QuestGiver.js';
 import {
   backgroundMap,
   ctxBackgroundMap,
@@ -197,6 +198,9 @@ let darknutInstance = new Darknut();
 let aquamentusInstance = new Aquamentus();
 let moblinInstance = new Moblin();
 
+// testing quest giver as colored block
+let questGiverInstance = new QuestGiver(150, 150, 50, 50, '#3FA');
+
 
 // let tektiteArray = [];
 // for (let i = 0; i < 10; i++) {
@@ -268,6 +272,10 @@ let animationLoop = function() {
         background.moveMapFrameRightStop();
       };
     };
+
+    // testing drawing quest giver
+    ctxSpriteMap.fillStyle = questGiverInstance.color;
+    ctxSpriteMap.fillRect(questGiverInstance.x, questGiverInstance.y, questGiverInstance.width, questGiverInstance.height);
 
     //Animates hearts
     if (heart.show) {
