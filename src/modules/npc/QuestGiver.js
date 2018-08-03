@@ -1,4 +1,5 @@
 import link from '../player.js';
+import { showHideQuests, showQuests } from '../showHideQuests.js';
 // import { backgroundMap } from '../maps.js';
 
 
@@ -32,8 +33,10 @@ class QuestGiver {
   };
 
   click() {
-    console.log('quest giver clicked on');
-    link.quests.push('questorrrrr');
+    link.quests.push('qqq');
+    if (showHideQuests.showing()) {
+      showQuests();
+    }
   }
 
 };

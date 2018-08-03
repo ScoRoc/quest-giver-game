@@ -1,6 +1,6 @@
 import { coinFlip, xStarting, yStarting } from './modules/mathHelpers.js';
 import { newImage } from './modules/nonMathHelpers.js';
-import showHideQuests from './modules/showHideQuests.js';
+import { showHideQuests } from './modules/showHideQuests.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
   Tektite,
@@ -497,7 +497,7 @@ let startGame = function() {
   };
 };
 
-$('#quests-div button').click(() => showHideQuests());
+$('#quests-div button').click(() => showHideQuests.showHide());
 
 document.getElementById('sprite-map').addEventListener('click', e => clickQuestGiver(e));
 
