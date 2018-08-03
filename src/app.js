@@ -1,5 +1,6 @@
 import { coinFlip, xStarting, yStarting } from './modules/mathHelpers.js';
 import { newImage } from './modules/nonMathHelpers.js';
+import showHideQuests from './modules/showHideQuests.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
   Tektite,
@@ -203,6 +204,16 @@ let moblinInstance = new Moblin();
  // testing quest giver as colored block //
 //////////////////////////////////////////
 let questGiverInstance = new QuestGiver(150, 150, 50, 50, '#3FA');
+
+let clickQuestGiver = e => {
+  let sMap = document.getElementById('sprite-map');
+  let x = e.clientX - sMap.offsetParent.offsetLeft - sMap.offsetLeft;
+  let y = e.clientY - sMap.offsetParent.offsetTop;
+  let qg = questGiverInstance;
+  if (x >= qg.x && x <= qg.x + qg.width && y >= qg.y && y <= qg.y + qg.height) {
+    qg.click();
+  }
+};
 ///////////////////////////////////
 
 
@@ -486,41 +497,9 @@ let startGame = function() {
   };
 };
 
-//////////////////
-/////////////////
-// shows or hides quests
-// move out to a seperate file
-let showHideQuestsFunc = () => {
-  let show = true;
-  return () => {
-    if (show) {
-      let quests = link.quests.forEach(quest => {
-        $('#quests-div ul').append(quest);
-      });
-      show = !show;
-    } else {
-      $('#quests-div ul').empty();
-      show = !show;
-    }
-  };
-};
-
-let showHideQuests = showHideQuestsFunc();
-
 $('#quests-div button').click(() => showHideQuests());
-// end of show hide quest button
-//////////////////
-/////////////////
 
-document.getElementById('sprite-map').addEventListener('click', e => {
-  let sMap = document.getElementById('sprite-map');
-  let x = e.clientX - sMap.offsetParent.offsetLeft - sMap.offsetLeft;
-  let y = e.clientY - sMap.offsetParent.offsetTop;
-  let qg = questGiverInstance;
-  if (x >= qg.x && x <= qg.x + qg.width && y >= qg.y && y <= qg.y + qg.height) {
-    qg.click();
-  }
-});
+document.getElementById('sprite-map').addEventListener('click', e => clickQuestGiver(e));
 
 startGameButton.on('click', startGame);
 window.addEventListener('keydown', link.playerAction);
