@@ -15,6 +15,9 @@ let ctxExplosionCanvas = explosionCanvas.getContext('2d');
 let enemyMap = document.getElementById('enemy-map');
 enemyMap.width = 880;
 enemyMap.height = 605;
+enemyMap.addEventListener('kill', (e) => {
+  console.log('killed a ', e.detail.enemy.class);
+});
 let ctxEnemyMap = enemyMap.getContext('2d');
 let ctxEnemyMapDraw = object => {
   ctxEnemyMap.drawImage(object.image, object.xFrame, object.yFrame, object.pngWidth, object.pngHeight, object.x, object.y, object.spriteWidth, object.spriteHeight);

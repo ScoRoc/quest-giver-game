@@ -45,7 +45,12 @@ let enemyCollisionDetection = function(object1, object2) {
       object2.life -= 1;
       if (object2.life === 0) {
         object2.dead = true;
-
+        enemyMap.dispatchEvent(new CustomEvent('kill', {
+          bubbles: true,
+          detail: {
+            enemy: object2
+          }
+        }));
       };
       if (object2.dead) {
         if (object2.type !== 'boss') {

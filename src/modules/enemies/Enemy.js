@@ -2,7 +2,7 @@ import { newImage } from '../nonMathHelpers.js';
 import { ctxEnemyMap } from '../maps.js';
 
 class Enemy {
-  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, type, maxLife, strength, points, levelShowUp) {
+  constructor(img, pngWidth, pngHeight, spriteWidth, spriteHeight, xStart, yStart, speed, className, type, maxLife, strength, points, levelShowUp) {
     this.image = newImage(img);
     this.xFrame = 0;  // x starting point of src img for sprite frame
     this.yFrame = 0;  // y starting point of src img for sprite frame
@@ -15,6 +15,7 @@ class Enemy {
     this.xCenter = this.spriteWidth / 2;  // x center of hit box
     this.yCenter = this.spriteHeight / 2;  // y center of hit box
     this.speed = speed; // number of px to move
+    this.class = className; // class of enemy
     this.type = type;  // enemy type
     this.maxLife = maxLife;  // how much starting life is
     this.currentLife = this.maxLife;  // how much current life
