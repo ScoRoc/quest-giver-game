@@ -486,6 +486,36 @@ let startGame = function() {
   };
 };
 
+let showHideQuestsFunc = () => {
+  let show = true;
+  // return {
+  //   flip: () => show = !show,
+  //   showHide: () => {
+  //     if (show) {
+  //       console.log('showing');
+  //       showHideQuests.flip();
+  //     } else {
+  //       console.log('hiding');
+  //       showHideQuests.flip();
+  //
+  //     }
+  //   }
+  // }
+  return () => {
+    if (show) {
+      console.log('yas');
+      show = !show;
+    } else {
+      console.log('naw');
+      show = !show;
+    }
+  };
+};
+
+let showHideQuests = showHideQuestsFunc();
+
+$('#quests-div button').click(() => showHideQuests());
+
 document.getElementById('sprite-map').addEventListener('click', e => {
   let sMap = document.getElementById('sprite-map');
   let x = e.clientX - sMap.offsetParent.offsetLeft - sMap.offsetLeft;
