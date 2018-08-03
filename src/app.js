@@ -1,6 +1,6 @@
 import { coinFlip, xStarting, yStarting } from './modules/mathHelpers.js';
 import { newImage } from './modules/nonMathHelpers.js';
-import { showHideQuests } from './modules/showHideQuests.js';
+import { showHideQuests, showQuests } from './modules/showHideQuests.js';
 import { heart, bigHeart } from './modules/items/hearts.js';
 import {
   Tektite,
@@ -505,7 +505,9 @@ enemyMap.addEventListener('kill', (e) => {
   killQuests.forEach(quest => {
     quest.kills++;
   });
-  console.log('first quest kills: ', killQuests[0].kills);
+  if (showHideQuests.showing()) {
+    showQuests();
+  }
 });
 
 $('#quests-div button').click(() => showHideQuests.showHide());
@@ -516,4 +518,4 @@ startGameButton.on('click', startGame);
 window.addEventListener('keydown', link.playerAction);
 window.addEventListener('keyup', link.actionStop);
 
-export { game, background, areEnemiesDead, animateGame, startGameButton };
+export { game, background, areEnemiesDead, animateGame, startGameButton, questGiverInstance };

@@ -1,4 +1,6 @@
 import link from './player.js';
+import { questGiverInstance } from '../app.js';
+import KillQuest from './npc/quests/KillQuest.js';
 
 const ul = $('#quests-div ul');
 
@@ -10,9 +12,16 @@ let showQuests = () => {
     ul.text('');
     lq.forEach(quest => {
       let li = $('<li></li>').text(quest.text);
+      if (quest.kills < quest.killsToComplete) {
+        let sub = $(`<ul><li>Progress</li><li>${quest.kills}/${quest.killsToComplete}</li></ul>`);
+        li.append(sub);
+      } else {
+        li.append($('<li>COMPLETED</li>'))
+      }
       li.click(() => {
         lq.splice(lq.indexOf(quest), 1);
         ul.empty();
+        questGiverInstance.availableQuests.push(new KillQuest());
         showQuests();
       });
       ul.append(li);

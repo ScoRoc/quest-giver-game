@@ -3,6 +3,7 @@ class KillQuest {
     this.text = 'Kill 2 enemies';
     this.completed = false;
     this.kills = 0;
+    this.killsToComplete = 2;
   }
 
   finished() {

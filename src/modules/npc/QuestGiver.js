@@ -24,8 +24,6 @@ import KillQuest from './quests/KillQuest.js';
 //   levelShowUp: 1
 // };
 
-let killQuest = new KillQuest();
-
 class QuestGiver {
   constructor(x, y, width, height, color) {
     this.x = x;
@@ -33,7 +31,7 @@ class QuestGiver {
     this.width = width;
     this.height = height;
     this.color = color;
-    this.availableQuests = [killQuest];
+    this.availableQuests = [new KillQuest()];
   };
 
   click() {
@@ -42,8 +40,6 @@ class QuestGiver {
       // placeholder for now...ugly...clean up to be actual quest
       link.quests.push(aq.splice(aq.indexOf(aq[0]), 1)[0]);
     }
-    console.log('in questGiver, link.quests: ', link.quests);
-    console.log('in questGiver, link.quests[0].kills: ', link.quests[0].kills)
     if (showHideQuests.showing()) {
       showQuests();
     }
