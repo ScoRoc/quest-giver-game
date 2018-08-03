@@ -4,8 +4,12 @@ let showHideQuestsFunc = () => {
   let show = true;
   return () => {
     if (show) {
-      let quests = link.quests.forEach(quest => {
+      let lq = link.quests;
+      let quests = lq.forEach(quest => {
         let li = $('<li></li>').text(quest);
+        li.click(() => {
+          lq.splice(lq.indexOf(quest), 1)
+        })
         $('#quests-div ul').append(li);
       });
       show = !show;
