@@ -9,7 +9,7 @@ let showQuests = () => {
   } else {
     ul.text('');
     lq.forEach(quest => {
-      let li = $('<li></li>').text(quest);
+      let li = $('<li></li>').text(quest.text);
       li.click(() => {
         lq.splice(lq.indexOf(quest), 1);
         ul.empty();

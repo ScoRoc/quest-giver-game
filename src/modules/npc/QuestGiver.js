@@ -1,5 +1,6 @@
 import link from '../player.js';
 import { showHideQuests, showQuests } from '../showHideQuests.js';
+import KillQuest from './quests/KillQuest.js';
 // import { backgroundMap } from '../maps.js';
 
 
@@ -23,6 +24,8 @@ import { showHideQuests, showQuests } from '../showHideQuests.js';
 //   levelShowUp: 1
 // };
 
+let killQuest = new KillQuest();
+
 class QuestGiver {
   constructor(x, y, width, height, color) {
     this.x = x;
@@ -30,10 +33,16 @@ class QuestGiver {
     this.width = width;
     this.height = height;
     this.color = color;
+    this.availableQuests = [killQuest];
   };
 
   click() {
-    link.quests.push('qqq');
+    let aq = this.availableQuests;
+    if (aq.length > 0) {
+      // placeholder for now...ugly...clean up to be actual quest
+      link.quests.push(aq.splice(aq.indexOf(aq[0]), 1)[0]);
+    }
+    console.log(link.quests);
     if (showHideQuests.showing()) {
       showQuests();
     }

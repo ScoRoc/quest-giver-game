@@ -505,4 +505,18 @@ startGameButton.on('click', startGame);
 window.addEventListener('keydown', link.playerAction);
 window.addEventListener('keyup', link.actionStop);
 
+
+let top = document.getElementById('topspace');
+
+top.addEventListener('bar', (e) => {
+  console.log(e.detail);
+});
+
+top.dispatchEvent(new CustomEvent('bar', {
+  bubble: true,
+  detail: 'foo'
+}));
+
+
+
 export { game, background, areEnemiesDead, animateGame, startGameButton };

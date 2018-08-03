@@ -1,7 +1,7 @@
 
 import link from '../player.js';
 import { game } from '../../app.js';
-import { ctxExplosionCanvas } from '../maps.js';
+import { ctxExplosionCanvas, enemyMap } from '../maps.js';
 import { xStarting, yStarting, } from '../mathHelpers.js';
 import { newImage } from '../nonMathHelpers.js';
 import { xRightResetOffscreenEnemies, xLeftResetOffscreenEnemies, yResetOffscreenEnemies } from '../resetEnemyHelpers.js';
@@ -45,6 +45,7 @@ let enemyCollisionDetection = function(object1, object2) {
       object2.life -= 1;
       if (object2.life === 0) {
         object2.dead = true;
+
       };
       if (object2.dead) {
         if (object2.type !== 'boss') {
