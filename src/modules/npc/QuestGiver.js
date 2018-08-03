@@ -42,7 +42,8 @@ class QuestGiver {
       // placeholder for now...ugly...clean up to be actual quest
       link.quests.push(aq.splice(aq.indexOf(aq[0]), 1)[0]);
     }
-    console.log(link.quests);
+    console.log('in questGiver, link.quests: ', link.quests);
+    console.log('in questGiver, link.quests[0].kills: ', link.quests[0].kills)
     if (showHideQuests.showing()) {
       showQuests();
     }

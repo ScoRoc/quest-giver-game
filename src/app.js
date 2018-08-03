@@ -497,6 +497,17 @@ let startGame = function() {
   };
 };
 
+enemyMap.addEventListener('kill', (e) => {
+  console.log('killed a ', e.detail.enemy.class);
+  let killQuests = link.quests.filter(quest => {
+    return Object.keys(quest).includes('kills');
+  });
+  killQuests.forEach(quest => {
+    quest.kills++;
+  });
+  console.log('first quest kills: ', killQuests[0].kills);
+});
+
 $('#quests-div button').click(() => showHideQuests.showHide());
 
 document.getElementById('sprite-map').addEventListener('click', e => clickQuestGiver(e));
