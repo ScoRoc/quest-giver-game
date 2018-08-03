@@ -30,6 +30,7 @@ class QuestGiver {
     this.width = width;
     this.height = height;
     this.color = color;
+    this.quests = ['quest1', 'quest2', 'quest3'];
   };
 
   click() {
