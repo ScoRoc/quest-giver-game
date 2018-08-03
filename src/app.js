@@ -486,27 +486,20 @@ let startGame = function() {
   };
 };
 
+//////////////////
+/////////////////
+// shows or hides quests
+// move out to a seperate file
 let showHideQuestsFunc = () => {
   let show = true;
-  // return {
-  //   flip: () => show = !show,
-  //   showHide: () => {
-  //     if (show) {
-  //       console.log('showing');
-  //       showHideQuests.flip();
-  //     } else {
-  //       console.log('hiding');
-  //       showHideQuests.flip();
-  //
-  //     }
-  //   }
-  // }
   return () => {
     if (show) {
-      console.log('yas');
+      let quests = link.quests.forEach(quest => {
+        $('#quests-div ul').append(quest);
+      });
       show = !show;
     } else {
-      console.log('naw');
+      $('#quests-div ul').empty();
       show = !show;
     }
   };
@@ -515,6 +508,9 @@ let showHideQuestsFunc = () => {
 let showHideQuests = showHideQuestsFunc();
 
 $('#quests-div button').click(() => showHideQuests());
+// end of show hide quest button
+//////////////////
+/////////////////
 
 document.getElementById('sprite-map').addEventListener('click', e => {
   let sMap = document.getElementById('sprite-map');
