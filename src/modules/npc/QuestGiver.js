@@ -1,6 +1,7 @@
 import link from '../player.js';
 import { showHideQuests, showQuests } from '../showHideQuests.js';
 import KillQuest from './quests/KillQuest.js';
+import { questGiverInstance } from '../../app.js';
 // import { backgroundMap } from '../maps.js';
 
 
@@ -36,9 +37,15 @@ class QuestGiver {
 
   click() {
     let aq = this.availableQuests;
-    if (link.quests[0].kills >= killsToComplete) {
-      link.experience += link.quests[0].experience;
-      $('#player-xp').text(link.experience);
+    if (link.quests[0]) {
+      if (link.quests[0].kills >= link.quests[0].killsToComplete) {
+        link.xp += link.quests[0].xp;
+        $('#player-xp').text(link.xp);
+        link.quests.splice(link.quests[0]);
+        $('#quests-div ul').empty();
+        questGiverInstance.availableQuests.push(new KillQuest());
+        showQuests();
+      }
     } else {
       if (aq.length > 0) {
         // placeholder for now...ugly...clean up to be actual quest

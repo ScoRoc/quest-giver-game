@@ -4,7 +4,7 @@ class KillQuest {
     this.completed = false;
     this.kills = 0;
     this.killsToComplete = 2;
-    this.experience = 15;
+    this.xp = 15;
   }
 
   finished() {
