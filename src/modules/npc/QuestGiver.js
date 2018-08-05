@@ -36,12 +36,17 @@ class QuestGiver {
 
   click() {
     let aq = this.availableQuests;
-    if (aq.length > 0) {
-      // placeholder for now...ugly...clean up to be actual quest
-      link.quests.push(aq.splice(aq.indexOf(aq[0]), 1)[0]);
-    }
-    if (showHideQuests.showing()) {
-      showQuests();
+    if (link.quests[0].kills >= killsToComplete) {
+      link.experience += link.quests[0].experience;
+      $('#player-xp').text(link.experience);
+    } else {
+      if (aq.length > 0) {
+        // placeholder for now...ugly...clean up to be actual quest
+        link.quests.push(aq.splice(aq.indexOf(aq[0]), 1)[0]);
+      }
+      if (showHideQuests.showing()) {
+        showQuests();
+      }
     }
   }
 

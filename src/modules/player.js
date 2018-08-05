@@ -37,6 +37,8 @@ let link = {
   heartTime: null,  //tracks time when link picked up heart
   life: 4,  //how much life left
   maxLife: 4,  //max life
+  level: 1,  //player level
+  xp: 0,  //player experience
   quests: [],  //array of current quests
   invincible: false,  //checks for invincibility
   moveUpAnimation: null,  //function for down movement
