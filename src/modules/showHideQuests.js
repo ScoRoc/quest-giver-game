@@ -19,6 +19,7 @@ let showQuests = () => {
         li.append($('<li>COMPLETED</li>'))
       }
       li.click(() => {
+        // placeholder quest stuff...clean up later
         lq.splice(lq.indexOf(quest), 1);
         ul.empty();
         questGiverInstance.availableQuests.push(new KillQuest());

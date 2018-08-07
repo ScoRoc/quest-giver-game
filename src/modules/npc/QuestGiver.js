@@ -38,6 +38,7 @@ class QuestGiver {
   click() {
     let aq = this.availableQuests;
     if (link.quests[0]) {
+      // placeholder quest stuff...clean up later
       if (link.quests[0].kills >= link.quests[0].killsToComplete) {
         link.xp += link.quests[0].xp;
         $('#player-xp').text(link.xp);
