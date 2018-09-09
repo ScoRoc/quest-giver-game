@@ -39,7 +39,7 @@ let link = {
   maxLife: 4,  //max life
   level: 1,  //player level
   xp: 0,  //current player experience
-  xpToLevel: 10,  //xp needed for next level
+  xpToLevel: 20,  //xp needed for next level
   quests: [],  //array of current quests
   invincible: false,  //checks for invincibility
   moveUpAnimation: null,  //function for down movement
@@ -91,11 +91,9 @@ let link = {
   heartDisplay: function() {
     if (link.life === link.maxLife) {
       for (let i = 0; i < link.heartGifArray.length; i ++) {
-        if (link.heartGifArray[i].hasClass('heart-hidden')) {
-          link.heartGifArray[i].removeClass('damaged');
-          link.heartGifArray[i].removeClass('heart-hidden');
-          link.heartGifArray[i].addClass('heart-show');
-        };
+        link.heartGifArray[i].removeClass('damaged');
+        link.heartGifArray[i].removeClass('heart-hidden');
+        link.heartGifArray[i].addClass('heart-show');
       };
     } else if (link.life === link.maxLife - 0.5) {
       heartOne.addClass('damaged');
