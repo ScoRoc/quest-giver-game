@@ -39,7 +39,7 @@ let link = {
   maxLife: 4,  //max life
   level: 1,  //player level
   xp: 0,  //current player experience
-  xpToLevel: 20,  //xp needed for next level
+  xpToLevel: 30,  //xp needed for next level
   quests: [],  //array of current quests
   invincible: false,  //checks for invincibility
   moveUpAnimation: null,  //function for down movement
