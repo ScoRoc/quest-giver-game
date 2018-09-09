@@ -39,7 +39,7 @@ let link = {
   maxLife: 4,  //max life
   level: 1,  //player level
   xp: 0,  //current player experience
-  xpToLevel: 50,  //xp needed for next level
+  xpToLevel: 10,  //xp needed for next level
   quests: [],  //array of current quests
   invincible: false,  //checks for invincibility
   moveUpAnimation: null,  //function for down movement
@@ -61,6 +61,22 @@ let link = {
 
   grabHeart: function() {
     link.heartTime = Date.now();
+  },
+
+  checkForNextLevel: function() {
+    if (link.xpToLevel - link.xp <= 0) {
+      link.level += 1;
+      $('#player-lvl').text(link.level);
+      link.xp = Math.abs(link.xpToLevel - link.xp);
+      link.xpToLevel += 5;
+      $('#needed-xp').text(link.xpToLevel);
+    }
+  },
+
+  gainXP: function(points) {
+    link.xp += points;
+    link.checkForNextLevel();
+    $('#player-xp').text(link.xp);
   },
 
   //heart gif functionality
@@ -123,14 +139,14 @@ let link = {
   },
 
   moveUp: function() {
-    console.log('OUTER: ', link.y);
+    // console.log('OUTER: ', link.y);
     // if (link.y <= link.upMapMove && background.yFrame > 0 && areEnemiesDead()) {
     if (link.y <= link.upMapMove && background.yFrame > 0) {
       background.mapMoving = true;
       background.moveMapUp = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
     } else if (!background.mapMoving && link.y >= 0) {
-      console.log('INNER: ', link.y);
+      // console.log('INNER: ', link.y);
       link.y -= link.speed;
       /////////// ADDED THIS TO FIX CLIPPING ISSUE
       if (link.y < 0) {

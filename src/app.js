@@ -505,8 +505,7 @@ enemyMap.addEventListener('kill', (e) => {
   killQuests.forEach(quest => {
     quest.kills++;
   });
-  link.xp += e.detail.enemy.points;
-  $('#player-xp').text(link.xp);
+  link.gainXP(e.detail.enemy.points);
   if (showHideQuests.showing()) {
     showQuests();
   }
