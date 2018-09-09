@@ -63,13 +63,19 @@ let link = {
     link.heartTime = Date.now();
   },
 
+  gainLevel() {
+    link.level += 1;
+    $('#player-lvl').text(link.level);
+    link.xp = Math.abs(link.xpToLevel - link.xp);
+    link.xpToLevel += 5;
+    $('#needed-xp').text(link.xpToLevel);
+    link.life = link.maxLife;
+    link.heartDisplay();
+  },
+
   checkForNextLevel: function() {
     if (link.xpToLevel - link.xp <= 0) {
-      link.level += 1;
-      $('#player-lvl').text(link.level);
-      link.xp = Math.abs(link.xpToLevel - link.xp);
-      link.xpToLevel += 5;
-      $('#needed-xp').text(link.xpToLevel);
+      link.gainLevel();
     }
   },
 

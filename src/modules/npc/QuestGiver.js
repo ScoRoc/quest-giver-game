@@ -40,8 +40,9 @@ class QuestGiver {
     if (link.quests[0]) {
       // placeholder quest stuff...clean up later
       if (link.quests[0].kills >= link.quests[0].killsToComplete) {
-        link.xp += link.quests[0].xp;
-        $('#player-xp').text(link.xp);
+        // link.xp += link.quests[0].xp;
+        // $('#player-xp').text(link.xp);
+        link.gainXP(link.quests[0].xp);
         link.quests.splice(link.quests[0]);
         $('#quests-div ul').empty();
         questGiverInstance.availableQuests.push(new KillQuest());
