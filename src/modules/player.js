@@ -4,7 +4,7 @@ import { newImage } from './nonMathHelpers.js';
 import { backgroundMap } from './maps.js';
 import { game, background, areEnemiesDead } from '../app.js';
 import { ctxExplosionCanvas, enemyMap } from './maps.js';
-import { heartOne, heartTwo, heartThree, heartFour } from './items/hearts.js';
+import { updateHeartDisplay } from './items/hearts.js';
 
 //Define player
 //Player, aka Link
@@ -27,10 +27,6 @@ let link = {
   speed: 10,  //number of px moved per interval
   frameSpeed: 14,  //number to calculate frame switch rate
   isMoving: false, //tracks to see if moving
-  isMovingUp: false, //tracks to see if moving up
-  isMovingDown: false, //tracks to see if moving down
-  isMovingLeft: false, //tracks to see if moving left
-  isMovingRight: false, //tracks to see if moving right
   isAttacking: false, //tracks to see if attacking
   attackTime: null,  //tracks time link attacked
   hitTime: null,  //tracks time link was hit
@@ -86,60 +82,8 @@ let link = {
   },
 
   //heart gif functionality
-  heartGifArray: [heartOne, heartTwo, heartThree, heartFour],  //heart gif icons
-
   heartDisplay: function() {
-    if (link.life === link.maxLife) {
-      for (let i = 0; i < link.heartGifArray.length; i ++) {
-        link.heartGifArray[i].removeClass('damaged');
-        link.heartGifArray[i].removeClass('heart-hidden');
-        link.heartGifArray[i].addClass('heart-show');
-      };
-    } else if (link.life === link.maxLife - 0.5) {
-      heartOne.addClass('damaged');
-    } else if (link.life === link.maxLife - 1) {
-      heartOne.addClass('damaged');
-      heartOne.addClass('heart-hidden');
-    } else if (link.life === link.maxLife - 1.5) {
-      heartOne.addClass('damaged');
-      heartOne.addClass('heart-hidden');
-      heartTwo.addClass('damaged');
-    } else if (link.life === link.maxLife - 2) {
-      heartOne.addClass('damaged');
-      heartOne.addClass('heart-hidden');
-      heartTwo.addClass('damaged');
-      heartTwo.addClass('heart-hidden');
-    } else if (link.life === link.maxLife - 2.5) {
-      heartOne.addClass('damaged');
-      heartOne.addClass('heart-hidden');
-      heartTwo.addClass('damaged');
-      heartTwo.addClass('heart-hidden');
-      heartThree.addClass('damaged');
-    } else if (link.life === link.maxLife - 3) {
-      heartOne.addClass('damaged');
-      heartOne.addClass('heart-hidden');
-      heartTwo.addClass('damaged');
-      heartTwo.addClass('heart-hidden');
-      heartThree.addClass('damaged');
-      heartThree.addClass('heart-hidden');
-    } else if (link.life === link.maxLife - 3.5) {
-      heartOne.addClass('damaged');
-      heartOne.addClass('heart-hidden');
-      heartTwo.addClass('damaged');
-      heartTwo.addClass('heart-hidden');
-      heartThree.addClass('damaged');
-      heartThree.addClass('heart-hidden');
-      heartFour.addClass('damaged');
-    } else if (link.life <= 0) {
-      heartOne.addClass('damaged');
-      heartOne.addClass('heart-hidden');
-      heartTwo.addClass('damaged');
-      heartTwo.addClass('heart-hidden');
-      heartThree.addClass('damaged');
-      heartThree.addClass('heart-hidden');
-      heartFour.addClass('damaged');
-      heartFour.addClass('heart-hidden');
-    }
+    updateHeartDisplay(link);
   },
 
   moveUp: function() {
@@ -240,34 +184,51 @@ let link = {
     };
   },
 
+  move: function() {
+    switch(link.isMoving) {
+      case 'up':
+        link.moveUp();
+        break;
+      case 'down':
+        link.moveDown();
+        break;
+      case 'left':
+        link.moveLeft();
+        break;
+      case 'right':
+        link.moveRight();
+        break;
+    }
+  },
+
   //Player keyboard actions
   playerAction: function(event) {
+    let keys = [32, 37, 38, 39, 40];
+    if (keys.includes(event.keyCode)) {
+      event.preventDefault();
+    }
     //Up
     if (event.keyCode === 38 && !game.over) {
-      if (!link.isMovingUp && !link.isMoving && !link.isAttacking && link.y >= 1) {
-          link.isMovingUp = true;
-          link.isMoving = true;
+      if (link.isMoving !== 'up' && !link.isAttacking && link.y >= 1) {
+          link.isMoving = 'up';
         };
     }
     //Down
     if (event.keyCode === 40 && !game.over) {
-      if (!link.isMovingDown && !link.isMoving && !link.isAttacking && link.y <= link.bottomBound) {
-          link.isMovingDown = true;
-          link.isMoving = true;
+      if (link.isMoving !== 'down' && !link.isAttacking && link.y <= link.bottomBound) {
+          link.isMoving = 'down';
         };
     }
     //Left
     if (event.keyCode === 37 && !game.over) {
-      if (!link.isMovingLeft && !link.isMoving && !link.isAttacking && link.x >= 0) {
-          link.isMovingLeft = true;
-          link.isMoving = true;
+      if (link.isMoving !== 'left' && !link.isAttacking && link.x >= 0) {
+          link.isMoving = 'left';
         };
     }
     //Right
     if (event.keyCode === 39 && !game.over) {
-      if (!link.isMovingRight && !link.isMoving && !link.isAttacking && link.x <= link.rightBound) {
-          link.isMovingRight = true;
-          link.isMoving = true;
+      if (link.isMoving !== 'right' && !link.isAttacking && link.x <= link.rightBound) {
+          link.isMoving = 'right';
         };
     }
     //Spacebar

@@ -38,6 +38,10 @@ import {
 import { heartCollisionDetection, enemyCollisionDetection } from './modules/collisionDetectors/collisionDetectorImporter.js';
 import { xRightResetOffscreenEnemies, xLeftResetOffscreenEnemies, yResetOffscreenEnemies } from './modules/resetEnemyHelpers.js';
 import link from './modules/player.js';
+import { Player, startingPlayerStats } from './modules/playerClass.js';
+
+let newPlayer = new Player(startingPlayerStats);
+console.log('life: ', newPlayer.life);
 
 //Game info and functions
 let game = {
@@ -389,17 +393,8 @@ let animationLoop = function() {
     ctxSpriteMapDraw(link);
     link.invincible = $('#invincible').prop('checked');
 
-    if (link.isMovingUp) {
-      link.moveUp();
-    };
-    if (link.isMovingDown) {
-      link.moveDown();
-    };
-    if (link.isMovingLeft) {
-      link.moveLeft();
-    };
-    if (link.isMovingRight) {
-      link.moveRight();
+    if (link.isMoving) {
+      link.move();
     };
 
   //Collision checks

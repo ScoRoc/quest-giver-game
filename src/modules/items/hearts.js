@@ -4,10 +4,12 @@ import { newImage } from '../nonMathHelpers.js';
 // let bigHeartPng = new Image();
 // bigHeartPng.src = 'images/big-heart.png';
 
-let heartOne = $('#heart-one');
-let heartTwo = $('#heart-two');
-let heartThree = $('#heart-three');
-let heartFour = $('#heart-four');
+const heartGifArray = [
+  $('#heart-one'),
+  $('#heart-two'),
+  $('#heart-three'),
+  $('#heart-four')
+];
 
 //Define hearts
 let heart = {
@@ -38,4 +40,25 @@ let bigHeart = {
   heartAnimation: null
 };
 
-export { heart, bigHeart, heartOne, heartTwo, heartThree, heartFour };
+let updateHeartDisplay = player => {
+  if (player.life === player.maxLife) {
+    for (let i = 0; i < heartGifArray.length; i ++) {
+      heartGifArray[i].removeClass('damaged');
+      heartGifArray[i].removeClass('heart-hidden');
+      heartGifArray[i].addClass('heart-show');
+    };
+  } else {
+    for (let i = 0; i < player.maxLife - player.life; i++) {
+      heartGifArray[i].removeClass('heart-show');
+      heartGifArray[i].addClass('heart-hidden');
+    }
+    if ((player.life % 1).toFixed(1) > 0) { // is current life at a decimal
+      let currentHeart = heartGifArray[player.maxLife - Math.ceil(player.life)];
+      currentHeart.removeClass('heart-hidden');
+      currentHeart.addClass('damaged');
+      currentHeart.addClass('heart-show');
+    }
+  }
+};
+
+export { heart, bigHeart, updateHeartDisplay };
