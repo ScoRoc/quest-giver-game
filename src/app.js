@@ -399,33 +399,16 @@ let animationLoop = function() {
     //big heart
     heartCollisionDetection(player1, bigHeart);
 
-    //tektiteInstance
-    enemyCollisionDetection(player1, tektiteInstance);
+
+    // Enemy collision detection
+    allEnemies.forEach(enemy => {
+      enemyCollisionDetection(player1, enemy);
+    });
 
     ////// for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
     //   enemyCollisionDetection(player1.x, player1.y, tektiteArray[i].x, tektiteArray[i].y, tektiteArray[i]);
     // }
-
-    //keeseInstance
-    enemyCollisionDetection(player1, keeseInstance);
-    //gibdoInstance
-    enemyCollisionDetection(player1, gibdoInstance);
-    //stalfosInstance
-    enemyCollisionDetection(player1, stalfosInstance);
-    //dodongoInstance
-    enemyCollisionDetection(player1, dodongoInstance);
-    //armosInstance
-    enemyCollisionDetection(player1, armosInstance);
-    //wizzrobeInstance
-    enemyCollisionDetection(player1, wizzrobeInstance);
-    //darknutInstance
-    enemyCollisionDetection(player1, darknutInstance);
-    //aquamentusInstance
-    enemyCollisionDetection(player1, aquamentusInstance);
-    //moblinInstance
-    enemyCollisionDetection(player1, moblinInstance);
-
 
     //Array of live enemies
     liveEnemies = allEnemies.filter(function(baddy) {

@@ -55,15 +55,14 @@ let updateHeartDisplay = player => {
   if (player.life === player.maxLife) {
     fullHearts();
   } else {
-    console.log('FOR LOOP BELOW');
     fullHearts();
-    for (let i = 0; i < player.maxLife - player.life; i++) {
-      console.log('heres i: ', i);
-      heartGifArray[i].removeClass('heart-show');
-      heartGifArray[i].addClass('heart-hidden');
-    }
+    heartGifArray.forEach( (heart, i) => {
+      if (i < player.maxLife - player.life) {
+        heart.removeClass('heart-show');
+        heart.addClass('heart-hidden');
+      }
+    });
     if ((player.life % 1).toFixed(1) > 0) { // is current life at a decimal
-      console.log('in float if');
       let currentHeart = heartGifArray[player.maxLife - Math.ceil(player.life)];
       currentHeart.removeClass('heart-hidden');
       currentHeart.addClass('damaged');
