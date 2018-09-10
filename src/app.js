@@ -536,11 +536,7 @@ $('#quests-div button').click(() => showHideQuests.showHide());
 document.getElementById('sprite-map').addEventListener('click', e => clickQuestGiver(e));
 
 startGameButton.on('click', startGame);
-window.addEventListener('keydown', function(e) {
-  player1.playerAction(e);
-});
-window.addEventListener('keyup', function(e) {
-  player1.actionStop(e);
-});
+window.addEventListener('keydown', e => player1.playerAction(e));
+window.addEventListener('keyup', e => player1.actionStop(e));
 
 export { game, background, areEnemiesDead, animateGame, startGameButton, questGiverInstance };
