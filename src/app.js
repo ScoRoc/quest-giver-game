@@ -33,15 +33,13 @@ import {
 import {
   gameOverScreen,
   gameOver,
-  linkDies
+  playerDies
 } from './modules/gameState/gameStateImporter.js';
 import { heartCollisionDetection, enemyCollisionDetection } from './modules/collisionDetectors/collisionDetectorImporter.js';
 import { xRightResetOffscreenEnemies, xLeftResetOffscreenEnemies, yResetOffscreenEnemies } from './modules/resetEnemyHelpers.js';
-import link from './modules/player.js';
-import { Player, startingPlayerStats } from './modules/playerClass.js';
+import { Player, startingPlayerStats } from './modules/Player.js';
 
-let newPlayer = new Player(startingPlayerStats);
-console.log('life: ', newPlayer.life);
+const newPlayer = new Player(startingPlayerStats);
 
 //Game info and functions
 let game = {
@@ -76,7 +74,7 @@ let background = {
   moveMapRight: false,  //turns on map moving right
 
   moveMapFrameUpStart: function() {
-      link.y += (background.moveSpeed * 1.25);
+      player1.y += (background.moveSpeed * 1.25);
       background.yFrame -= (background.moveSpeed * 0.6875);
       background.mapCounter++
     },
@@ -85,7 +83,7 @@ let background = {
     background.mapCounter = 0;
     background.mapMoving = false;
     background.moveMapUp = false;
-    link.y = backgroundMap.height - link.spriteHeight;
+    player1.y = backgroundMap.height - player1.spriteHeight;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
@@ -96,16 +94,16 @@ let background = {
         baddy.life = baddy.maxLife;
       };
     });
-    if (link.life <= 3) {
+    if (player1.life <= 3) {
       heart.show = true;
     };
-    if (link.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
+    if (player1.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
       bigHeart.show = true;
     };
   },
 
   moveMapFrameDownStart: function() {
-      link.y -= (background.moveSpeed * 1.25);
+      player1.y -= (background.moveSpeed * 1.25);
       background.yFrame += (background.moveSpeed * 0.6875);
       background.mapCounter++
     },
@@ -114,7 +112,7 @@ let background = {
     background.mapCounter = 0;
     background.mapMoving = false;
     background.moveMapDown = false;
-    link.y = 0;
+    player1.y = 0;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
@@ -125,16 +123,16 @@ let background = {
         baddy.life = baddy.maxLife;
       };
     });
-    if (link.life <= 3) {
+    if (player1.life <= 3) {
       heart.show = true;
     };
-    if (link.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
+    if (player1.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
       bigHeart.show = true;
     };
   },
 
   moveMapFrameLeftStart: function() {
-    link.x += (background.moveSpeed * 1.85);
+    player1.x += (background.moveSpeed * 1.85);
     background.xFrame -= background.moveSpeed;
     background.mapCounter++
     },
@@ -143,7 +141,7 @@ let background = {
     background.mapCounter = 0;
     background.mapMoving = false;
     background.moveMapLeft = false;
-    link.x = backgroundMap.width - link.spriteWidth;
+    player1.x = backgroundMap.width - player1.spriteWidth;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
@@ -154,16 +152,16 @@ let background = {
         baddy.life = baddy.maxLife;
       };
     });
-    if (link.life <= 3) {
+    if (player1.life <= 3) {
       heart.show = true;
     };
-    if (link.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
+    if (player1.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
       bigHeart.show = true;
     };
   },
 
   moveMapFrameRightStart: function() {
-    link.x -= (background.moveSpeed * 1.85);
+    player1.x -= (background.moveSpeed * 1.85);
     background.xFrame += background.moveSpeed;
     background.mapCounter++
   },
@@ -172,7 +170,7 @@ let background = {
     background.mapCounter = 0;
     background.mapMoving = false;
     background.moveMapRight = false;
-    link.x = 0;
+    player1.x = 0;
     game.level += 1;
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
@@ -183,10 +181,10 @@ let background = {
         baddy.life = baddy.maxLife;
       };
     });
-    if (link.life <= 3) {
+    if (player1.life <= 3) {
       heart.show = true;
     };
-    if (link.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
+    if (player1.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
       bigHeart.show = true;
     };
   }
@@ -244,7 +242,7 @@ let animateGame = null;
 
 let animationLoop = function() {
 
-  if (link.life <= 0) {
+  if (player1.life <= 0) {
     game.over = true;
   };
 
@@ -389,46 +387,46 @@ let animationLoop = function() {
       moblinInstance.move();
     };
 
-    //Animates link and explosion steps
-    ctxSpriteMapDraw(link);
-    link.invincible = $('#invincible').prop('checked');
+    //Animates player1 and explosion steps
+    ctxSpriteMapDraw(player1);
+    player1.invincible = $('#invincible').prop('checked');
 
-    if (link.isMoving) {
-      link.move();
+    if (player1.isMoving) {
+      player1.move();
     };
 
   //Collision checks
     //heart
-    heartCollisionDetection(link, heart);
+    heartCollisionDetection(player1, heart);
     //big heart
-    heartCollisionDetection(link, bigHeart);
+    heartCollisionDetection(player1, bigHeart);
 
     //tektiteInstance
-    enemyCollisionDetection(link, tektiteInstance);
+    enemyCollisionDetection(player1, tektiteInstance);
 
     ////// for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
-    //   enemyCollisionDetection(link.x, link.y, tektiteArray[i].x, tektiteArray[i].y, tektiteArray[i]);
+    //   enemyCollisionDetection(player1.x, player1.y, tektiteArray[i].x, tektiteArray[i].y, tektiteArray[i]);
     // }
 
     //keeseInstance
-    enemyCollisionDetection(link, keeseInstance);
+    enemyCollisionDetection(player1, keeseInstance);
     //gibdoInstance
-    enemyCollisionDetection(link, gibdoInstance);
+    enemyCollisionDetection(player1, gibdoInstance);
     //stalfosInstance
-    enemyCollisionDetection(link, stalfosInstance);
+    enemyCollisionDetection(player1, stalfosInstance);
     //dodongoInstance
-    enemyCollisionDetection(link, dodongoInstance);
+    enemyCollisionDetection(player1, dodongoInstance);
     //armosInstance
-    enemyCollisionDetection(link, armosInstance);
+    enemyCollisionDetection(player1, armosInstance);
     //wizzrobeInstance
-    enemyCollisionDetection(link, wizzrobeInstance);
+    enemyCollisionDetection(player1, wizzrobeInstance);
     //darknutInstance
-    enemyCollisionDetection(link, darknutInstance);
+    enemyCollisionDetection(player1, darknutInstance);
     //aquamentusInstance
-    enemyCollisionDetection(link, aquamentusInstance);
+    enemyCollisionDetection(player1, aquamentusInstance);
     //moblinInstance
-    enemyCollisionDetection(link, moblinInstance);
+    enemyCollisionDetection(player1, moblinInstance);
 
 
     //Array of live enemies
@@ -471,12 +469,12 @@ let startGame = function() {
     dodongoInstance.x = -dodongoInstance.spriteWidth * 1.2;
     dodongoInstance.y = yStarting(50);
     heart.show = false;
-    link.life = link.maxLife;
-    link.heartDisplay();
-    link.x = xStarting(32);
-    link.y = yStarting(35);
-    link.xFrame = 0;
-    link.yFrame = 0;
+    player1.life = player1.maxLife;
+    updateHeartDisplay(player1);
+    player1.x = xStarting(32);
+    player1.y = yStarting(35);
+    player1.xFrame = 0;
+    player1.yFrame = 0;
     game.over = false;
     game.level = 1;
     background.xFrame = (Math.floor(Math.random() * 16)) * 256;
@@ -494,13 +492,13 @@ let startGame = function() {
 
 enemyMap.addEventListener('kill', (e) => {
   console.log('killed a ', e.detail.enemy.class);
-  let killQuests = link.quests.filter(quest => {
+  let killQuests = player1.quests.filter(quest => {
     return Object.keys(quest).includes('kills');
   });
   killQuests.forEach(quest => {
     quest.kills++;
   });
-  link.gainXP(e.detail.enemy.points);
+  player1.gainXP(e.detail.enemy.points);
   if (showHideQuests.showing()) {
     showQuests();
   }
@@ -511,7 +509,7 @@ $('#quests-div button').click(() => showHideQuests.showHide());
 document.getElementById('sprite-map').addEventListener('click', e => clickQuestGiver(e));
 
 startGameButton.on('click', startGame);
-window.addEventListener('keydown', link.playerAction);
-window.addEventListener('keyup', link.actionStop);
+window.addEventListener('keydown', player1.playerAction);
+window.addEventListener('keyup', player1.actionStop);
 
 export { game, background, areEnemiesDead, animateGame, startGameButton, questGiverInstance };

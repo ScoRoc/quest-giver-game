@@ -4,353 +4,368 @@ import { newImage } from './nonMathHelpers.js';
 import { backgroundMap } from './maps.js';
 import { game, background, areEnemiesDead } from '../app.js';
 import { ctxExplosionCanvas, enemyMap } from './maps.js';
-import { updateHeartDisplay } from './items/hearts.js';
+
+//Starting player stats
+const startingPlayerStats = {
+  image: newImage('images/link-spritesheet.png'),
+  xFrame: 0,
+  yFrame: 0,
+  pngWidth: 15,
+  pngHeight: 16,
+  spriteWidth: 31.875,
+  spriteHeight: 34,
+  bottomBound: backgroundMap.height - 35,
+  rightBound: backgroundMap.width - 33,
+  x: xStarting(32),
+  y: yStarting(35),
+  speed: 10,
+  life: 4,
+  maxLife: 4,
+  level: 1,
+  xpToLevel: 30
+};
 
 //Define player
 //Player, aka Link
-let link = {
-  image: newImage('images/link-spritesheet.png'),  //src image
-  xFrame: 0,  //x starting point of src img for sprite frame
-  yFrame: 0,  //y starting point of src img for sprite frame
-  upFrame: 0,  //placeholder for frame iteration
-  downFrame: 0,  //placeholder for frame iteration
-  leftFrame: 0,  //placeholder for frame iteration
-  rightFrame: 0,  //placeholder for frame iteration
-  pngWidth: 15,  //width of src img sprite size
-  pngHeight: 16,  //height of src img sprite size
-  spriteWidth: 31.875,  //width of sprite on canvas
-  spriteHeight: 34,  //height of sprite on canvas
-  bottomBound: backgroundMap.height - 35,
-  rightBound: backgroundMap.width - 33,
-  x: xStarting(32),  //x point of link on canvas
-  y: yStarting(35),  //y point of link on canvas
-  speed: 10,  //number of px moved per interval
-  frameSpeed: 14,  //number to calculate frame switch rate
-  isMoving: false, //tracks to see if moving
-  isAttacking: false, //tracks to see if attacking
-  attackTime: null,  //tracks time link attacked
-  hitTime: null,  //tracks time link was hit
-  heartTime: null,  //tracks time when link picked up heart
-  life: 4,  //how much life left
-  maxLife: 4,  //max life
-  level: 1,  //player level
-  xp: 0,  //current player experience
-  xpToLevel: 30,  //xp needed for next level
-  quests: [],  //array of current quests
-  invincible: false,  //checks for invincibility
-  moveUpAnimation: null,  //function for down movement
-  moveDownAnimation: null,  //function for up movement
-  moveLeftAnimation: null,  //function for left movement
-  moveRightAnimation: null,  //function for right movement
-  upMapMove: 0, //y px where link causes map to move up
-  downMapMove: backgroundMap.height - 34, //y px where link causes map to move down
-  leftMapMove: 0, //x px where link causes map to move left
-  rightMapMove: backgroundMap.width - 32, //x px where link causes map to move right
+class Player {
+  constructor(stats) {
+    this.image = stats.image;  //src image
+    this.xFrame = stats.xFrame;  //x starting point of src img for sprite frame
+    this.yFrame = stats.yFrame;  //y starting point of src img for sprite frame
+    this.upFrame = 0;  //placeholder for frame iteration
+    this.downFrame = 0;  //placeholder for frame iteration
+    this.leftFrame = 0;  //placeholder for frame iteration
+    this.rightFrame = 0;  //placeholder for frame iteration
+    this.pngWidth = stats.pngWidth;  //width of src img sprite size
+    this.pngHeight = stats.pngHeight;  //height of src img sprite size
+    this.spriteWidth = stats.spriteWidth;  //width of sprite on canvas
+    this.spriteHeight = stats.spriteHeight;  //height of sprite on canvas
+    this.bottomBound = stats.bottomBound;
+    this.rightBound = stats.rightBound;
+    this.x = stats.x;  //x point of link on canvas
+    this.y = stats.y;  //y point of link on canvas
+    this.speed = stats.speed;  //number of px moved per interval
+    this.frameSpeed = 14;  //number to calculate frame switch rate
+    this.isMoving = false; //tracks to see if moving
+    this.isAttacking = false; //tracks to see if attacking
+    this.attackTime = null;  //tracks time link attacked
+    this.hitTime = null;  //tracks time link was hit
+    this.heartTime = null;  //tracks time when link picked up heart
+    this.life = stats.life;  //how much life left
+    this.maxLife = stats.maxLife;  //max life
+    this.level = stats.level;  //player level
+    this.xp = 0;  //current player experience
+    this.xpToLevel = stats.xpToLevel;  //xp needed for next level
+    this.quests = [];  //array of current quests
+    this.invincible = false;  //checks for invincibility
+    this.moveUpAnimation = null;  //function for down movement
+    this.moveDownAnimation = null;  //function for up movement
+    this.moveLeftAnimation = null;  //function for left movement
+    this.moveRightAnimation = null;  //function for right movement
+    this.upMapMove = 0; //y px where link causes map to move up
+    this.downMapMove = backgroundMap.height - 34; //y px where link causes map to move down
+    this.leftMapMove = 0; //x px where link causes map to move left
+    this.rightMapMove = backgroundMap.width - 32; //x px where link causes map to move right
+  };
 
-  linkAttack: function() {
-    link.attackTime = Date.now();
-  },
+  attackTime() {
+    this.attackTime = Date.now();
+  };
 
-  linkHit: function() {
-    link.hitTime = Date.now();
-  },
+  hitTime() {
+    this.hitTime = Date.now();
+  };
 
-  grabHeart: function() {
-    link.heartTime = Date.now();
-  },
+  grabHeart() {
+    this.heartTime = Date.now();
+  };
 
   gainLevel() {
-    link.level += 1;
-    $('#player-lvl').text(link.level);
-    link.xp = Math.abs(link.xpToLevel - link.xp);
-    link.xpToLevel += 5;
-    $('#needed-xp').text(link.xpToLevel);
-    link.life = link.maxLife;
-    link.heartDisplay();
-  },
+    this.level += 1;
+    $('#player-lvl').text(this.level);
+    this.xp = Math.abs(this.xpToLevel - this.xp);
+    this.xpToLevel += 5;
+    $('#needed-xp').text(this.xpToLevel);
+    this.life = this.maxLife;
+    this.heartDisplay();
+  };
 
-  checkForNextLevel: function() {
-    if (link.xpToLevel - link.xp <= 0) {
-      link.gainLevel();
+  checkForNextLevel() {
+    if (this.xpToLevel - this.xp <= 0) {
+      this.gainLevel();
     }
-  },
+  };
 
-  gainXP: function(points) {
-    link.xp += points;
-    link.checkForNextLevel();
-    $('#player-xp').text(link.xp);
-  },
+  gainXP(points) {
+    this.xp += points;
+    this.checkForNextLevel();
+    $('#player-xp').text(this.xp);
+  };
 
-  //heart gif functionality
-  heartDisplay: function() {
-    updateHeartDisplay(link);
-  },
-
-  moveUp: function() {
-    // console.log('OUTER: ', link.y);
-    // if (link.y <= link.upMapMove && background.yFrame > 0 && areEnemiesDead()) {
-    if (link.y <= link.upMapMove && background.yFrame > 0) {
+  moveUp() {
+    // console.log('OUTER: ', this.y);
+    if (this.y <= this.upMapMove && background.yFrame > 0) {
       background.mapMoving = true;
       background.moveMapUp = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.y >= 0) {
-      // console.log('INNER: ', link.y);
-      link.y -= link.speed;
+    } else if (!background.mapMoving && this.y >= 0) {
+      // console.log('INNER: ', this.y);
+      this.y -= this.speed;
       /////////// ADDED THIS TO FIX CLIPPING ISSUE
-      if (link.y < 0) {
-        link.y = -1
+      if (this.y < 0) {
+        this.y = -1
       }
-      link.xFrame = 61;
-      link.yFrame = 0;
-      if (link.upFrame < (link.frameSpeed / 2)) {
-        link.yFrame = 30;
-        link.upFrame++;
-      } else if(link.upFrame <= link.frameSpeed) {
-        link.yFrame = 0;
-        link.upFrame++;
+      this.xFrame = 61;
+      this.yFrame = 0;
+      if (this.upFrame < (this.frameSpeed / 2)) {
+        this.yFrame = 30;
+        this.upFrame++;
+      } else if(this.upFrame <= this.frameSpeed) {
+        this.yFrame = 0;
+        this.upFrame++;
       } else {
-        link.upFrame = 0;
-      };
-    };
-  },
+        this.upFrame = 0;
+      }
+    }
+  };
 
-  moveDown: function() {
-    // if (link.y >= link.downMapMove && background.yFrame < background.pngSourceHeight - background.pngHeight && areEnemiesDead()) {
-    if (link.y >= link.downMapMove && background.yFrame < background.pngSourceHeight - background.pngHeight) {
+  moveDown() {
+    // if (this.y >= this.downMapMove && background.yFrame < background.pngSourceHeight - background.pngHeight && areEnemiesDead()) {
+    if (this.y >= this.downMapMove && background.yFrame < background.pngSourceHeight - background.pngHeight) {
       background.mapMoving = true;
       background.moveMapDown = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.y <= link.bottomBound) {
-      link.y += link.speed;
+    } else if (!background.mapMoving && this.y <= this.bottomBound) {
+      this.y += this.speed;
       /////////// ADDED THIS TO FIX CLIPPING ISSUE
-      if (link.y > backgroundMap.height - link.spriteHeight) {
-        link.y = backgroundMap.height - link.spriteHeight;
+      if (this.y > backgroundMap.height - this.spriteHeight) {
+        this.y = backgroundMap.height - this.spriteHeight;
       }
-      link.xFrame = 0;
-      link.yFrame = 0;
-      if (link.downFrame < (link.frameSpeed / 2)) {
-        link.yFrame = 30;
-        link.downFrame++;
-      } else if(link.downFrame <= link.frameSpeed) {
-        link.yFrame = 0;
-        link.downFrame++;
+      this.xFrame = 0;
+      this.yFrame = 0;
+      if (this.downFrame < (this.frameSpeed / 2)) {
+        this.yFrame = 30;
+        this.downFrame++;
+      } else if(this.downFrame <= this.frameSpeed) {
+        this.yFrame = 0;
+        this.downFrame++;
       } else {
-        link.downFrame = 0;
-      };
-    };
-  },
+        this.downFrame = 0;
+      }
+    }
+  };
 
-  moveLeft: function() {
-    // if (link.x <= link.leftMapMove && background.xFrame > 0 && areEnemiesDead()) {
-    if (link.x <= link.leftMapMove && background.xFrame > 0) {
+  moveLeft() {
+    // if (this.x <= this.leftMapMove && background.xFrame > 0 && areEnemiesDead()) {
+    if (this.x <= this.leftMapMove && background.xFrame > 0) {
       background.mapMoving = true;
       background.moveMapLeft = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.x >= 0) {
-      link.x -= link.speed;
-      link.xFrame = 29;
-      link.yFrame = 30;
-      if (link.leftFrame < (link.frameSpeed * .5)) {
-        link.yFrame = 0;
-        link.leftFrame++;
-      } else if(link.leftFrame <= link.frameSpeed) {
-        link.yFrame = 30;
-        link.leftFrame++;
+    } else if (!background.mapMoving && this.x >= 0) {
+      this.x -= this.speed;
+      this.xFrame = 29;
+      this.yFrame = 30;
+      if (this.leftFrame < (this.frameSpeed * .5)) {
+        this.yFrame = 0;
+        this.leftFrame++;
+      } else if(this.leftFrame <= this.frameSpeed) {
+        this.yFrame = 30;
+        this.leftFrame++;
       } else {
-        link.leftFrame = 0;
-      };
-    };
-  },
+        this.leftFrame = 0;
+      }
+    }
+  };
 
-  moveRight: function() {
-    // if (link.x >= link.rightMapMove && background.xFrame < background.pngSourceWidth - background.pngWidth && areEnemiesDead()) {
-    if (link.x >= link.rightMapMove && background.xFrame < background.pngSourceWidth - background.pngWidth) {
+  moveRight() {
+    // if (this.x >= this.rightMapMove && background.xFrame < background.pngSourceWidth - background.pngWidth && areEnemiesDead()) {
+    if (this.x >= this.rightMapMove && background.xFrame < background.pngSourceWidth - background.pngWidth) {
       background.mapMoving = true;
       background.moveMapRight = true;
       ctxExplosionCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
-    } else if (!background.mapMoving && link.x <= link.rightBound) {
-      link.x += link.speed;
-      link.xFrame = 90;
-      link.yFrame = 0;
-      if (link.rightFrame < (link.frameSpeed / 2)) {
-        link.yFrame = 30;
-        link.rightFrame++;
-      } else if(link.rightFrame <= link.frameSpeed) {
-        link.yFrame = 0;
-        link.rightFrame++;
+    } else if (!background.mapMoving && this.x <= this.rightBound) {
+      this.x += this.speed;
+      this.xFrame = 90;
+      this.yFrame = 0;
+      if (this.rightFrame < (this.frameSpeed / 2)) {
+        this.yFrame = 30;
+        this.rightFrame++;
+      } else if(this.rightFrame <= this.frameSpeed) {
+        this.yFrame = 0;
+        this.rightFrame++;
       } else {
-        link.rightFrame = 0;
-      };
-    };
-  },
+        this.rightFrame = 0;
+      }
+    }
+  };
 
-  move: function() {
-    switch(link.isMoving) {
+  move() {
+    switch(this.isMoving) {
       case 'up':
-        link.moveUp();
+        this.moveUp();
         break;
       case 'down':
-        link.moveDown();
+        this.moveDown();
         break;
       case 'left':
-        link.moveLeft();
+        this.moveLeft();
         break;
       case 'right':
-        link.moveRight();
+        this.moveRight();
         break;
     }
-  },
+  };
+
+  attackDirection() {
+    switch(true) {
+      //if facing up
+      case this.xFrame === 61:
+        this.xFrame = 60;
+        this.pngHeight = 28;
+        this.spriteHeight = 59.5;
+        this.yFrame = 84;
+        this.y -= 29;
+        this.isMoving = false;
+        this.isAttacking = true;
+        break;
+        //if facing down
+      case this.xFrame === 0:
+        this.pngWidth = 16;
+        this.pngHeight = 28;
+        this.spriteHeight = 59.5;
+        this.yFrame = 84;
+        this.y += 3;
+        this.isMoving = false;
+        this.isAttacking = true;
+        break;
+        //if facing left
+      case this.xFrame === 29:
+        this.xFrame = 24;
+        this.pngWidth = 28;
+        this.spriteWidth = 59.5;
+        this.yFrame = 90;
+        this.x -= 30;
+        this.isMoving = false;
+        this.isAttacking = true;
+        break;
+        //if facing right
+      case this.xFrame === 90:
+        this.xFrame = 84;
+        this.pngWidth = 28;
+        this.spriteWidth = 59.5;
+        this.yFrame = 90;
+        this.x += 6;
+        this.isMoving = false;
+        this.isAttacking = true;
+        break;
+    }
+  };
 
   //Player keyboard actions
-  playerAction: function(event) {
+  playerAction(e) {
     let keys = [32, 37, 38, 39, 40];
-    if (keys.includes(event.keyCode)) {
-      event.preventDefault();
+    if (keys.includes(e.keyCode)) {
+      e.preventDefault();
     }
     //Up
-    if (event.keyCode === 38 && !game.over) {
-      if (link.isMoving !== 'up' && !link.isAttacking && link.y >= 1) {
-          link.isMoving = 'up';
+    if (e.keyCode === 38 && !game.over) {
+      if (this.isMoving !== 'up' && !this.isAttacking && this.y >= 1) {
+          this.isMoving = 'up';
         };
     }
     //Down
-    if (event.keyCode === 40 && !game.over) {
-      if (link.isMoving !== 'down' && !link.isAttacking && link.y <= link.bottomBound) {
-          link.isMoving = 'down';
+    if (e.keyCode === 40 && !game.over) {
+      if (this.isMoving !== 'down' && !this.isAttacking && this.y <= this.bottomBound) {
+          this.isMoving = 'down';
         };
     }
     //Left
-    if (event.keyCode === 37 && !game.over) {
-      if (link.isMoving !== 'left' && !link.isAttacking && link.x >= 0) {
-          link.isMoving = 'left';
+    if (e.keyCode === 37 && !game.over) {
+      if (this.isMoving !== 'left' && !this.isAttacking && this.x >= 0) {
+          this.isMoving = 'left';
         };
     }
     //Right
-    if (event.keyCode === 39 && !game.over) {
-      if (link.isMoving !== 'right' && !link.isAttacking && link.x <= link.rightBound) {
-          link.isMoving = 'right';
+    if (e.keyCode === 39 && !game.over) {
+      if (this.isMoving !== 'right' && !this.isAttacking && this.x <= this.rightBound) {
+          this.isMoving = 'right';
         };
     }
     //Spacebar
-    if (event.keyCode === 32 && !game.over) {
-      switch(true) {
-        //if facing up
-        case link.xFrame === 61:
-          link.xFrame = 60;
-          link.pngHeight = 28;
-          link.spriteHeight = 59.5;
-          link.yFrame = 84;
-          link.y -= 29;
-          link.isMovingUp = false;
-          link.isMoving = false;
-          link.isAttacking = true;
-          break;
-          //if facing down
-        case link.xFrame === 0:
-          link.pngWidth = 16;
-          link.pngHeight = 28;
-          link.spriteHeight = 59.5;
-          link.yFrame = 84;
-          link.y += 3;
-          link.isMovingDown = false;
-          link.isMoving = false;
-          link.isAttacking = true;
-          break;
-          //if facing left
-        case link.xFrame === 29:
-          link.xFrame = 24;
-          link.pngWidth = 28;
-          link.spriteWidth = 59.5;
-          link.yFrame = 90;
-          link.x -= 30;
-          link.isMovingLeft = false;
-          link.isMoving = false;
-          link.isAttacking = true;
-          break;
-          //if facing right
-        case link.xFrame === 90:
-          link.xFrame = 84;
-          link.pngWidth = 28;
-          link.spriteWidth = 59.5;
-          link.yFrame = 90;
-          link.x += 6;
-          link.isMovingRight = false;
-          link.isMoving = false;
-          link.isAttacking = true;
-          break;
-      };
-    };
-  },
+    if (e.keyCode === 32 && !game.over) {
+      this.attackDirection();
+    }
+  };
 
-  actionStop: function(event) {
+  attackDirectionStop() {
+    switch(true) {
+      //if facing up
+      case this.xFrame === 60:
+        this.xFrame = 61;
+        this.pngHeight = 16;
+        this.spriteHeight = 34;
+        this.yFrame = 30;
+        this.y += 29;
+        this.isAttacking = false;
+        break;
+        //if facing down
+      case this.xFrame === 0:
+        this.pngWidth = 15;
+        this.pngHeight = 16;
+        this.spriteHeight = 34;
+        this.yFrame = 0;
+        this.y -= 3;
+        this.isAttacking = false;
+        break;
+        //if facing left
+      case this.xFrame === 24:
+        this.xFrame = 29;
+        this.pngWidth = 15;
+        this.spriteWidth = 31.875;
+        this.yFrame = 0;
+        this.x += 30;
+        this.isAttacking = false;
+        break;
+        this.yFrame = 100;
+        //if facing right
+      case this.xFrame === 84:
+        this.xFrame = 90;
+        this.pngWidth = 15;
+        this.spriteWidth = 31.875;
+        this.yFrame = 31;
+        this.x -= 6;
+        this.isAttacking = false;
+        break;
+    }
+  };
+
+  actionStop(e) {
     //Stop moving up
-    if(event.keyCode === 38 && !game.over) {
-      link.isMovingUp = false;
-      link.isMoving = false;
-      link.yFrame = 30;
+    if(e.keyCode === 38 && !game.over) {
+      this.isMoving = false;
+      this.yFrame = 30;
     };
     //Stop moving down
-    if(event.keyCode === 40 && !game.over) {
-      link.isMovingDown = false;
-      link.isMoving = false;
-      link.yFrame = 0;
+    if(e.keyCode === 40 && !game.over) {
+      this.isMoving = false;
+      this.yFrame = 0;
     };
     //Stop moving left
-    if(event.keyCode === 37 && !game.over) {
-      link.isMovingLeft = false;
-      link.isMoving = false;
-      link.yFrame = 0;
+    if(e.keyCode === 37 && !game.over) {
+      this.isMoving = false;
+      this.yFrame = 0;
     };
     //Stop moving right
-    if(event.keyCode === 39 && !game.over) {
-      link.isMovingRight = false;
-      link.isMoving = false;
-      link.yFrame = 31;
+    if(e.keyCode === 39 && !game.over) {
+      this.isMoving = false;
+      this.yFrame = 31;
     };
     //Stop attacking
-    if (event.keyCode === 32 && !game.over) {
-      switch(true) {
-        //if facing up
-        case link.xFrame === 60:
-          link.xFrame = 61;
-          link.pngHeight = 16;
-          link.spriteHeight = 34;
-          link.yFrame = 30;
-          link.y += 29;
-          link.isAttacking = false;
-          break;
-          //if facing down
-        case link.xFrame === 0:
-          link.pngWidth = 15;
-          link.pngHeight = 16;
-          link.spriteHeight = 34;
-          link.yFrame = 0;
-          link.y -= 3;
-          link.isAttacking = false;
-          break;
-          //if facing left
-        case link.xFrame === 24:
-          link.xFrame = 29;
-          link.pngWidth = 15;
-          link.spriteWidth = 31.875;
-          link.yFrame = 0;
-          link.x += 30;
-          link.isAttacking = false;
-          break;
-          link.yFrame = 100;
-          //if facing right
-        case link.xFrame === 84:
-          link.xFrame = 90;
-          link.pngWidth = 15;
-          link.spriteWidth = 31.875;
-          link.yFrame = 31;
-          link.x -= 6;
-          link.isAttacking = false;
-          break;
-      };
-    };
-  }
+    if (e.keyCode === 32 && !game.over) {
+      this.attackDirectionStop();
+    }
+  };
 
 };
 
-export default link;
+export { Player, startingPlayerStats };

@@ -1,9 +1,9 @@
 
-import link from '../player.js';
+import player1 from '../../app.js';
 import { ctxSpriteMap, ctxSpriteMapDraw, spriteMap } from '../maps.js';
 
 //link death spin
-let linkDies = function() {
+let playerDies = function() {
   console.log('in linkDies');
   ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
   ctxSpriteMapDraw(link);
