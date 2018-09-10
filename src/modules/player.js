@@ -289,7 +289,8 @@ class Player {
 
   //Player keyboard actions
   playerAction(e) {
-    console.log('heres e.key: ', e.key);
+    let key = e.key || e.keycode;
+    console.log('heres e.key: ', key);
     let keys = [32, 37, 38, 39, 40];
     if (keys.includes(e.keyCode)) {
       e.preventDefault();
