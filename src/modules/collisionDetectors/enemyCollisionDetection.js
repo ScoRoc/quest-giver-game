@@ -39,6 +39,8 @@ let enemyCollisionDetection = function(player, baddy) {
     let hitRadiusDown = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistanceDown, 2)));
     let explosion = newImage('images/explosion-death.png');
     let bossExplosion = newImage('images/boss-explosion.png');
+    player.lastAttacked = baddy;
+    console.log('heres last attacked: ', player.lastAttacked);
     if (hitRadius <= 32 || hitRadiusRight <= 32 || hitRadiusDown <= 32) {
       player.getAttackTime();
       baddy.currentLife -= 1;

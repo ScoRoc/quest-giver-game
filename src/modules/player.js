@@ -69,20 +69,7 @@ class Player {
     this.rightBound = stats.rightBound;
     this.x = stats.x;  //x point of link on canvas
     this.y = stats.y;  //y point of link on canvas
-    this.speed = stats.speed;  //number of px moved per interval
     this.frameSpeed = 14;  //number to calculate frame switch rate
-    this.isMoving = false; //tracks to see if moving
-    this.isAttacking = false; //tracks to see if attacking
-    this.attackTime = null;  //tracks time link attacked
-    this.hitTime = null;  //tracks time link was hit
-    this.heartTime = null;  //tracks time when link picked up heart
-    this.life = stats.life;  //how much life left
-    this.maxLife = stats.maxLife;  //max life
-    this.level = stats.level;  //player level
-    this.xp = 0;  //current player experience
-    this.xpToLevel = stats.xpToLevel;  //xp needed for next level
-    this.quests = [];  //array of current quests
-    this.invincible = false;  //checks for invincibility
     this.moveUpAnimation = null;  //function for down movement
     this.moveDownAnimation = null;  //function for up movement
     this.moveLeftAnimation = null;  //function for left movement
@@ -91,6 +78,20 @@ class Player {
     this.downMapMove = backgroundMap.height - 34; //y px where link causes map to move down
     this.leftMapMove = 0; //x px where link causes map to move left
     this.rightMapMove = backgroundMap.width - 32; //x px where link causes map to move right
+    this.speed = stats.speed;  //number of px moved per interval
+    this.isMoving = false; //tracks to see if moving
+    this.isAttacking = false; //tracks to see if attacking
+    this.attackTime = null;  //tracks time link attacked
+    this.hitTime = null;  //tracks time link was hit
+    this.heartTime = null;  //tracks time when link picked up heart
+    this.life = stats.life;  //how much life left
+    this.maxLife = stats.maxLife;  //max life
+    this.invincible = false;  //checks for invincibility
+    this.level = stats.level;  //player level
+    this.xp = 0;  //current player experience
+    this.xpToLevel = stats.xpToLevel;  //xp needed for next level
+    this.quests = [];  //array of current quests
+    this.lastAttacked = null;  //tracks last enemy attacked
   };
 
   getAttackTime() {
@@ -288,6 +289,7 @@ class Player {
 
   //Player keyboard actions
   playerAction(e) {
+    console.log('heres e.key: ', e.key);
     let keys = [32, 37, 38, 39, 40];
     if (keys.includes(e.keyCode)) {
       e.preventDefault();
