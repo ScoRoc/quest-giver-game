@@ -23,7 +23,9 @@ let heart = {
   x: xStarting(20),  //x value where to display heart
   y: yStarting(20),  //y value where to display heart
   show: false,
-  heartAnimation: null
+  heartAnimation: null,
+  type: 'regular',  //type of heart
+  points: 1  //amount of life this restores
 };
 
 let bigHeart = {
@@ -37,17 +39,25 @@ let bigHeart = {
   x: xStarting(80),  //x value where to display heart
   y: yStarting(80),  //y value where to display heart
   show: false,
-  heartAnimation: null
+  heartAnimation: null,
+  type: 'max'  //type of heart
 };
 
 let updateHeartDisplay = player => {
   if (player.life === player.maxLife) {
+    console.log('in maxLife if');
     for (let i = 0; i < heartGifArray.length; i ++) {
       heartGifArray[i].removeClass('damaged');
       heartGifArray[i].removeClass('heart-hidden');
       heartGifArray[i].addClass('heart-show');
-    };
+    }
+    // heartGifArray.forEach(heart => {
+    //   heart.removeClass('damaged');
+    //   heart.removeClass('heart-hidden');
+    //   heart.addClass('heart-show');
+    // });
   } else {
+    console.log('in else');
     for (let i = 0; i < player.maxLife - player.life; i++) {
       heartGifArray[i].removeClass('heart-show');
       heartGifArray[i].addClass('heart-hidden');
