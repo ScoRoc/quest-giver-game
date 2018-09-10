@@ -43,26 +43,27 @@ let bigHeart = {
   type: 'max'  //type of heart
 };
 
+let fullHearts = () => {
+  heartGifArray.forEach(heart => {
+    heart.removeClass('damaged');
+    heart.removeClass('heart-hidden');
+    heart.addClass('heart-show');
+  });
+};
+
 let updateHeartDisplay = player => {
   if (player.life === player.maxLife) {
-    console.log('in maxLife if');
-    for (let i = 0; i < heartGifArray.length; i ++) {
-      heartGifArray[i].removeClass('damaged');
-      heartGifArray[i].removeClass('heart-hidden');
-      heartGifArray[i].addClass('heart-show');
-    }
-    // heartGifArray.forEach(heart => {
-    //   heart.removeClass('damaged');
-    //   heart.removeClass('heart-hidden');
-    //   heart.addClass('heart-show');
-    // });
+    fullHearts();
   } else {
-    console.log('in else');
+    console.log('FOR LOOP BELOW');
+    fullHearts();
     for (let i = 0; i < player.maxLife - player.life; i++) {
+      console.log('heres i: ', i);
       heartGifArray[i].removeClass('heart-show');
       heartGifArray[i].addClass('heart-hidden');
     }
     if ((player.life % 1).toFixed(1) > 0) { // is current life at a decimal
+      console.log('in float if');
       let currentHeart = heartGifArray[player.maxLife - Math.ceil(player.life)];
       currentHeart.removeClass('heart-hidden');
       currentHeart.addClass('damaged');

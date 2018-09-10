@@ -30,7 +30,6 @@ let heartCollisionDetection = function(player, heartItem) {
         if (player.life > player.maxLife) {
           player.life = player.maxLife;
         }
-        console.log('player life: ', player.life);
         updateHeartDisplay(player);
       }
     }
