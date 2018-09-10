@@ -1,4 +1,3 @@
-import player1 from '../Player.js';
 import { updateHeartDisplay } from '../items/hearts.js';
 import { game } from '../../app.js';
 import { ctxExplosionCanvas, enemyMap } from '../maps.js';
@@ -14,21 +13,21 @@ let bossExplosionPng = new Image();
 bossExplosionPng.src = 'images/boss-explosion.png';
 
 //Collision Detection between Player and enemies
-let enemyCollisionDetection = function(object1, object2) {
-  let x1 = object1.x;
-  let y1 = object1.y;
-  let x2 = object2.x;
-  let y2 = object2.y;
-  if (!player1.isAttacking && ((game.now - player1.hitTime) / 1000) > 1.25 && object2.life > 0) {
+let enemyCollisionDetection = function(player, baddy) {
+  let x1 = player.x;
+  let y1 = player.y;
+  let x2 = baddy.x;
+  let y2 = baddy.y;
+  if (!player.isAttacking && ((game.now - player.hitTime) / 1000) > 1.25 && baddy.currentLife > 0) {
     let xDistance = x2 - x1;
     let yDistance = y2 - (y1 - 4);
     let hitRadius = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
-    if (hitRadius <= 33 && !player1.invincible) {
-      player1.getDamagedTime();
-      player1.life -= object2.strength;
-      updateHeartDisplay(player1);
+    if (hitRadius <= 33 && !player.invincible) {
+      player.getDamagedTime();
+      player.life -= baddy.strength;
+      updateHeartDisplay(player);
     };
-  } else if (player1.isAttacking && ((game.now - player1.attackTime) / 1000) > .2 && object2.life > 0) {
+  } else if (player.isAttacking && ((game.now - player.attackTime) / 1000) > .2 && baddy.currentLife > 0) {
     let xDistance = x2 - x1;
     let yDistance = y2 - y1;
     let hitRadius = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
@@ -41,34 +40,34 @@ let enemyCollisionDetection = function(object1, object2) {
     let explosion = newImage('images/explosion-death.png');
     let bossExplosion = newImage('images/boss-explosion.png');
     if (hitRadius <= 32 || hitRadiusRight <= 32 || hitRadiusDown <= 32) {
-      player1.getAttackTime();
-      object2.life -= 1;
-      if (object2.life === 0) {
-        object2.dead = true;
+      player.getAttackTime();
+      baddy.currentLife -= 1;
+      if (baddy.currentLife === 0) {
+        baddy.dead = true;
         enemyMap.dispatchEvent(new CustomEvent('kill', {
           bubbles: true,
           detail: {
-            enemy: object2
+            enemy: baddy
           }
         }));
       };
-      if (object2.dead) {
-        if (object2.type !== 'boss') {
-          ctxExplosionCanvas.drawImage(explosion, 40, 10, 280, 285, object2.x, object2.y, 60, 60);
-        } else if (object2.type === 'boss') {
-          ctxExplosionCanvas.drawImage(bossExplosion, 0, 0, 958, 952, object2.x, object2.y, 80, 80);
+      if (baddy.dead) {
+        if (baddy.type !== 'boss') {
+          ctxExplosionCanvas.drawImage(explosion, 40, 10, 280, 285, baddy.x, baddy.y, 60, 60);
+        } else if (baddy.type === 'boss') {
+          ctxExplosionCanvas.drawImage(bossExplosion, 0, 0, 958, 952, baddy.x, baddy.y, 80, 80);
         };
-        if (object2.type !== 'xRightRunner' && object2.type !== 'xLeftRunner' && object2.type !== 'yRunner') {
-          object2.x = xStarting(object2.spriteWidth);
-          object2.y = yStarting(object2.spriteHeight);
-        } else if (object2.type === 'xRightRunner') {
-          xRightResetOffscreenEnemies(object2);
-        } else if (object2.type === 'xLeftRunner') {
-          xLeftResetOffscreenEnemies(object2);
-        } else if (object2.type === 'yRunner') {
-          yResetOffscreenEnemies(object2);
+        if (baddy.type !== 'xRightRunner' && baddy.type !== 'xLeftRunner' && baddy.type !== 'yRunner') {
+          baddy.x = xStarting(baddy.spriteWidth);
+          baddy.y = yStarting(baddy.spriteHeight);
+        } else if (baddy.type === 'xRightRunner') {
+          xRightResetOffscreenEnemies(baddy);
+        } else if (baddy.type === 'xLeftRunner') {
+          xLeftResetOffscreenEnemies(baddy);
+        } else if (baddy.type === 'yRunner') {
+          yResetOffscreenEnemies(baddy);
         };
-        game.score += object2.points;
+        game.score += baddy.points;
       };
     };
   };
