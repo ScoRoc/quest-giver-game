@@ -291,36 +291,44 @@ class Player {
   playerAction(e) {
     let key = e.key || e.keycode;
     console.log('heres e.key: ', key);
-    let keys = [32, 37, 38, 39, 40];
-    if (keys.includes(e.keyCode)) {
+    let keys = [
+      'ArrowUp',
+      'ArrowDown',
+      'ArrowLeft',
+      'ArrowRight',
+      ' ',
+      32, 37, 38, 39, 40
+    ];
+    if (keys.includes(key)) {
       e.preventDefault();
+      console.log('prevented');
     }
     //Up
-    if (e.keyCode === 38 && !game.over) {
+    if (key === 'ArrowUp' || key === 38 && !game.over) {
       if (this.isMoving !== 'up' && !this.isAttacking && this.y >= 1) {
         this.isMoving = 'up';
       };
     }
     //Down
-    if (e.keyCode === 40 && !game.over) {
+    if (key === 'ArrowDown' || key === 40 && !game.over) {
       if (this.isMoving !== 'down' && !this.isAttacking && this.y <= this.bottomBound) {
         this.isMoving = 'down';
       };
     }
     //Left
-    if (e.keyCode === 37 && !game.over) {
+    if (key === 'ArrowLeft' || key ===  37 && !game.over) {
       if (this.isMoving !== 'left' && !this.isAttacking && this.x >= 0) {
         this.isMoving = 'left';
       };
     }
     //Right
-    if (e.keyCode === 39 && !game.over) {
+    if (key === 'ArrowRight' || key ===  39 && !game.over) {
       if (this.isMoving !== 'right' && !this.isAttacking && this.x <= this.rightBound) {
         this.isMoving = 'right';
       };
     }
     //Spacebar
-    if (e.keyCode === 32 && !game.over) {
+    if (key === ' ' || key ===  32 && !game.over) {
       this.attackDirection();
     }
   };
@@ -368,28 +376,29 @@ class Player {
   };
 
   actionStop(e) {
+    let key = e.key || e.keycode;
     //Stop moving up
-    if(e.keyCode === 38 && !game.over) {
+    if(key === 'ArrowUp' || key === 38 && !game.over) {
       this.isMoving = false;
       this.yFrame = 30;
     };
     //Stop moving down
-    if(e.keyCode === 40 && !game.over) {
+    if(key === 'ArrowDown' || key === 40 && !game.over) {
       this.isMoving = false;
       this.yFrame = 0;
     };
     //Stop moving left
-    if(e.keyCode === 37 && !game.over) {
+    if(key === 'ArrowLeft' || key === 37 && !game.over) {
       this.isMoving = false;
       this.yFrame = 0;
     };
     //Stop moving right
-    if(e.keyCode === 39 && !game.over) {
+    if(key === 'ArrowRight' || key === 39 && !game.over) {
       this.isMoving = false;
       this.yFrame = 31;
     };
     //Stop attacking
-    if (e.keyCode === 32 && !game.over) {
+    if (key === ' ' || key === 32 && !game.over) {
       this.attackDirectionStop();
     }
   };
