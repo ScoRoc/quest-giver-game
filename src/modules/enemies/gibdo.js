@@ -1,8 +1,8 @@
 import Enemy from './Enemy.js';
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
-import link from '../player.js';
+import player1 from '../Player.js';
 
-//mummy creature, moves 1px frequently, somewhat slow and towards link
+//mummy creature, moves 1px frequently, somewhat slow and towards Player
 //worth 1 point || strength 1 || max life 2
 //level 3+
 
@@ -47,15 +47,15 @@ class Gibdo extends Enemy {
   move() {
     //Moves on coinFlip
     if (coinFlip(2) === 0) {
-      if (this.x - link.x >= 0) {
+      if (this.x - player1.x >= 0) {
         this.x -= this.speed * this.numberOfSpaces[coinFlip(2)];
-      } else if (this.x - link.x < 0) {
+      } else if (this.x - player1.x < 0) {
         this.x += this.speed * this.numberOfSpaces[coinFlip(2)];
       }
     } else if (coinFlip(2) === 1) {
-      if (this.y - link.y >= 0) {
+      if (this.y - player1.y >= 0) {
         this.y -= this.speed * this.numberOfSpaces[coinFlip(2)];
-      } else if (this.y - link.y < 0) {
+      } else if (this.y - player1.y < 0) {
         this.y += this.speed * this.numberOfSpaces[coinFlip(2)];
       };
     };

@@ -1,25 +1,23 @@
-
-import player1 from '../../app.js';
 import { ctxSpriteMap, ctxSpriteMapDraw, spriteMap } from '../maps.js';
+import player1 from '../Player.js';
 
-//link death spin
-let playerDies = function() {
-  console.log('in linkDies');
+//Player death spin
+let playerDies = function(player) {
   ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-  ctxSpriteMapDraw(link);
-  if (link.xFrame === 0 && link.yFrame === 0) {
-    link.xFrame = 90;
-    link.yFrame = 30;
-  } else if (link.xFrame === 90 && link.yFrame === 30) {
-    link.xFrame = 61;
-    link.yFrame = 0;
-  } else if (link.xFrame === 61 && link.yFrame === 0) {
-    link.xFrame = 29;
-    link.yFrame = 0;
-  } else if (link.xFrame === 29 && link.yFrame === 0) {
-    link.xFrame = 0;
-    link.yFrame = 0;
+  ctxSpriteMapDraw(player1);
+  if (player1.xFrame === 0 && player1.yFrame === 0) {
+    player1.xFrame = 90;
+    player1.yFrame = 30;
+  } else if (player1.xFrame === 90 && player1.yFrame === 30) {
+    player1.xFrame = 61;
+    player1.yFrame = 0;
+  } else if (player1.xFrame === 61 && player1.yFrame === 0) {
+    player1.xFrame = 29;
+    player1.yFrame = 0;
+  } else if (player1.xFrame === 29 && player1.yFrame === 0) {
+    player1.xFrame = 0;
+    player1.yFrame = 0;
   };
 };
 
-export default linkDies;
+export default playerDies;

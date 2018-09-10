@@ -1,8 +1,8 @@
 import Enemy from './Enemy.js';
 import { xStarting, yStarting } from '../mathHelpers.js';
-import link from '../player.js';
+import player1 from '../Player.js';
 
-//statue knight creature, stands still until link is near then moves towards
+//statue knight creature, stands still until Player is near then moves towards
 //worth 2 points || strength 2 || max life 2
 // level 6+
 
@@ -44,9 +44,9 @@ class Armos extends Enemy {
   };
 
   move() {
-    //stands still until link is close, then charges link
-    let lx = link.x;
-    let ly = link.y;
+    //stands still until Player is close, then charges Player
+    let lx = player1.x;
+    let ly = player1.y;
     let tx = this.x;
     let ty = this.y;
     if (lx - tx > 0 && lx - tx < 115 && ly - ty > 0 && ly - ty < 115) {

@@ -1,11 +1,11 @@
-import link from './player.js';
+import player1 from './Player.js';
 import { questGiverInstance } from '../app.js';
 import KillQuest from './npc/quests/KillQuest.js';
 
 const ul = $('#quests-div ul');
 
 let showQuests = () => {
-  const lq = link.quests;
+  const lq = player1.quests;
   if (lq.length === 0) {
     ul.text('no current quests');
   } else {

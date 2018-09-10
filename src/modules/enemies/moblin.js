@@ -1,6 +1,6 @@
 import Enemy from './Enemy.js';
 import { xStarting, yStarting } from '../mathHelpers.js';
-import link from '../player.js';
+import player1 from '../Player.js';
 import { backgroundMap } from '../maps.js';
 
 //boss - goblin type creature, 3 stages 1) circle, 2) runner, 3) scared
@@ -156,7 +156,7 @@ class Moblin extends Enemy {
     } else if (this.life > 0) {   //Stage Three
       this.speed = 1.2;
         //move diagonally bottom right
-      if (this.x - link.x >= 0 && this.y - link.y >= 0) {
+      if (this.x - player1.x >= 0 && this.y - player1.y >= 0) {
         if (this.x < backgroundMap.width - this.spriteWidth && this.y < backgroundMap.height - this.spriteHeight) {
           this.x += this.speed;
           this.y += this.speed;
@@ -169,7 +169,7 @@ class Moblin extends Enemy {
           this.y = backgroundMap.height / 2;
         };
         //move diagonally top right
-      } else if (this.x - link.x >= 0 && this.y - link.y <= 0) {
+      } else if (this.x - player1.x >= 0 && this.y - player1.y <= 0) {
         if (this.x < backgroundMap.width - this.spriteWidth && this.y > 0) {
           this.x += this.speed;
           this.y -= this.speed;
@@ -182,7 +182,7 @@ class Moblin extends Enemy {
           this.y = backgroundMap.height / 2;
         };
         //move diagonally top left
-      } else if (this.x - link.x <= 0 && this.y - link.y <= 0) {
+      } else if (this.x - player1.x <= 0 && this.y - player1.y <= 0) {
         if (this.x > 0 && this.y > 0) {
           this.x -= this.speed;
           this.y -= this.speed;
@@ -195,7 +195,7 @@ class Moblin extends Enemy {
           this.y = backgroundMap.height / 2;
         };
         //move diagonally bottom left
-      } else if (this.x - link.x <= 0 && this.y - link.y >= 0) {
+      } else if (this.x - player1.x <= 0 && this.y - player1.y >= 0) {
         if (this.x > 0 && this.y < backgroundMap.height - this.spriteHeight) {
           this.x -= this.speed;
           this.y += this.speed;

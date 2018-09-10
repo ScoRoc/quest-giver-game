@@ -1,4 +1,3 @@
-import link from '../player.js';
 import { showHideQuests, showQuests } from '../showHideQuests.js';
 import KillQuest from './quests/KillQuest.js';
 import { questGiverInstance } from '../../app.js';
@@ -35,15 +34,15 @@ class QuestGiver {
     this.availableQuests = [new KillQuest()];
   };
 
-  click() {
+  click(player) {
     let aq = this.availableQuests;
-    if (link.quests[0]) {
+    if (player.quests[0]) {
       // placeholder quest stuff...clean up later
-      if (link.quests[0].kills >= link.quests[0].killsToComplete) {
-        // link.xp += link.quests[0].xp;
-        // $('#player-xp').text(link.xp);
-        link.gainXP(link.quests[0].xp);
-        link.quests.splice(link.quests[0]);
+      if (player.quests[0].kills >= player.quests[0].killsToComplete) {
+        // player.xp += player.quests[0].xp;
+        // $('#player-xp').text(player.xp);
+        player.gainXP(player.quests[0].xp);
+        player.quests.splice(player.quests[0]);
         $('#quests-div ul').empty();
         questGiverInstance.availableQuests.push(new KillQuest());
         showQuests();
@@ -51,7 +50,7 @@ class QuestGiver {
     } else {
       if (aq.length > 0) {
         // placeholder for now...ugly...clean up to be actual quest
-        link.quests.push(aq.splice(aq.indexOf(aq[0]), 1)[0]);
+        player.quests.push(aq.splice(aq.indexOf(aq[0]), 1)[0]);
       }
       if (showHideQuests.showing()) {
         showQuests();

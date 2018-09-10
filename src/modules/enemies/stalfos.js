@@ -1,8 +1,8 @@
 import Enemy from './Enemy.js';
 import { coinFlip, xStarting, yStarting } from '../mathHelpers.js';
-import link from '../player.js';
+import player1 from '../Player.js';
 
-//skeleton creature, moves quickly towards link
+//skeleton creature, moves quickly towards Player
 //worth 1 point || strength 1.5 || max life 2
 // level 4+
 
@@ -47,15 +47,15 @@ class Stalfos extends Enemy {
   move() {
     //Moves if coinFlip is 1
     if (coinFlip(2) === 0) {
-      if (this.x - link.x >= 0) {
+      if (this.x - player1.x >= 0) {
         this.x -= this.speed * this.numberOfSpaces[coinFlip(1)];
-      } else if (this.x - link.x < 0) {
+      } else if (this.x - player1.x < 0) {
         this.x += this.speed * this.numberOfSpaces[coinFlip(1)];
       }
     } else if (coinFlip(2) === 1) {
-      if (this.y - link.y >= 0) {
+      if (this.y - player1.y >= 0) {
         this.y -= this.speed * this.numberOfSpaces[coinFlip(1)];
-      } else if (this.y - link.y < 0) {
+      } else if (this.y - player1.y < 0) {
         this.y += this.speed * this.numberOfSpaces[coinFlip(1)];
       };
     };

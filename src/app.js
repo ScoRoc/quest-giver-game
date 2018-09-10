@@ -1,7 +1,8 @@
 import { coinFlip, xStarting, yStarting } from './modules/mathHelpers.js';
 import { newImage } from './modules/nonMathHelpers.js';
 import { showHideQuests, showQuests } from './modules/showHideQuests.js';
-import { heart, bigHeart } from './modules/items/hearts.js';
+import { heart, bigHeart, updateHeartDisplay } from './modules/items/hearts.js';
+import player1 from './modules/Player.js';
 import {
   Tektite,
   Keese,
@@ -37,9 +38,6 @@ import {
 } from './modules/gameState/gameStateImporter.js';
 import { heartCollisionDetection, enemyCollisionDetection } from './modules/collisionDetectors/collisionDetectorImporter.js';
 import { xRightResetOffscreenEnemies, xLeftResetOffscreenEnemies, yResetOffscreenEnemies } from './modules/resetEnemyHelpers.js';
-import { Player, startingPlayerStats } from './modules/Player.js';
-
-const newPlayer = new Player(startingPlayerStats);
 
 //Game info and functions
 let game = {
@@ -213,7 +211,7 @@ let clickQuestGiver = e => {
   let y = e.clientY - sMap.offsetParent.offsetTop;
   let qg = questGiverInstance;
   if (x >= qg.x && x <= qg.x + qg.width && y >= qg.y && y <= qg.y + qg.height) {
-    qg.click();
+    qg.click(player1);
   }
 };
 ///////////////////////////////////
@@ -387,7 +385,7 @@ let animationLoop = function() {
       moblinInstance.move();
     };
 
-    //Animates player1 and explosion steps
+    //Animates player and explosion steps
     ctxSpriteMapDraw(player1);
     player1.invincible = $('#invincible').prop('checked');
 
@@ -509,7 +507,11 @@ $('#quests-div button').click(() => showHideQuests.showHide());
 document.getElementById('sprite-map').addEventListener('click', e => clickQuestGiver(e));
 
 startGameButton.on('click', startGame);
-window.addEventListener('keydown', player1.playerAction);
-window.addEventListener('keyup', player1.actionStop);
+window.addEventListener('keydown', function(e) {
+  player1.playerAction(e);
+});
+window.addEventListener('keyup', function(e) {
+  player1.actionStop(e);
+});
 
 export { game, background, areEnemiesDead, animateGame, startGameButton, questGiverInstance };

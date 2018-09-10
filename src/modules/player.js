@@ -1,4 +1,4 @@
-
+import { updateHeartDisplay } from './items/hearts.js';
 import { xStarting, yStarting } from './mathHelpers.js';
 import { newImage } from './nonMathHelpers.js';
 import { backgroundMap } from './maps.js';
@@ -68,15 +68,15 @@ class Player {
     this.rightMapMove = backgroundMap.width - 32; //x px where link causes map to move right
   };
 
-  attackTime() {
+  getAttackTime() {
     this.attackTime = Date.now();
   };
 
-  hitTime() {
+  getDamagedTime() {
     this.hitTime = Date.now();
   };
 
-  grabHeart() {
+  getHeartTime() {
     this.heartTime = Date.now();
   };
 
@@ -87,7 +87,7 @@ class Player {
     this.xpToLevel += 5;
     $('#needed-xp').text(this.xpToLevel);
     this.life = this.maxLife;
-    this.heartDisplay();
+    updateHeartDisplay(this);
   };
 
   checkForNextLevel() {
@@ -270,26 +270,26 @@ class Player {
     //Up
     if (e.keyCode === 38 && !game.over) {
       if (this.isMoving !== 'up' && !this.isAttacking && this.y >= 1) {
-          this.isMoving = 'up';
-        };
+        this.isMoving = 'up';
+      };
     }
     //Down
     if (e.keyCode === 40 && !game.over) {
       if (this.isMoving !== 'down' && !this.isAttacking && this.y <= this.bottomBound) {
-          this.isMoving = 'down';
-        };
+        this.isMoving = 'down';
+      };
     }
     //Left
     if (e.keyCode === 37 && !game.over) {
       if (this.isMoving !== 'left' && !this.isAttacking && this.x >= 0) {
-          this.isMoving = 'left';
-        };
+        this.isMoving = 'left';
+      };
     }
     //Right
     if (e.keyCode === 39 && !game.over) {
       if (this.isMoving !== 'right' && !this.isAttacking && this.x <= this.rightBound) {
-          this.isMoving = 'right';
-        };
+        this.isMoving = 'right';
+      };
     }
     //Spacebar
     if (e.keyCode === 32 && !game.over) {
@@ -368,4 +368,6 @@ class Player {
 
 };
 
-export { Player, startingPlayerStats };
+const player1 = new Player(startingPlayerStats);
+
+export default player1;

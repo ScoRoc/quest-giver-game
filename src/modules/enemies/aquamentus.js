@@ -1,9 +1,9 @@
 import Enemy from './Enemy.js';
 import { xStarting, yStarting } from '../mathHelpers.js';
-import link from '../player.js';
+import player1 from '../Player.js';
 import { backgroundMap } from '../maps.js';
 
-//loch ness monster creature, rush across screen R to L, goes towards link if hes near
+//loch ness monster creature, rush across screen R to L, goes towards Player if hes near
 //worth 3 points || strength 2 || max life 2
 // level 9+
 
@@ -45,9 +45,9 @@ class Aquamentus extends Enemy {
   };
 
   move() {
-    //charges link if close, otherwise charges left
-    let lx = link.x;
-    let ly = link.y;
+    //charges Player if close, otherwise charges left
+    let lx = player1.x;
+    let ly = player1.y;
     let tx = this.x;
     let ty = this.y;
     if (lx - tx > 0 && lx - tx < 100 && ly - ty > 0 && ly - ty < 100) {
