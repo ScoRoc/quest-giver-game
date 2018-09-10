@@ -226,32 +226,37 @@ let allEnemies = [
 let liveEnemies = [];
 let areEnemiesDead = null;
 
-let enemyClasses = [
-  Tektite,
-  Keese,
-  Gibdo,
-  Stalfos,
-  Dodongo,
-  Armos,
-  Wizzrobe,
-  Darknut,
-  Aquamentus,
-  Moblin
-];
+  ////////////////////
+ // RANDOM ENEMIES //
+////////////////////
+// let enemyClasses = [
+//   Tektite,
+//   Keese,
+//   Gibdo,
+//   Stalfos,
+//   Dodongo,
+//   Armos,
+//   Wizzrobe,
+//   Darknut,
+//   Aquamentus,
+//   Moblin
+// ];
+//
+// let getRandomEnemyClass = () => {
+//   return enemyClasses[Math.floor(Math.random() * enemyClasses.length)];
+// };
+//
+// let currentEnemies = [];
+//
+// while (currentEnemies.length < 3) {
+//   currentEnemies.push( new (getRandomEnemyClass())() );
+// }
+//
+// currentEnemies.forEach(enemy => {
+//   enemy.currentLife = enemy.maxLife;
+// });
 
-let getRandomEnemyClass = () => {
-  return enemyClasses[Math.floor(Math.random() * enemyClasses.length)];
-};
-
-let currentEnemies = [];
-
-while (currentEnemies.length < 3) {
-  currentEnemies.push( new (getRandomEnemyClass())() );
-}
-
-currentEnemies.forEach(enemy => {
-  enemy.currentLife = enemy.maxLife;
-});
+/////////////////////
 
 // let tektiteArray = [];
 // for (let i = 0; i < 10; i++) {
@@ -330,17 +335,22 @@ let animationLoop = function() {
     if (bigHeart.show) {
       ctxEnemyMapDraw(bigHeart);
     };
-    currentEnemies.forEach(enemy => {
-      if (!enemy.dead) {
-        ctxEnemyMapDraw(enemy);
-        enemy.move();
-      }
-    });
+
+    ////////////////////
+    // FOR RANDOM ENEMIES
+    // currentEnemies.forEach(enemy => {
+    //   if (!enemy.dead) {
+    //     ctxEnemyMapDraw(enemy);
+    //     enemy.move();
+    //   }
+    // });
+    /////////////////
+
     //Animates tektiteInstance
-    // if (!tektiteInstance.dead && game.level >= tektiteInstance.levelShowUp) {
-    //   ctxEnemyMapDraw(tektiteInstance);
-    //   tektiteInstance.move();
-    // };
+    if (!tektiteInstance.dead && game.level >= tektiteInstance.levelShowUp) {
+      ctxEnemyMapDraw(tektiteInstance);
+      tektiteInstance.move();
+    };
     /////// for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
     //   if (!tektiteArray[i].dead && game.level >= tektiteArray[i].levelShowUp) {
@@ -432,12 +442,14 @@ let animationLoop = function() {
 
 
     // Enemy collision detection
-    currentEnemies.forEach(enemy => {
-      // console.log('heres enemy', enemy);
+    allEnemies.forEach(enemy => {
       enemyCollisionDetection(player1, enemy);
     });
 
-    // console.log(currentEnemies);
+    // for random enemies
+    // currentEnemies.forEach(enemy => {
+    //   enemyCollisionDetection(player1, enemy);
+    // });
 
     ////// for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
