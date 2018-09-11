@@ -34,9 +34,17 @@ canvas {
   box-shadow: 0px 0px 30px 1px #111 inset;
 }
 
+.hearts-col label, .hearts-col input {
+  cursor: pointer;
+}
+
 .quests-div {
   grid-area: 2 / 1 / 4 / 2;
   min-height: 300px;
+}
+
+.quests-div button {
+  cursor: pointer;
 }
 
 .enemy-col {
