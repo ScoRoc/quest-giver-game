@@ -1,6 +1,6 @@
 import { updateHeartDisplay } from '../items/hearts.js';
 import { game } from '../../app.js';
-import { checkForDead } from '../battle/battleFunctions.js';
+import { checkForDead, updateLastEnemy } from '../battle/battleFunctions.js';
 
 //Collision Detection between Player and enemies
 let enemyCollisionDetection = function(player, baddy) {
@@ -28,10 +28,9 @@ let enemyCollisionDetection = function(player, baddy) {
     let yDistanceDown = y2 - yDownAttack;
     let hitRadiusDown = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistanceDown, 2)));
     if (hitRadius <= 32 || hitRadiusRight <= 32 || hitRadiusDown <= 32) {
-      player.lastAttacked = baddy;
-      console.log('heres baddy: ', baddy);
-      player.getAttackTime();
+      updateLastEnemy(player, baddy);
       baddy.life -= 1;
+      player.getAttackTime();
       checkForDead(baddy);
     };
   };
