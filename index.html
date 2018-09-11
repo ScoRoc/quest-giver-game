@@ -53,6 +53,12 @@
         <button type="button" class="grow-button" id="start-game">Start game</button>
       </div>
 
+      <div class='quests-div' id="quests-div">
+        <h4>Quests</h4>
+        <button>Show</button>
+        <ul></ul>
+      </div>
+
       <div class='enemy-col'>
         <h3>Last enemy attacked</h3>
         <p id='last-enemy-class'>No enemy</p>
@@ -63,17 +69,22 @@
           <span id='last-enemy-max-life'>0</span>
           hp
         </p>
-        <h4>Debuffs</h4>
-        <p id='debuff-name'></p>
-        <img id='debuff-img' />
-        <p id='debuff-desc'></p>
       </div>
 
-      <div id="quests-div">
-        <h4>Quests</h4>
-        <button>Show</button>
-        <ul></ul>
+      <div class='player-desc'>
+        <p>Press Space Bar to attack, or F to cast a fire DoT</p>
       </div>
+
+      <!-- <div class='debuff-box'> -->
+        <div class='debuff-box__title'>
+          <h4>Debuffs</h4>
+          <p id='debuff-name'>sadf</p>
+        </div>
+        <div class='debuff-box__img-and-desc'>
+          <img id='debuff-img' src='./images/fire-dot.png'/>
+          <p id='debuff-desc'>asdf sadfsad fsadf asdfasdfasd</p>
+        </div>
+      <!-- </div> -->
 
     </div>
 
