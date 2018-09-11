@@ -8,21 +8,21 @@ import { questGiverInstance } from '../../app.js';
 //worth 1 point || strength 0.5 || max life 1
 //level 1+
 
-// const stats = {
-//   img: 'images/tektite.png',
-//   pngWidth: 16,
-//   pngHeight: 15,
-//   spriteWidth: 37.5,
-//   spriteHeight: 40,
-//   xStart: xStarting(40),
-//   yStart: yStarting(45),
-//   speed: 16,
-//   type: 'basic',
-//   maxLife: 1,
-//   strength: 0.5,
-//   points: 1,
-//   levelShowUp: 1
-// };
+const stats = {
+  img: 'images/quest-giver.png',
+  pngWidth: 948,
+  pngHeight: 1101,
+  spriteWidth: 43,
+  spriteHeight: 50,
+  xStart: 150,
+  yStart: 150,
+  speed: 16,
+  type: 'basic',
+  maxLife: 1,
+  strength: 0.5,
+  points: 1,
+  levelShowUp: 1
+};
 
 class QuestGiver {
   constructor(x, y, width, height, color) {

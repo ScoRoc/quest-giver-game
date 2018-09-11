@@ -26,22 +26,7 @@ const stats = {
 
 class Aquamentus extends Enemy {
   constructor() {
-    super(
-      stats.img,
-      stats.pngWidth,
-      stats.pngHeight,
-      stats.spriteWidth,
-      stats.spriteHeight,
-      stats.xStart,
-      stats.yStart,
-      stats.speed,
-      stats.class,
-      stats.type,
-      stats.maxLife,
-      stats.strength,
-      stats.points,
-      stats.levelShowUp
-    );
+    super(stats);
   };
 
   move() {
