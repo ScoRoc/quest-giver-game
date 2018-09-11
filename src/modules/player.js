@@ -220,30 +220,32 @@ class Player {
   };
 
   fireDoT() {
-    let fire = new FireDoT();
-    fire.isOnEnemy = this.lastAttacked;
-    if (!this.lastAttacked.dead) {
-      fire.isAttacking = true;
-      allFireDoTs.push(fire);
-      updateDebuff(fire);
-    }
-    let dot = setInterval(() => {
+    if (this.lastAttacked) {
+      let fire = new FireDoT();
+      fire.isOnEnemy = this.lastAttacked;
       if (!this.lastAttacked.dead) {
-        this.lastAttacked.life -= 0.5;
-        updateLastEnemy(this, this.lastAttacked);
-        console.log('lastAttacked.life: ', this.lastAttacked.life);
-        checkForDead(this.lastAttacked);
+        fire.isAttacking = true;
+        allFireDoTs.push(fire);
+        updateDebuff(fire);
       }
-      if (this.lastAttacked.dead) {
+      let dot = setInterval(() => {
+        if (!this.lastAttacked.dead) {
+          this.lastAttacked.life -= 0.5;
+          updateLastEnemy(this, this.lastAttacked);
+          console.log('lastAttacked.life: ', this.lastAttacked.life);
+          checkForDead(this.lastAttacked);
+        }
+        if (this.lastAttacked.dead) {
+          allFireDoTs.splice(allFireDoTs.indexOf(fire));
+        }
+      }, 1000);
+      setTimeout(() => {
+        clearInterval(dot);
+        fire.isAttacking = false;
         allFireDoTs.splice(allFireDoTs.indexOf(fire));
-      }
-    }, 1000);
-    setTimeout(() => {
-      clearInterval(dot);
-      fire.isAttacking = false;
-      allFireDoTs.splice(allFireDoTs.indexOf(fire));
-      updateDebuff(fire);
-    }, 3000)
+        updateDebuff(fire);
+      }, 3000)
+    }
   };
 
   attackDirection() {
