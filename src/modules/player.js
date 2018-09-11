@@ -27,31 +27,6 @@ const startingPlayerStats = {
   xpToLevel: 30
 };
 
-
-
-////////////////////////
-
-// ADD PLAYER ABILITY/ABILITIES
-//
-// MAKE A SIMPLE DOT (FIRE)
-//
-// ON PLAYER, TRACK LAST ENEMY HIT
-// PASS IT FROM
-//
-// add player ability/abilities
-//
-// make a simple dot (fire)
-//
-// on player, track last enemy hit
-// pass it from enemyCollisionDetection
-// and make this ability hit the last enemy hit
-// if enemy isnt dead...and w/e else needs to be accounted for
-
-
-/////////////////////////////
-
-
-
 //Define player
 //Player, aka Link
 class Player {
