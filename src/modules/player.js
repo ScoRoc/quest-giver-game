@@ -220,6 +220,7 @@ class Player {
   };
 
   fireDoT() {
+    console.log('this.lastAttacked: ', this.lastAttacked);
     if (this.lastAttacked) {
       let fire = new FireDoT();
       fire.isOnEnemy = this.lastAttacked;

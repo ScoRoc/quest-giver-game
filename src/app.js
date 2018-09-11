@@ -352,12 +352,12 @@ let animationLoop = function() {
       tektiteInstance.move();
     };
     /////// for multiple tektites
-    // for (let i = 0; i < tektiteArray.length; i++) {
-    //   if (!tektiteArray[i].dead && game.level >= tektiteArray[i].levelShowUp) {
-    //     tektiteArray[i].draw();
-    //     tektiteArray[i].move();
-    //   };
-    // }
+    // tektiteArray.forEach(tektite => {
+    //   if (!tektite.dead && game.level >= tektite.levelShowUp) {
+    //     ctxEnemyMapDraw(tektite);
+    //     tektite.move();
+    //   }
+    // });
     ///////
 
     //Animates keeseInstance
@@ -461,9 +461,9 @@ let animationLoop = function() {
     // });
 
     ////// for multiple tektites
-    // for (let i = 0; i < tektiteArray.length; i++) {
-    //   enemyCollisionDetection(player1.x, player1.y, tektiteArray[i].x, tektiteArray[i].y, tektiteArray[i]);
-    // }
+    // tektiteArray.forEach(tektite => {
+    //   enemyCollisionDetection(player1, tektite);
+    // });
 
     //Array of live enemies
     liveEnemies = allEnemies.filter(function(baddy) {
@@ -496,12 +496,12 @@ let startGame = function() {
     tektiteInstance.x = xStarting(tektiteInstance.spriteWidth);
     tektiteInstance.y = yStarting(tektiteInstance.spriteHeight);
     // for multiple tektites
-    // for (let i = 0; i < tektiteArray.length; i++) {
-    //   tektiteArray[i].dead = false;
-    //   tektiteArray[i].life = tektiteArray[i].maxLife;
-    //   tektiteArray[i].x = xStarting(tektiteArray[i].spriteWidth);
-    //   tektiteArray[i].y = yStarting(tektiteArray[i].spriteHeight);
-    // }
+    // tektiteArray.forEach(tektite => {
+    //   tektite.dead = false;
+    //   tektite.life = tektite.maxLife;
+    //   tektite.x = xStarting(tektite.spriteWidth);
+    //   tektite.y = yStarting(tektite.spriteHeight);
+    // });
     dodongoInstance.x = -dodongoInstance.spriteWidth * 1.2;
     dodongoInstance.y = yStarting(50);
     heart.show = false;
