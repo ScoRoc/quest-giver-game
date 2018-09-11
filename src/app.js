@@ -206,13 +206,26 @@ let moblinInstance = new Moblin();
 //////////////////////////////////////////
 let questGiverInstance = new QuestGiver(150, 150, 50, 50, '#3FA');
 
+const sMap = document.getElementById('sprite-map');
+
 let clickQuestGiver = e => {
-  let sMap = document.getElementById('sprite-map');
   let x = e.clientX - sMap.offsetParent.offsetLeft - sMap.offsetLeft;
   let y = e.clientY - sMap.offsetParent.offsetTop;
   let qg = questGiverInstance;
   if (x >= qg.x && x <= qg.x + qg.width && y >= qg.y && y <= qg.y + qg.height) {
     qg.click(player1);
+  }
+};
+
+let mousePointerIcon = e => {
+  console.log('in mouse func');
+  let x = e.clientX - sMap.offsetParent.offsetLeft - sMap.offsetLeft;
+  let y = e.clientY - sMap.offsetParent.offsetTop;
+  let qg = questGiverInstance;
+  if (x >= qg.x && x <= qg.x + qg.width && y >= qg.y && y <= qg.y + qg.height) {
+    sMap.style.cursor = 'pointer';
+  } else {
+    sMap.style.cursor = 'default';
   }
 };
 ///////////////////////////////////
@@ -546,7 +559,8 @@ enemyMap.addEventListener('kill', (e) => {
 
 $('#quests-div button').click(() => showHideQuests.showHide());
 
-document.getElementById('sprite-map').addEventListener('click', e => clickQuestGiver(e));
+sMap.addEventListener('click', e => clickQuestGiver(e));
+sMap.addEventListener('mousemove', e => mousePointerIcon(e));
 
 startGameButton.on('click', startGame);
 document.addEventListener('keydown', e => player1.playerAction(e));
