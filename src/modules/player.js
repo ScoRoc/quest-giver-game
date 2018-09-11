@@ -232,7 +232,6 @@ class Player {
         if (!this.lastAttacked.dead) {
           this.lastAttacked.life -= 0.5;
           updateLastEnemy(this, this.lastAttacked);
-          console.log('lastAttacked.life: ', this.lastAttacked.life);
           checkForDead(this.lastAttacked);
         }
         if (this.lastAttacked.dead) {
