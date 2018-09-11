@@ -262,13 +262,13 @@ class Player {
       if (this.lastAttacked.dead) {
         allFireDoTs.splice(allFireDoTs.indexOf(fire));
       }
-    }, 500);
+    }, 1000);
     setTimeout(() => {
       clearInterval(dot);
       fire.isAttacking = false;
       allFireDoTs.splice(allFireDoTs.indexOf(fire));
       updateDebuff(fire);
-    }, 1500)
+    }, 3000)
   };
 
   attackDirection() {
@@ -319,7 +319,6 @@ class Player {
   //Player keyboard actions
   playerAction(e) {
     let key = e.key || e.keycode;
-    // console.log('heres e.key: ', e);
     let keys = [
       'ArrowUp',
       'ArrowDown',

@@ -521,6 +521,10 @@ let startGame = function() {
     ctxDeathCanvas.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxEnemyMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxSpriteMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
+    $('#last-enemy-class').text('No enemy targeted');
+    $('#last-enemy-img').attr('src', '');
+    $('#last-enemy-life').text(0);
+    $('#last-enemy-max-life').text(0);
     animationLoop();
     $('#start-game').css('visibility', 'hidden');
   };

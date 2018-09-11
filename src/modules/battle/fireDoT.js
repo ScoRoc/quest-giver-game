@@ -24,7 +24,7 @@ class FireDoT {
     this.spriteWidth = stats.spriteWidth;  // width of sprite on canvas
     this.spriteHeight = stats.spriteHeight;  // height of sprite on canvas
     this.type = 'fire';
-    this.desc = 'Deals 1.5 dmg every 0.5 sec for 1.5 sec';
+    this.desc = 'Deals 0.5 dmg every 1 sec for 3 sec';
     this.isOnEnemy = null;
     this.isAttacking = false;
   }
