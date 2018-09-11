@@ -15,6 +15,7 @@ import {
   Aquamentus,
   Moblin
 } from './modules/enemyImporter.js';
+import { FireDoT, allFireDoTs } from './modules/battle/fireDoT.js';
 import QuestGiver from './modules/npc/QuestGiver.js';
 import {
   backgroundMap,
@@ -326,7 +327,6 @@ let animationLoop = function() {
     ctxSpriteMap.fillRect(questGiverInstance.x, questGiverInstance.y, questGiverInstance.width, questGiverInstance.height);
     ///////////////////////////////////
 
-
     //Animates hearts
     if (heart.show) {
       ctxEnemyMapDraw(heart);
@@ -425,6 +425,15 @@ let animationLoop = function() {
       ctxEnemyMapDraw(moblinInstance);
       moblinInstance.move();
     };
+
+    //Animates FireDoT
+    if (allFireDoTs.length > 0) {
+      allFireDoTs.forEach(fire => {
+        fire.x = fire.isOnEnemy.x + 10;
+        fire.y = fire.isOnEnemy.y + 10;
+        ctxEnemyMapDraw(fire);
+      });
+    }
 
     //Animates player and explosion steps
     ctxSpriteMapDraw(player1);

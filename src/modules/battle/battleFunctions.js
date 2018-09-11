@@ -16,4 +16,16 @@ let updateLastEnemy = (player, baddy) => {
   $('#last-enemy-max-life').text(baddy.maxLife);
 };
 
-export { checkForDead, updateLastEnemy };
+let updateDebuff = debuff => {
+  if (debuff.isAttacking) {
+    $('#debuff-name').text(debuff.type);
+    $('#debuff-img').attr('src', debuff.image.src);
+    $('#debuff-desc').text(debuff.desc);
+  } else {
+    $('#debuff-name').text('No debuffs');
+    $('#debuff-img').attr('src', '');
+    $('#debuff-desc').text('');
+  }
+};
+
+export { checkForDead, updateLastEnemy, updateDebuff };

@@ -137,6 +137,10 @@ canvas {
   width: 50px;
 }
 
+#debuff-img {
+  width: 50px;
+}
+
 @keyframes grow {
   38% {transform: scale(1.2) rotate(9deg);
       box-shadow: 0 0 2px 1px #afd433,
