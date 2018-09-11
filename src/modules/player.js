@@ -1,7 +1,7 @@
 import { updateHeartDisplay } from './items/hearts.js';
 import { xStarting, yStarting } from './mathHelpers.js';
 import { newImage } from './nonMathHelpers.js';
-import { checkForDead } from './battle/battleFunctions.js';
+import { checkForDead, updateLastEnemy } from './battle/battleFunctions.js';
 import { backgroundMap } from './maps.js';
 import { game, background, areEnemiesDead } from '../app.js';
 import { ctxExplosionCanvas, enemyMap } from './maps.js';
@@ -248,6 +248,7 @@ class Player {
     let fire = setInterval(() => {
       if (!this.lastAttacked.dead) {
         this.lastAttacked.life -= 0.5;
+        updateLastEnemy(this, this.lastAttacked);
         console.log('lastAttacked.life: ', this.lastAttacked.life);
         checkForDead(this.lastAttacked);
       }
