@@ -1,6 +1,7 @@
 import { updateHeartDisplay } from './items/hearts.js';
 import { xStarting, yStarting } from './mathHelpers.js';
 import { newImage } from './nonMathHelpers.js';
+import { checkForDead } from './battle/battleFunctions.js';
 import { backgroundMap } from './maps.js';
 import { game, background, areEnemiesDead } from '../app.js';
 import { ctxExplosionCanvas, enemyMap } from './maps.js';
@@ -242,6 +243,20 @@ class Player {
     }
   };
 
+  fireDoT() {
+    console.log('interval last attacked: ', this.lastAttacked);
+    let fire = setInterval(() => {
+      if (!this.lastAttacked.dead) {
+        this.lastAttacked.life -= 0.5;
+        console.log('lastAttacked.life: ', this.lastAttacked.life);
+        checkForDead(this.lastAttacked);
+      }
+    }, 500);
+    setTimeout(() => {
+      clearInterval(fire);
+    }, 1500)
+  };
+
   attackDirection() {
     switch(true) {
       //if facing up
@@ -290,18 +305,18 @@ class Player {
   //Player keyboard actions
   playerAction(e) {
     let key = e.key || e.keycode;
-    console.log('heres e.key: ', key);
+    // console.log('heres e.key: ', e);
     let keys = [
       'ArrowUp',
       'ArrowDown',
       'ArrowLeft',
       'ArrowRight',
       ' ',
-      32, 37, 38, 39, 40
+      'f',
+      32, 37, 38, 39, 40, 70
     ];
     if (keys.includes(key)) {
       e.preventDefault();
-      console.log('prevented');
     }
     //Up
     if (key === 'ArrowUp' || key === 38 && !game.over) {
@@ -330,6 +345,10 @@ class Player {
     //Spacebar
     if (key === ' ' || key ===  32 && !game.over) {
       this.attackDirection();
+      console.log('heres last attacked: ', this.lastAttacked);
+    }
+    if (key === 'f' || key === 70 && !game.over) {
+      this.fireDoT();
     }
   };
 

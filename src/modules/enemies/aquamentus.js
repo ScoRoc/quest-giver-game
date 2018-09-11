@@ -18,7 +18,7 @@ const stats = {
   speed: 1.15,
   class: 'aquamentus',
   type: 'xLeftRunner',
-  maxLife: 2,
+  maxLife: 3,
   strength: 2,
   points: 3,
   levelShowUp: 9

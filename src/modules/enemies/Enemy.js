@@ -18,7 +18,7 @@ class Enemy {
     this.class = className; // class of enemy
     this.type = type;  // enemy type
     this.maxLife = maxLife;  // how much starting life is
-    this.currentLife = this.maxLife;  // how much current life
+    this.life = this.maxLife;  // how much current life
     this.strength = strength;  // how much life taken per hit to Player
     this.dead = false;  // tracks if dead or not
     this.points = points;  // how many points killing enemy is worth

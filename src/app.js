@@ -86,10 +86,10 @@ let background = {
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
         baddy.dead = false;
-        baddy.currentLife = baddy.maxLife;
+        baddy.life = baddy.maxLife;
       } else if (baddy === moblinInstance && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
         baddy.dead = false;
-        baddy.currentLife = baddy.maxLife;
+        baddy.life = baddy.maxLife;
       };
     });
     if (player1.life <= 3) {
@@ -115,10 +115,10 @@ let background = {
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
         baddy.dead = false;
-        baddy.currentLife = baddy.maxLife;
+        baddy.life = baddy.maxLife;
       } else if (baddy === moblinInstance && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
         baddy.dead = false;
-        baddy.currentLife = baddy.maxLife;
+        baddy.life = baddy.maxLife;
       };
     });
     if (player1.life <= 3) {
@@ -144,10 +144,10 @@ let background = {
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
         baddy.dead = false;
-        baddy.currentLife = baddy.maxLife;
+        baddy.life = baddy.maxLife;
       } else if (baddy === moblinInstance && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
         baddy.dead = false;
-        baddy.currentLife = baddy.maxLife;
+        baddy.life = baddy.maxLife;
       };
     });
     if (player1.life <= 3) {
@@ -173,10 +173,10 @@ let background = {
     allEnemies.forEach(function(baddy) {
       if (baddy !== moblinInstance && baddy.dead && game.level >= baddy.levelShowUp) {
         baddy.dead = false;
-        baddy.currentLife = baddy.maxLife;
+        baddy.life = baddy.maxLife;
       } else if (baddy === moblinInstance && baddy.dead && game.level >= baddy.levelShowUp && game.level % 5 === 0) {
         baddy.dead = false;
-        baddy.currentLife = baddy.maxLife;
+        baddy.life = baddy.maxLife;
       };
     });
     if (player1.life <= 3) {
@@ -253,7 +253,7 @@ let areEnemiesDead = null;
 // }
 //
 // currentEnemies.forEach(enemy => {
-//   enemy.currentLife = enemy.maxLife;
+//   enemy.life = enemy.maxLife;
 // });
 
 /////////////////////
@@ -480,16 +480,16 @@ let startGame = function() {
   if (game.over) {
     allEnemies.forEach(function(baddy) {
       baddy.dead = true;
-      baddy.currentLife = 0;
+      baddy.life = 0;
     });
     tektiteInstance.dead = false;
-    tektiteInstance.currentLife = tektiteInstance.maxLife;
+    tektiteInstance.life = tektiteInstance.maxLife;
     tektiteInstance.x = xStarting(tektiteInstance.spriteWidth);
     tektiteInstance.y = yStarting(tektiteInstance.spriteHeight);
     // for multiple tektites
     // for (let i = 0; i < tektiteArray.length; i++) {
     //   tektiteArray[i].dead = false;
-    //   tektiteArray[i].currentLife = tektiteArray[i].maxLife;
+    //   tektiteArray[i].life = tektiteArray[i].maxLife;
     //   tektiteArray[i].x = xStarting(tektiteArray[i].spriteWidth);
     //   tektiteArray[i].y = yStarting(tektiteArray[i].spriteHeight);
     // }

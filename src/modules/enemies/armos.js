@@ -17,7 +17,7 @@ const stats = {
   speed: 1.2,
   class: 'armos',
   type: 'smart',
-  maxLife: 2,
+  maxLife: 2.5,
   strength: 2,
   points: 3,
   levelShowUp: 6
