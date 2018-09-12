@@ -234,12 +234,12 @@ class Player {
         updateDebuff(fire);
       }
       let dot = setInterval(() => {
-        if (!this.lastAttacked.dead) {
-          this.lastAttacked.life -= 0.5;
-          updateLastEnemy(this, this.lastAttacked);
-          checkForDead(this.lastAttacked);
+        if (!fire.isOnEnemy.dead) {
+          fire.isOnEnemy.life -= 0.5;
+          updateLastEnemy(this, fire.isOnEnemy);
+          checkForDead(fire.isOnEnemy);
         }
-        if (this.lastAttacked.dead) {
+        if (fire.isOnEnemy.dead) {
           allFireDoTs.splice(allFireDoTs.indexOf(fire));
         }
       }, 1000);
