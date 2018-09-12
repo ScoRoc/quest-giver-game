@@ -13,7 +13,12 @@ let showQuests = () => {
     lq.forEach(quest => {
       let li = $('<li></li>').text(quest.text);
       if (quest.kills < quest.killsToComplete) {
-        let sub = $(`<ul><li>Progress</li><li>${quest.kills}/${quest.killsToComplete}</li></ul>`);
+        let sub = $(`
+          <ul>
+            <li>Progress</li>
+            <li>${quest.kills}/${quest.killsToComplete}</li>
+          </ul>
+          `);
         li.append(sub);
       } else {
         li.append($('<li>COMPLETED</li>'))
@@ -38,10 +43,12 @@ let showHideQuestsFunc = () => {
     showHide: () => {
       if (!showHideQuests.showing()) {
         $('#quests-div button').text('Hide');
+        $('.quests-div p').text('Click to abandon quests');
         showQuests();
         showHideQuests.flip();
       } else {
         $('#quests-div button').text('Show');
+        $('.quests-div p').text('');
         ul.text('quests hidden');
         showHideQuests.flip();
       }

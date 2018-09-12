@@ -9,6 +9,10 @@ canvas {
   position: absolute;
 }
 
+li {
+  cursor: pointer;
+}
+
 .left-side {
   min-height: 300px;
   border: 1px solid black;

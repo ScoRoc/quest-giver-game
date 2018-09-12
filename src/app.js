@@ -16,7 +16,7 @@ import {
   Moblin
 } from './modules/enemyImporter.js';
 import { FireDoT, allFireDoTs } from './modules/battle/fireDoT.js';
-import QuestGiver from './modules/npc/QuestGiver.js';
+import { QuestGiver, questGiverInstance } from './modules/npc/QuestGiver.js';
 import {
   backgroundMap,
   ctxBackgroundMap,
@@ -204,7 +204,7 @@ let moblinInstance = new Moblin();
   //////////////////////////////////////////
  // testing quest giver as colored block //
 //////////////////////////////////////////
-let questGiverInstance = new QuestGiver(150, 150, 50, 50, '#3FA');
+// let questGiverInstance = new QuestGiver(150, 150, 50, 50, '#3FA');
 
 const sMap = document.getElementById('sprite-map');
 
@@ -212,7 +212,7 @@ let clickQuestGiver = e => {
   let x = e.clientX - sMap.offsetParent.offsetLeft - sMap.offsetLeft;
   let y = e.clientY - sMap.offsetParent.offsetTop;
   let qg = questGiverInstance;
-  if (x >= qg.x && x <= qg.x + qg.width && y >= qg.y && y <= qg.y + qg.height) {
+  if (x >= qg.x && x <= qg.x + qg.spriteWidth && y >= qg.y && y <= qg.y + qg.spriteHeight) {
     qg.click(player1);
   }
 };
@@ -222,7 +222,7 @@ let mousePointerIcon = e => {
   let x = e.clientX - sMap.offsetParent.offsetLeft - sMap.offsetLeft;
   let y = e.clientY - sMap.offsetParent.offsetTop;
   let qg = questGiverInstance;
-  if (x >= qg.x && x <= qg.x + qg.width && y >= qg.y && y <= qg.y + qg.height) {
+  if (x >= qg.x && x <= qg.x + qg.spriteWidth && y >= qg.y && y <= qg.y + qg.spriteHeight) {
     sMap.style.cursor = 'pointer';
   } else {
     sMap.style.cursor = 'default';
@@ -336,8 +336,9 @@ let animationLoop = function() {
       ///////////////////////////////////
      //  testing drawing quest giver  //
     ///////////////////////////////////
-    ctxSpriteMap.fillStyle = questGiverInstance.color;
-    ctxSpriteMap.fillRect(questGiverInstance.x, questGiverInstance.y, questGiverInstance.width, questGiverInstance.height);
+    ctxSpriteMapDraw(questGiverInstance);
+    // ctxSpriteMap.fillStyle = questGiverInstance.color;
+    // ctxSpriteMap.fillRect(questGiverInstance.x, questGiverInstance.y, questGiverInstance.width, questGiverInstance.height);
     ///////////////////////////////////
 
     //Animates hearts

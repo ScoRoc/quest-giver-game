@@ -1,6 +1,6 @@
 import { showHideQuests, showQuests } from '../showHideQuests.js';
 import KillQuest from './quests/KillQuest.js';
-import { questGiverInstance } from '../../app.js';
+import { newImage } from '../nonMathHelpers.js';
 // import { backgroundMap } from '../maps.js';
 
 
@@ -14,23 +14,23 @@ const stats = {
   pngHeight: 1101,
   spriteWidth: 43,
   spriteHeight: 50,
-  xStart: 150,
-  yStart: 150,
-  speed: 16,
-  type: 'basic',
-  maxLife: 1,
-  strength: 0.5,
-  points: 1,
+  x: 150,
+  y: 150,
+  type: 'quest-giver',
   levelShowUp: 1
 };
 
 class QuestGiver {
-  constructor(x, y, width, height, color) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.color = color;
+  constructor(stats) {
+    this.image = newImage(stats.img);
+    this.xFrame = 0;  // x starting point of src img for sprite frame
+    this.yFrame = 0;  // y starting point of src img for sprite frame
+    this.pngWidth = stats.pngWidth;  // width of src img sprite size
+    this.pngHeight = stats.pngHeight;  // height of src img sprite size
+    this.spriteWidth = stats.spriteWidth;  // width of sprite on canvas
+    this.spriteHeight = stats.spriteHeight;  // height of sprite on canvas
+    this.x = stats.x;  // x point of enemy on canvas
+    this.y = stats.y;  // y point of enemy on canvas
     this.availableQuests = [new KillQuest()];
   };
 
@@ -44,7 +44,7 @@ class QuestGiver {
         player.gainXP(player.quests[0].xp);
         player.quests.splice(player.quests[0]);
         $('#quests-div ul').empty();
-        questGiverInstance.availableQuests.push(new KillQuest());
+        this.availableQuests.push(new KillQuest());
         showQuests();
       }
     } else {
@@ -59,6 +59,8 @@ class QuestGiver {
   }
 
 };
+
+let questGiverInstance = new QuestGiver(stats);
 
 // class Tektite extends Enemy {
 //   constructor() {
@@ -82,4 +84,4 @@ class QuestGiver {
 //
 // };
 
-export default QuestGiver;
+export { QuestGiver, questGiverInstance };
