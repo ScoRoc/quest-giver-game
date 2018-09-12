@@ -1,4 +1,5 @@
 import { newImage } from '../nonMathHelpers.js';
+import { ctxEnemyMap } from '../maps.js';
 
 const stats = {
   img: 'images/fire-dot.png',
@@ -27,7 +28,12 @@ class FireDoT {
     this.desc = 'Deals 0.5 dmg every 1 sec for 3 sec';
     this.isOnEnemy = null;
     this.isAttacking = false;
-  }
+  };
+
+  draw() {
+    ctxEnemyMap.drawImage(this.image, this.xFrame, this.yFrame, this.pngWidth, this.pngHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
+  };
+
 };
 
 const allFireDoTs = [];

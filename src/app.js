@@ -1,7 +1,7 @@
 import { coinFlip, xStarting, yStarting } from './modules/mathHelpers.js';
 import { newImage } from './modules/nonMathHelpers.js';
 import { showHideQuests, showQuests } from './modules/showHideQuests.js';
-import { heart, bigHeart, updateHeartDisplay } from './modules/items/hearts.js';
+import { heartInstance, bigHeartInstance, updateHeartDisplay } from './modules/items/hearts.js';
 import player1 from './modules/Player.js';
 import {
   Tektite,
@@ -25,12 +25,10 @@ import {
   ctxExplosionCanvas,
   enemyMap,
   ctxEnemyMap,
-  ctxEnemyMapDraw,
   deathCanvas,
   ctxDeathCanvas,
   spriteMap,
-  ctxSpriteMap,
-  ctxSpriteMapDraw
+  ctxSpriteMap
 } from './modules/maps.js';
 import {
   gameOverScreen,
@@ -94,10 +92,10 @@ let background = {
       };
     });
     if (player1.life <= 3) {
-      heart.show = true;
+      heartInstance.show = true;
     };
     if (player1.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
-      bigHeart.show = true;
+      bigHeartInstance.show = true;
     };
   },
 
@@ -123,10 +121,10 @@ let background = {
       };
     });
     if (player1.life <= 3) {
-      heart.show = true;
+      heartInstance.show = true;
     };
     if (player1.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
-      bigHeart.show = true;
+      bigHeartInstance.show = true;
     };
   },
 
@@ -152,10 +150,10 @@ let background = {
       };
     });
     if (player1.life <= 3) {
-      heart.show = true;
+      heartInstance.show = true;
     };
     if (player1.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
-      bigHeart.show = true;
+      bigHeartInstance.show = true;
     };
   },
 
@@ -181,10 +179,10 @@ let background = {
       };
     });
     if (player1.life <= 3) {
-      heart.show = true;
+      heartInstance.show = true;
     };
     if (player1.life <= 1 || game.level >= 10 && game.level % 5 === 0) {
-      bigHeart.show = true;
+      bigHeartInstance.show = true;
     };
   }
 };
@@ -336,18 +334,18 @@ let animationLoop = function() {
       ///////////////////////////////////
      //  testing drawing quest giver  //
     ///////////////////////////////////
-    ctxSpriteMapDraw(questGiverInstance);
+    questGiverInstance.draw();
     // ctxSpriteMap.fillStyle = questGiverInstance.color;
     // ctxSpriteMap.fillRect(questGiverInstance.x, questGiverInstance.y, questGiverInstance.width, questGiverInstance.height);
     ///////////////////////////////////
 
     //Animates hearts
-    if (heart.show) {
-      ctxEnemyMapDraw(heart);
+    if (heartInstance.show) {
+      heartInstance.draw();
     };
     //Animates big hearts
-    if (bigHeart.show) {
-      ctxEnemyMapDraw(bigHeart);
+    if (bigHeartInstance.show) {
+      bigHeartInstance.draw();
     };
 
     ////////////////////
@@ -433,12 +431,12 @@ let animationLoop = function() {
       allFireDoTs.forEach(fire => {
         fire.x = fire.isOnEnemy.x + 10;
         fire.y = fire.isOnEnemy.y + 10;
-        ctxEnemyMapDraw(fire);
+        fire.draw();
       });
     }
 
     //Animates player and explosion steps
-    ctxSpriteMapDraw(player1);
+    player1.draw();
     player1.invincible = $('#invincible').prop('checked');
 
     if (player1.isMoving) {
@@ -447,9 +445,9 @@ let animationLoop = function() {
 
   //Collision checks
     //heart
-    heartCollisionDetection(player1, heart);
+    heartCollisionDetection(player1, heartInstance);
     //big heart
-    heartCollisionDetection(player1, bigHeart);
+    heartCollisionDetection(player1, bigHeartInstance);
 
 
     // Enemy collision detection
@@ -506,7 +504,8 @@ let startGame = function() {
     // });
     dodongoInstance.x = -dodongoInstance.spriteWidth * 1.2;
     dodongoInstance.y = yStarting(50);
-    heart.show = false;
+    heartInstance.show = false;
+    bigHeartInstance.show = false;
     player1.life = player1.maxLife;
     updateHeartDisplay(player1);
     player1.x = xStarting(32);

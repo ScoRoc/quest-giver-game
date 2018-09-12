@@ -1,6 +1,7 @@
 import { showHideQuests, showQuests } from '../showHideQuests.js';
 import KillQuest from './quests/KillQuest.js';
 import { newImage } from '../nonMathHelpers.js';
+import { ctxSpriteMap } from '../maps.js';
 // import { backgroundMap } from '../maps.js';
 
 
@@ -32,6 +33,10 @@ class QuestGiver {
     this.x = stats.x;  // x point of enemy on canvas
     this.y = stats.y;  // y point of enemy on canvas
     this.availableQuests = [new KillQuest()];
+  };
+
+  draw() {
+    ctxSpriteMap.drawImage(this.image, this.xFrame, this.yFrame, this.pngWidth, this.pngHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
   };
 
   click(player) {

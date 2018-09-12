@@ -27,7 +27,7 @@ class Enemy {
 
   draw() {
     ctxEnemyMap.drawImage(this.image, this.xFrame, this.yFrame, this.pngWidth, this.pngHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
-  }
+  };
 };
 
 export default Enemy;

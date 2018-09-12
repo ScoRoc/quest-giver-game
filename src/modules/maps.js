@@ -16,9 +16,6 @@ let enemyMap = document.getElementById('enemy-map');
 enemyMap.width = 880;
 enemyMap.height = 605;
 let ctxEnemyMap = enemyMap.getContext('2d');
-let ctxEnemyMapDraw = object => {
-  ctxEnemyMap.drawImage(object.image, object.xFrame, object.yFrame, object.pngWidth, object.pngHeight, object.x, object.y, object.spriteWidth, object.spriteHeight);
-};
 
 let deathCanvas = document.getElementById('death-canvas');
 deathCanvas.width = 880;
@@ -29,9 +26,6 @@ let spriteMap = document.getElementById('sprite-map');
 spriteMap.width = 880;
 spriteMap.height = 605;
 let ctxSpriteMap = spriteMap.getContext('2d');
-let ctxSpriteMapDraw = object => {
-  ctxSpriteMap.drawImage(object.image, object.xFrame, object.yFrame, object.pngWidth, object.pngHeight, object.x, object.y, object.spriteWidth, object.spriteHeight);
-};
 
 export {
   backgroundMap,
@@ -41,10 +35,8 @@ export {
   ctxExplosionCanvas,
   enemyMap,
   ctxEnemyMap,
-  ctxEnemyMapDraw,
   deathCanvas,
   ctxDeathCanvas,
   spriteMap,
-  ctxSpriteMap,
-  ctxSpriteMapDraw
+  ctxSpriteMap
 };

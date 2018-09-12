@@ -1,8 +1,97 @@
 import { xStarting, yStarting } from '../mathHelpers.js';
 import { newImage } from '../nonMathHelpers.js';
+import { ctxEnemyMap } from '../maps.js';
 
-// let bigHeartPng = new Image();
-// bigHeartPng.src = 'images/big-heart.png';
+
+//Heart Stats
+
+let heartStats = {
+  img: 'images/heart.gif',
+  xFrame: 57,
+  yFrame: 62,
+  pngWidth: 59,
+  pngHeight: 59,
+  spriteWidth: 18,
+  spriteHeight: 18,
+  x: xStarting(20),
+  y: yStarting(20),
+  show: false,
+  heartAnimation: null,
+  type: 'regular',
+  points: 1
+};
+
+let bigHeartStats = {
+  img: 'images/big-heart.png',
+  xFrame: 0,
+  yFrame: 0,
+  pngWidth: 13,
+  pngHeight: 13,
+  spriteWidth: 30,
+  spriteHeight: 30,
+  x: xStarting(80),
+  y: yStarting(80),
+  show: false,
+  heartAnimation: null,
+  type: 'max'
+};
+
+
+// Heart Classes
+
+class Heart {
+  constructor(stats) {
+    this.image = newImage(stats.img);
+    this.xFrame = stats.xFrame;  //x starting point of src img for sprite frame
+    this.yFrame = stats.yFrame;  //y starting point of src img for sprite frame
+    this.pngWidth = stats.pngWidth;  //width of src img sprite size
+    this.pngHeight = stats.pngHeight;  //height of src img sprite size
+    this.spriteWidth = stats.spriteWidth;  //width of sprite on canvas
+    this.spriteHeight = stats.spriteHeight;  //height of sprite on canvas
+    this.x = stats.x;  //x value where to display heart
+    this.y = stats.y;  //y value where to display heart
+    this.show = stats.show;
+    this.heartAnimation = stats.heartAnimation;
+    this.type = stats.type;  //type of heart
+    this.points = stats.points;  //amount of life this restore
+  };
+
+  draw() {
+    ctxEnemyMap.drawImage(this.image, this.xFrame, this.yFrame, this.pngWidth, this.pngHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
+  };
+
+};
+
+class BigHeart {
+  constructor(stats) {
+    this.image = newImage(stats.img);
+    this.xFrame = stats.xFrame;  //x starting point of src img for sprite frame
+    this.yFrame = stats.yFrame;  //y starting point of src img for sprite frame
+    this.pngWidth = stats.pngWidth;  //width of src img sprite size
+    this.pngHeight = stats.pngHeight;  //height of src img sprite size
+    this.spriteWidth = stats.spriteWidth;  //width of sprite on canvas
+    this.spriteHeight = stats.spriteHeight;  //height of sprite on canvas
+    this.x = stats.x;  //x value where to display heart
+    this.y = stats.y;  //y value where to display heart
+    this.show = stats.show;
+    this.heartAnimation = stats.heartAnimation;
+    this.type = stats.type;  //type of heart
+    // this.points = stats.points;  //amount of life this restore
+  };
+
+  draw() {
+    ctxEnemyMap.drawImage(this.image, this.xFrame, this.yFrame, this.pngWidth, this.pngHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
+  };
+
+};
+
+// Heart Instances
+
+let heartInstance = new Heart(heartStats);
+let bigHeartInstance = new BigHeart(bigHeartStats);
+
+
+// Heart Functions
 
 const heartGifArray = [
   $('#heart-one'),
@@ -10,38 +99,6 @@ const heartGifArray = [
   $('#heart-three'),
   $('#heart-four')
 ];
-
-//Define hearts
-let heart = {
-  image: newImage('images/heart.gif'),
-  xFrame: 57,  //x starting point of src img for sprite frame
-  yFrame: 62,  //y starting point of src img for sprite frame
-  pngWidth: 59,  //width of src img sprite size
-  pngHeight: 59,  //height of src img sprite size
-  spriteWidth: 18,  //width of sprite on canvas
-  spriteHeight: 18,  //height of sprite on canvas
-  x: xStarting(20),  //x value where to display heart
-  y: yStarting(20),  //y value where to display heart
-  show: false,
-  heartAnimation: null,
-  type: 'regular',  //type of heart
-  points: 1  //amount of life this restores
-};
-
-let bigHeart = {
-  image: newImage('images/big-heart.png'),
-  xFrame: 0,  //x starting point of src img for sprite frame
-  yFrame: 0,  //y starting point of src img for sprite frame
-  pngWidth: 13,  //width of src img sprite size
-  pngHeight: 13,  //height of src img sprite size
-  spriteWidth: 30,  //width of sprite on canvas
-  spriteHeight: 30,  //height of sprite on canvas
-  x: xStarting(80),  //x value where to display heart
-  y: yStarting(80),  //y value where to display heart
-  show: false,
-  heartAnimation: null,
-  type: 'max'  //type of heart
-};
 
 let fullHearts = () => {
   heartGifArray.forEach(heart => {
@@ -71,4 +128,4 @@ let updateHeartDisplay = player => {
   }
 };
 
-export { heart, bigHeart, updateHeartDisplay };
+export { heartInstance, bigHeartInstance, updateHeartDisplay };

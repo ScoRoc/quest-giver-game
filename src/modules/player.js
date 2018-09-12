@@ -4,7 +4,7 @@ import { newImage } from './nonMathHelpers.js';
 import { checkForDead, updateLastEnemy, updateDebuff } from './battle/battleFunctions.js';
 import { backgroundMap } from './maps.js';
 import { game, background, areEnemiesDead } from '../app.js';
-import { ctxExplosionCanvas, enemyMap } from './maps.js';
+import { ctxSpriteMap, ctxExplosionCanvas, enemyMap } from './maps.js';
 import { FireDoT, allFireDoTs } from './battle/fireDoT.js';
 
 //Starting player stats
@@ -69,6 +69,10 @@ class Player {
     this.xpToLevel = stats.xpToLevel;  //xp needed for next level
     this.quests = [];  //array of current quests
     this.lastAttacked = null;  //tracks last enemy attacked
+  };
+
+  draw() {
+    ctxSpriteMap.drawImage(this.image, this.xFrame, this.yFrame, this.pngWidth, this.pngHeight, this.x, this.y, this.spriteWidth, this.spriteHeight);
   };
 
   getAttackTime() {
