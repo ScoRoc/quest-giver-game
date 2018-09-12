@@ -354,48 +354,41 @@ let animationLoop = function() {
     // FOR RANDOM ENEMIES
     // currentEnemies.forEach(enemy => {
     //   if (!enemy.dead) {
-    //     ctxEnemyMapDraw(enemy);
-    //     enemy.move();
+    //     enemy.animate();
     //   }
     // });
     /////////////////
 
     //Animates tektiteInstance
     if (!tektiteInstance.dead && game.level >= tektiteInstance.levelShowUp) {
-      ctxEnemyMapDraw(tektiteInstance);
-      tektiteInstance.move();
+      tektiteInstance.animate();
     };
     /////// for multiple tektites
     // tektiteArray.forEach(tektite => {
     //   if (!tektite.dead && game.level >= tektite.levelShowUp) {
-    //     ctxEnemyMapDraw(tektite);
-    //     tektite.move();
+    //     tektite.animate();
     //   }
     // });
     ///////
 
     //Animates keeseInstance
     if (!keeseInstance.dead && game.level >= keeseInstance.levelShowUp) {
-      ctxEnemyMapDraw(keeseInstance);
-      keeseInstance.move();
+      keeseInstance.animate();
     };
 
     //Animates gibdoInstance
     if (!gibdoInstance.dead && game.level >= gibdoInstance.levelShowUp) {
-      ctxEnemyMapDraw(gibdoInstance);
-      gibdoInstance.move();
+      gibdoInstance.animate();
     };
 
     //Animates stalfosInstance
     if (!stalfosInstance.dead && game.level >= stalfosInstance.levelShowUp) {
-      ctxEnemyMapDraw(stalfosInstance);
-      stalfosInstance.move();
+      stalfosInstance.animate();
     };
 
     //Animates dodongoInstance
     if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x < backgroundMap.width + dodongoInstance.spriteWidth) {
-      ctxEnemyMapDraw(dodongoInstance);
-      dodongoInstance.move();
+      dodongoInstance.animate();
     };
     if (!dodongoInstance.dead && game.level >= dodongoInstance.levelShowUp && dodongoInstance.x >= backgroundMap.width + dodongoInstance.spriteWidth) {
       dodongoInstance.dead = true;
@@ -404,20 +397,17 @@ let animationLoop = function() {
 
     //Animates armosInstance
     if (!armosInstance.dead && game.level >= armosInstance.levelShowUp) {
-      ctxEnemyMapDraw(armosInstance);
-      armosInstance.move();
+      armosInstance.animate();
     };
 
     //Animates wizzrobeInstance
     if (!wizzrobeInstance.dead && game.level >= wizzrobeInstance.levelShowUp) {
-      ctxEnemyMapDraw(wizzrobeInstance);
-      wizzrobeInstance.move();
+      wizzrobeInstance.animate();
     };
 
     //Animates darknutInstance
     if (!darknutInstance.dead && game.level >= darknutInstance.levelShowUp && darknutInstance.y < backgroundMap.height + darknutInstance.spriteHeight) {
-      ctxEnemyMapDraw(darknutInstance);
-      darknutInstance.move();
+      darknutInstance.animate();
     };
     if (!darknutInstance.dead && game.level >= darknutInstance.levelShowUp && darknutInstance.y >= backgroundMap.height + darknutInstance.spriteHeight) {
       darknutInstance.dead = true;
@@ -426,8 +416,7 @@ let animationLoop = function() {
 
     //Animates aquamentusInstance
     if (!aquamentusInstance.dead && game.level >= aquamentusInstance.levelShowUp && aquamentusInstance.x > -aquamentusInstance.spriteWidth) {
-      ctxEnemyMapDraw(aquamentusInstance);
-      aquamentusInstance.move();
+      aquamentusInstance.animate();
     };
     if (!aquamentusInstance.dead && game.level >= aquamentusInstance.levelShowUp && aquamentusInstance.x <= -aquamentusInstance.spriteWidth) {
       aquamentusInstance.dead = true;
@@ -436,8 +425,7 @@ let animationLoop = function() {
 
     //Animates moblinInstance
     if (!moblinInstance.dead && game.level >= moblinInstance.levelShowUp) {
-      ctxEnemyMapDraw(moblinInstance);
-      moblinInstance.move();
+      moblinInstance.animate();
     };
 
     //Animates FireDoT

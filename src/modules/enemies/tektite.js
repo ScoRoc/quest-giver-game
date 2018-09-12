@@ -65,10 +65,15 @@ class Tektite extends Enemy {
           this.y += this.speed * this.numberOfSpaces[coinFlip(3)];
         } else if (this.y <= backgroundMap.height - this.spriteHeight * 2) {
           this.y += this.speed * this.numberOfSpaces[coinFlip(2)];
-        };
-      };
-    };
+        }
+      }
+    }
   };
+
+  animate() {
+    super.draw();
+    this.move();
+  }
 };
 
 export default Tektite;

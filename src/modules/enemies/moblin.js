@@ -42,14 +42,14 @@ class Moblin extends Enemy {
         } else if (this.x >= backgroundMap.width - this.spriteWidth) {
           this.speed = 2.1;
           this.cycleOne++;
-        };
+        }
       } else if (this.cycleOne === 12) {  //Move slightly back L
         if (this.x > backgroundMap.width - this.spriteWidth * 2) {
           this.x -= this.speed;
           this.speed = this.speed > this.acceleration ? this.speed - this.acceleration * 0.19 : this.speed + this.acceleration;
         } else if (this.x <= backgroundMap.width - this.spriteWidth * 2) {
           this.cycleOne = 21;
-        };
+        }
       } else if (this.cycleOne === 21) {  //Move Up
         if (this.y > 0) {
           this.y -= this.speed;
@@ -57,14 +57,14 @@ class Moblin extends Enemy {
         } else if (this.y <= 0) {
           this.speed = 2.1;
           this.cycleOne++;
-        };
+        }
       } else if (this.cycleOne === 22) {  //Move slightly back down
         if (this.y < this.spriteHeight) {
           this.y += this.speed;
           this.speed = this.speed > this.acceleration ? this.speed - this.acceleration * 0.19 : this.speed + this.acceleration;
         } else if (this.y >= this.spriteHeight) {
           this.cycleOne = 31;
-        };
+        }
       } else if (this.cycleOne === 31) {  //Move Left
         if (this.x > 0) {
           this.x -= this.speed;
@@ -72,14 +72,14 @@ class Moblin extends Enemy {
         } else if (this.x <= 0) {
           this.speed = 2.1;
           this.cycleOne++;
-        };
+        }
       } else if (this.cycleOne === 32) {  //Move slightly back right
         if (this.x < this.spriteWidth * 2) {
           this.x += this.speed;
           this.speed = this.speed > this.acceleration ? this.speed - this.acceleration * 0.19 : this.speed + this.acceleration;
         } else if (this.x >= this.spriteWidth * 2) {
           this.cycleOne = 41;
-        };
+        }
       } else if (this.cycleOne === 41) {  //Move down
         if (this.y < backgroundMap.height - this.spriteHeight) {
           this.y += this.speed;
@@ -87,15 +87,15 @@ class Moblin extends Enemy {
         } else if (this.y >= backgroundMap.height - this.spriteHeight) {
           this.speed = 2.1;
           this.cycleOne++;
-        };
+        }
       } else if (this.cycleOne === 42) {  //Move slight back up
         if (this.y > backgroundMap.height - this.spriteHeight * 2) {
           this.y -= this.speed;
           this.speed = this.speed > this.acceleration ? this.speed - this.acceleration * 0.19 : this.speed + this.acceleration;
         } else if (this.y <= backgroundMap.height - this.spriteHeight * 2) {
           this.cycleOne = 11;
-        };
-      };
+        }
+      }
     } else if (this.life > 2) {  //Stage Two
       if (this.cycleTwo === 11) {  //Top to Bottom
         if (this.y < backgroundMap.height + this.spriteHeight * 1.2) {
@@ -106,7 +106,7 @@ class Moblin extends Enemy {
           this.y = this.spriteHeight * 1.7;
           this.speed = 0.5;
           this.cycleTwo++;
-        };
+        }
       } else if (this.cycleTwo === 12) {  //L to R
         if (this.x < backgroundMap.width + this.spriteWidth * 1.2) {
           this.x += this.speed;
@@ -116,7 +116,7 @@ class Moblin extends Enemy {
           this.y = backgroundMap.height + this.spriteHeight * 0.25;
           this.speed = 0.5;
           this.cycleTwo++;
-        };
+        }
       } else if (this.cycleTwo === 13) {  //Bottom to Top
         if (this.y > -this.spriteHeight * 1.23) {
           this.y -= this.speed;
@@ -126,7 +126,7 @@ class Moblin extends Enemy {
           this.y = backgroundMap.height - this.spriteHeight * 1.73;
           this.speed = 0.5;
           this.cycleTwo++;
-        };
+        }
       } else if (this.cycleTwo === 14) {  //R to L
         if (this.x > -this.spriteWidth * 1.23) {
           this.x -= this.speed;
@@ -136,8 +136,8 @@ class Moblin extends Enemy {
           this.y = -this.spriteHeight * 1.23;
           this.speed = 0.5;
           this.cycleTwo = 11;
-        };
-      };
+        }
+      }
     } else if (this.life > 0) {   //Stage Three
       this.speed = 1.2;
         //move diagonally bottom right
@@ -152,7 +152,7 @@ class Moblin extends Enemy {
         } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y >= backgroundMap.height - this.spriteHeight) {
           this.x = backgroundMap.width / 2;
           this.y = backgroundMap.height / 2;
-        };
+        }
         //move diagonally top right
       } else if (this.x - player1.x >= 0 && this.y - player1.y <= 0) {
         if (this.x < backgroundMap.width - this.spriteWidth && this.y > 0) {
@@ -165,7 +165,7 @@ class Moblin extends Enemy {
         } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y <= 0) {
           this.x = backgroundMap.width / 2;
           this.y = backgroundMap.height / 2;
-        };
+        }
         //move diagonally top left
       } else if (this.x - player1.x <= 0 && this.y - player1.y <= 0) {
         if (this.x > 0 && this.y > 0) {
@@ -178,7 +178,7 @@ class Moblin extends Enemy {
         } else if (this.x <= 0 && this.y <= 0) {
           this.x = backgroundMap.width / 2;
           this.y = backgroundMap.height / 2;
-        };
+        }
         //move diagonally bottom left
       } else if (this.x - player1.x <= 0 && this.y - player1.y >= 0) {
         if (this.x > 0 && this.y < backgroundMap.height - this.spriteHeight) {
@@ -192,8 +192,13 @@ class Moblin extends Enemy {
           this.x = backgroundMap.width / 2;
           this.y = backgroundMap.height / 2;
         }
-      };
-    };
+      }
+    }
+  };
+
+  animate() {
+    super.draw();
+    this.move();
   };
 
 };

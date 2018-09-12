@@ -42,8 +42,13 @@ class Gibdo extends Enemy {
         this.y -= this.speed * this.numberOfSpaces[coinFlip(2)];
       } else if (this.y - player1.y < 0) {
         this.y += this.speed * this.numberOfSpaces[coinFlip(2)];
-      };
-    };
+      }
+    }
+  };
+
+  animate() {
+    super.draw();
+    this.move();
   };
 
 };

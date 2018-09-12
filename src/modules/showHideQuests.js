@@ -13,12 +13,10 @@ let showQuests = () => {
     lq.forEach(quest => {
       let li = $('<li></li>').text(quest.text);
       if (quest.kills < quest.killsToComplete) {
-        let sub = $(`
-          <ul>
-            <li>Progress</li>
-            <li>${quest.kills}/${quest.killsToComplete}</li>
-          </ul>
-          `);
+        let sub = $(`<ul>
+                      <li>Progress</li>
+                      <li>${quest.kills}/${quest.killsToComplete}</li>
+                    </ul>`);
         li.append(sub);
       } else {
         li.append($('<li>COMPLETED</li>'))

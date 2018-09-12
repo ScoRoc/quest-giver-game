@@ -53,6 +53,11 @@ class Armos extends Enemy {
     };
   };
 
+  animate() {
+    super.draw();
+    this.move();
+  };
+
 };
 
 export default Armos;

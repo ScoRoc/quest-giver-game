@@ -42,9 +42,14 @@ class Stalfos extends Enemy {
         this.y -= this.speed * this.numberOfSpaces[coinFlip(1)];
       } else if (this.y - player1.y < 0) {
         this.y += this.speed * this.numberOfSpaces[coinFlip(1)];
-      };
-    };
-  }
+      }
+    }
+  };
+
+  animate() {
+    super.draw();
+    this.move();
+  };
 
 };
 

@@ -31,6 +31,11 @@ class Darknut extends Enemy {
     this.y += this.speed;
   };
 
+  animate() {
+    super.draw();
+    this.move();
+  };
+
 };
 
 export default Darknut;

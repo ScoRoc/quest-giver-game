@@ -56,6 +56,11 @@ class Aquamentus extends Enemy {
     };
   };
 
+  animate() {
+    super.draw();
+    this.move();
+  };
+
 };
 
 export default Aquamentus;

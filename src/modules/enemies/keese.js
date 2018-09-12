@@ -48,10 +48,15 @@ class Keese extends Enemy {
       } else if (keeseJump === 3) {  //for positive y movement
         if (this.y <= backgroundMap.height - this.spriteHeight) {
           this.y += this.speed * this.numberOfSpaces[coinFlip(2)];
-        };
-      };
-    };
-  }
+        }
+      }
+    }
+  };
+
+  animate() {
+    super.draw();
+    this.move();
+  };
 
 };
 

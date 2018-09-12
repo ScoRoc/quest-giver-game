@@ -42,7 +42,7 @@ class Wizzrobe extends Enemy {
       } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y >= backgroundMap.height - this.spriteHeight) {
         this.x = backgroundMap.width / 2;
         this.y = backgroundMap.height / 2;
-      };
+      }
       //move diagonally top right
     } else if (this.x - player1.x >= 0 && this.y - player1.y <= 0) {
       if (this.x < backgroundMap.width - this.spriteWidth && this.y > 0) {
@@ -55,7 +55,7 @@ class Wizzrobe extends Enemy {
       } else if (this.x >= backgroundMap.width - this.spriteWidth && this.y <= 0) {
         this.x = backgroundMap.width / 2;
         this.y = backgroundMap.height / 2;
-      };
+      }
       //move diagonally top left
     } else if (this.x - player1.x <= 0 && this.y - player1.y <= 0) {
       if (this.x > 0 && this.y > 0) {
@@ -68,7 +68,7 @@ class Wizzrobe extends Enemy {
       } else if (this.x <= 0 && this.y <= 0) {
         this.x = backgroundMap.width / 2;
         this.y = backgroundMap.height / 2;
-      };
+      }
       //move diagonally bottom left
     } else if (this.x - player1.x <= 0 && this.y - player1.y >= 0) {
       if (this.x > 0 && this.y < backgroundMap.height - this.spriteHeight) {
@@ -82,7 +82,12 @@ class Wizzrobe extends Enemy {
         this.x = backgroundMap.width / 2;
         this.y = backgroundMap.height / 2;
       }
-    };
+    }
+  };
+
+  animate() {
+    super.draw();
+    this.move();
   };
 
 };
