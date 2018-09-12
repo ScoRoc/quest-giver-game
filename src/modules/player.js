@@ -228,7 +228,7 @@ class Player {
     if (this.lastAttacked) {
       let fire = new FireDoT();
       fire.isOnEnemy = this.lastAttacked;
-      if (!this.lastAttacked.dead) {
+      if (!fire.isOnEnemy.dead) {
         fire.isAttacking = true;
         allFireDoTs.push(fire);
         updateDebuff(fire);
