@@ -17,7 +17,7 @@ let updateLastEnemy = (player, baddy) => {
 
 let updateDebuff = debuff => {
   if (debuff.isAttacking) {
-    $('#debuff-name').text(debuff.type);
+    $('#debuff-name').text(debuff.name);
     $('#debuff-img').attr('src', debuff.image.src);
     $('#debuff-desc').text(debuff.desc);
   } else {

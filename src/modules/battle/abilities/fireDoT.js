@@ -1,5 +1,5 @@
-import { newImage } from '../nonMathHelpers.js';
-import { ctxEnemyMap } from '../maps.js';
+import { newImage } from '../../nonMathHelpers.js';
+import { ctxEnemyMap } from '../../maps.js';
 
 const stats = {
   img: 'images/fire-dot.png',
@@ -24,9 +24,10 @@ class FireDoT {
     this.y = stats.y;  // y point of fire on canvas
     this.spriteWidth = stats.spriteWidth;  // width of sprite on canvas
     this.spriteHeight = stats.spriteHeight;  // height of sprite on canvas
-    this.type = 'fire';
+    this.type = 'dot';
+    this.name = 'fire';
     this.desc = 'Deals 0.5 dmg every 1 sec for 3 sec';
-    this.isOnEnemy = null;
+    this.target = null;
     this.isAttacking = false;
   };
 

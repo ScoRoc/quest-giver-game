@@ -5,7 +5,7 @@ import { checkForDead, updateLastEnemy, updateDebuff } from './battle/battleFunc
 import { backgroundMap } from './maps.js';
 import { game, background, areEnemiesDead } from '../app.js';
 import { ctxSpriteMap, ctxExplosionCanvas, enemyMap } from './maps.js';
-import { FireDoT, allFireDoTs } from './battle/fireDoT.js';
+import { FireDoT, allFireDoTs } from './battle/abilities/fireDoT.js';
 
 //Starting player stats
 const startingPlayerStats = {
@@ -227,19 +227,19 @@ class Player {
     console.log('this.lastAttacked: ', this.lastAttacked);
     if (this.lastAttacked) {
       let fire = new FireDoT();
-      fire.isOnEnemy = this.lastAttacked;
-      if (!fire.isOnEnemy.dead) {
+      fire.target = this.lastAttacked;
+      if (!fire.target.dead) {
         fire.isAttacking = true;
         allFireDoTs.push(fire);
         updateDebuff(fire);
       }
       let dot = setInterval(() => {
-        if (!fire.isOnEnemy.dead) {
-          fire.isOnEnemy.life -= 0.5;
-          updateLastEnemy(this, fire.isOnEnemy);
-          checkForDead(fire.isOnEnemy);
+        if (!fire.target.dead) {
+          fire.target.life -= 0.5;
+          updateLastEnemy(this, fire.target);
+          checkForDead(fire.target);
         }
-        if (fire.isOnEnemy.dead) {
+        if (fire.target.dead) {
           allFireDoTs.splice(allFireDoTs.indexOf(fire));
         }
       }, 1000);

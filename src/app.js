@@ -15,7 +15,7 @@ import {
   Aquamentus,
   Moblin
 } from './modules/enemyImporter.js';
-import { FireDoT, allFireDoTs } from './modules/battle/fireDoT.js';
+import { FireDoT, allFireDoTs } from './modules/battle/abilities/fireDoT.js';
 import { QuestGiver, questGiverInstance } from './modules/npc/QuestGiver.js';
 import {
   backgroundMap,
@@ -435,8 +435,8 @@ let animationLoop = function() {
     //Animates FireDoT
     if (allFireDoTs.length > 0) {
       allFireDoTs.forEach(fire => {
-        fire.x = fire.isOnEnemy.x + 10;
-        fire.y = fire.isOnEnemy.y + 10;
+        fire.x = fire.target.x + 10;
+        fire.y = fire.target.y + 10;
         fire.draw();
       });
     }
