@@ -552,4 +552,4 @@ startGameButton.on('click', startGame);
 document.addEventListener('keydown', e => player1.playerAction(e));
 document.addEventListener('keyup', e => player1.actionStop(e));
 
-export { game, background, areEnemiesDead, animateGame, startGameButton, questGiverInstance };
+export { game, background, areEnemiesDead, animateGame, startGameButton };

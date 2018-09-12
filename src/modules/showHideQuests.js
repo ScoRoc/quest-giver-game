@@ -1,5 +1,5 @@
 import player1 from './Player.js';
-import { questGiverInstance } from '../app.js';
+import { questGiverInstance } from './npc/QuestGiver.js';
 import KillQuest from './npc/quests/KillQuest.js';
 
 const ul = $('#quests-div ul');
