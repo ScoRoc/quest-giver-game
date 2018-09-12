@@ -220,7 +220,12 @@ let mousePointerIcon = e => {
   let y = e.clientY - sMap.offsetParent.offsetTop;
   let qg = questGiverInstance;
   if (x >= qg.x && x <= qg.x + qg.spriteWidth && y >= qg.y && y <= qg.y + qg.spriteHeight) {
-    sMap.style.cursor = 'pointer';
+    let p = player1;
+    if (Math.abs(qg.x - p.x) <= 50 && Math.abs(qg.y - p.y) <= 50) {
+      sMap.style.cursor = 'help';
+    } else {
+      sMap.style.cursor = 'context-menu';
+    }
   } else {
     sMap.style.cursor = 'default';
   }
