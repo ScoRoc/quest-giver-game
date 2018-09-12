@@ -1,10 +1,10 @@
-import { ctxSpriteMap, ctxSpriteMapDraw, spriteMap } from '../maps.js';
+import { ctxSpriteMap, spriteMap } from '../maps.js';
 import player1 from '../Player.js';
 
 //Player death spin
 let playerDies = function(player) {
   ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-  ctxSpriteMapDraw(player1);
+  player1.draw();
   if (player1.xFrame === 0 && player1.yFrame === 0) {
     player1.xFrame = 90;
     player1.yFrame = 30;
