@@ -288,7 +288,6 @@ let animationLoop = function() {
   if (!game.over) {
     game.setGameNow();
 
-
     ctxEnemyMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
     ctxBackgroundMap.drawImage(background.image, background.xFrame, background.yFrame, background.pngWidth, background.pngHeight, 0, 0, background.mapWidth, background.mapHeight);
@@ -440,7 +439,7 @@ let animationLoop = function() {
 
     if (player1.isMoving) {
       player1.move();
-    };
+    }
 
   //Collision checks
     //heart
@@ -478,7 +477,7 @@ let animationLoop = function() {
   } else if (game.over) {
     game.endTime = Date.now();
     gameOver();
-  };
+  }
 
 };
 
