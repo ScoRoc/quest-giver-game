@@ -20,7 +20,6 @@ import { QuestGiver, questGiverInstance } from './modules/npc/QuestGiver.js';
 import {
   backgroundMap,
   ctxBackgroundMap,
-  ctxBackgroundMapDraw,
   explosionCanvas,
   ctxExplosionCanvas,
   enemyMap,
@@ -292,7 +291,7 @@ let animationLoop = function() {
 
     ctxEnemyMap.clearRect(0, 0, enemyMap.width, enemyMap.height);
     ctxSpriteMap.clearRect(0, 0, spriteMap.width, spriteMap.height);
-    ctxBackgroundMapDraw(background);
+    ctxBackgroundMap.drawImage(background.image, background.xFrame, background.yFrame, background.pngWidth, background.pngHeight, 0, 0, background.mapWidth, background.mapHeight);
 
     //up map frame counter, call, and stop
     if (background.moveMapUp) {
