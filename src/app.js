@@ -514,6 +514,12 @@ let startGame = function() {
     bigHeartInstance.show = false;
     player1.life = player1.maxLife;
     updateHeartDisplay(player1);
+    player1.level = 1;
+    player1.xp = 0;
+    player1.xpToLevel = 30;
+    $('#player-lvl').text(player1.level);
+    $('#player-xp').text(player1.xp);
+    $('#needed-xp').text(player1.xpToLevel);
     player1.x = xStarting(32);
     player1.y = yStarting(35);
     player1.xFrame = 0;
