@@ -15,7 +15,7 @@ class Enemy {
     this.xCenter = this.spriteWidth / 2;  // x center of hit box
     this.yCenter = this.spriteHeight / 2;  // y center of hit box
     this.speed = stats.speed; // number of px to move
-    this.class = stats.className; // class of enemy
+    this.class = stats.class; // class of enemy
     this.type = stats.type;  // enemy type
     this.maxLife = stats.maxLife;  // how much starting life is
     this.life = this.maxLife;  // how much current life
