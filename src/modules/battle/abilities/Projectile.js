@@ -44,7 +44,7 @@ class Projectile {
     console.log('hypotenuse: ', Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ));
 
     if ( Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ) <= 225) {
-      console.log('here');
+      console.log('in movement part of projectile');
       this.x -= slopeX * this.speed;
       this.y -= slopeY * this.speed;
     } else {
@@ -61,31 +61,6 @@ class Projectile {
 
 const allProjectiles = [];
 
-const stats = {
-  img: 'images/fire-dot.png',
-  xFrame: 0,
-  yFrame: 0,
-  pngWidth: 600,
-  pngHeight: 560,
-  x: 350,
-  y: 250,
-  spriteWidth: 30,
-  spriteHeight: 28,
-  speed: .018
-};
 
-let source = {
-  x: 350,
-  y: 250
-};
-
-let target = {
-  x: 400,
-  y: 300
-};
-
-let foo = new Projectile(stats, source);
-foo.active = true;
-// foo.shoot(source, target);
-
-export { Projectile, allProjectiles, foo, source, target };
+export default Projectile;
+export { allProjectiles };

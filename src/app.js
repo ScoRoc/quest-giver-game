@@ -16,7 +16,7 @@ import {
   Moblin
 } from './modules/enemyImporter.js';
 import { FireDoT, allFireDoTs } from './modules/battle/abilities/fireDoT.js';
-import { foo, source, target } from './modules/battle/abilities/Projectile.js';
+import { foo, source, target } from './modules/battle/abilities/FireProjectile.js';
 import { QuestGiver, questGiverInstance } from './modules/npc/QuestGiver.js';
 import {
   backgroundMap,
