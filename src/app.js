@@ -16,6 +16,7 @@ import {
   Moblin
 } from './modules/enemyImporter.js';
 import { FireDoT, allFireDoTs } from './modules/battle/abilities/fireDoT.js';
+import { foo, source, target } from './modules/battle/abilities/Projectile.js';
 import { QuestGiver, questGiverInstance } from './modules/npc/QuestGiver.js';
 import {
   backgroundMap,
@@ -336,6 +337,9 @@ let animationLoop = function() {
       };
     };
 
+    if (foo.active) {
+      foo.shoot(source, target);
+    }
 
       ///////////////////////////////////
      //  testing drawing quest giver  //

@@ -5,7 +5,7 @@ import { checkForDead, updateLastEnemy, updateDebuff } from './battle/battleFunc
 import { backgroundMap } from './maps.js';
 import { game, background, areEnemiesDead } from '../app.js';
 import { ctxSpriteMap, ctxExplosionCanvas, enemyMap } from './maps.js';
-import { FireDoT, allFireDoTs } from './battle/abilities/fireDoT.js';
+import { FireDoT, allFireDoTs } from './battle/abilities/FireDoT.js';
 
 //Starting player stats
 const startingPlayerStats = {
