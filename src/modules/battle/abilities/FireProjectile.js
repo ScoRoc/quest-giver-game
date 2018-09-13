@@ -13,8 +13,6 @@ const stats = {
   yFrame: 0,
   pngWidth: 600,
   pngHeight: 560,
-  x: 350,
-  y: 250,
   spriteWidth: 30,
   spriteHeight: 28,
   speed: 1
