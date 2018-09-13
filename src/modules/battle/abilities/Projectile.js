@@ -33,20 +33,22 @@ class Projectile {
     let targetY = target.y;
     console.log('targetX: ', targetX, 'targetY: ', targetY);
 
-    let slopeX = initialX - targetX;
-    let slopeY = initialY - targetY;
+    let slopeX = targetX - initialX;
+    let slopeY = targetY - initialY;
     console.log('slopeX: ', slopeX, 'slopeY: ', slopeY);
+    let slope = slopeX / slopeY;
+    console.log('slope: ', slope);
 
-    let a = Math.abs(this.x - targetX);
-    let b = Math.abs(this.y - targetY);
+    let a = Math.abs(initialX - this.x);
+    let b = Math.abs(initialY - this.y);
     console.log('a: ', a, 'b: ', b);
     console.log('a ^ 2: ', Math.pow(a, 2), 'b ^ 2: ', Math.pow(b, 2));
     console.log('hypotenuse: ', Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ));
 
-    if ( Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ) <= 225) {
+    if ( Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ) <= 150) {
       console.log('in movement part of projectile');
-      this.x -= slopeX * this.speed;
-      this.y -= slopeY * this.speed;
+      this.x -= slope * this.speed;
+      this.y -= slope * this.speed;
     } else {
       this.active = false;
     }

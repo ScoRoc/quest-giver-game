@@ -17,20 +17,20 @@ const stats = {
   y: 250,
   spriteWidth: 30,
   spriteHeight: 28,
-  speed: .018
+  speed: 1
 };
 
 let source = {
-  x: 350,
-  y: 250
+  x: 250,
+  y: 450
 };
 
 let target = {
-  x: 400,
-  y: 300
+  x: 150,
+  y: 150
 };
 
-let foo = new FireProjectile(stats, source);
+let foo = new FireProjectile(source);
 foo.active = true;
 // foo.shoot(source, target);
 
