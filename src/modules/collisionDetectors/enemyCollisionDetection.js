@@ -29,7 +29,7 @@ let enemyCollisionDetection = function(player, baddy) {
     let hitRadiusDown = Math.abs(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistanceDown, 2)));
     if (hitRadius <= 32 || hitRadiusRight <= 32 || hitRadiusDown <= 32) {
       player.getAttackTime();
-      baddy.life -= 1;
+      baddy.life -= player.strength;
       updateLastEnemy(player, baddy);
       checkForDead(baddy);
     };

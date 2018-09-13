@@ -91,7 +91,6 @@ class Player {
 
   gainLevel() {
     this.level += 1;
-    this.
     $('#player-lvl').text(this.level);
     this.xp = Math.abs(this.xpToLevel - this.xp);
     this.xpToLevel += 5;
