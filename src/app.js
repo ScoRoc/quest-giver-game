@@ -522,6 +522,7 @@ let startGame = function() {
     player1.level = 1;
     player1.xp = 0;
     player1.xpToLevel = 30;
+    player1.strength = 1;
     $('#player-lvl').text(player1.level);
     $('#player-xp').text(player1.xp);
     $('#needed-xp').text(player1.xpToLevel);
