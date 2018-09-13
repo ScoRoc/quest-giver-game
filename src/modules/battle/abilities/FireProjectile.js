@@ -21,13 +21,13 @@ const stats = {
 };
 
 let source = {
-  x: 250,
-  y: 450
+  x: 150,
+  y: 150
 };
 
 let target = {
-  x: 150,
-  y: 150
+  x: 50,
+  y: 350
 };
 
 let foo = new FireProjectile(source);

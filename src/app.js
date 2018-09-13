@@ -337,9 +337,10 @@ let animationLoop = function() {
       };
     };
 
-    if (foo.active) {
-      foo.shoot(source, target);
-    }
+    // FOR PROJECTILE
+    // if (foo.active) {
+    //   foo.shoot(source, target);
+    // }
 
       ///////////////////////////////////
      //  testing drawing quest giver  //

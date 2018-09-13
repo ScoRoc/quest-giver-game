@@ -36,7 +36,7 @@ class Projectile {
     let slopeX = targetX - initialX;
     let slopeY = targetY - initialY;
     console.log('slopeX: ', slopeX, 'slopeY: ', slopeY);
-    let slope = slopeX / slopeY;
+    let slope = slopeY / slopeX;
     console.log('slope: ', slope);
 
     let a = Math.abs(initialX - this.x);
@@ -47,8 +47,8 @@ class Projectile {
 
     if ( Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ) <= 150) {
       console.log('in movement part of projectile');
-      this.x -= slope * this.speed;
-      this.y -= slope * this.speed;
+      this.x += slope * this.speed;
+      this.y += slope * this.speed;
     } else {
       this.active = false;
     }
