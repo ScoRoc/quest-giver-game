@@ -30,6 +30,5 @@ let target = {
 
 let foo = new FireProjectile(source);
 foo.active = true;
-// foo.shoot(source, target);
 
 export { FireProjectile, foo, source, target };
