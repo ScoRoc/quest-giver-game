@@ -23,6 +23,7 @@ const startingPlayerStats = {
   speed: 10,
   life: 4,
   maxLife: 4,
+  strength: 1,
   level: 1,
   xpToLevel: 30
 };
@@ -63,6 +64,7 @@ class Player {
     this.heartTime = null;  //tracks time when link picked up heart
     this.life = stats.life;  //how much life left
     this.maxLife = stats.maxLife;  //max life
+    this.strength = stats.strength;  //how many points per hit
     this.invincible = false;  //checks for invincibility
     this.level = stats.level;  //player level
     this.xp = 0;  //current player experience
@@ -89,6 +91,7 @@ class Player {
 
   gainLevel() {
     this.level += 1;
+    this.
     $('#player-lvl').text(this.level);
     this.xp = Math.abs(this.xpToLevel - this.xp);
     this.xpToLevel += 5;
